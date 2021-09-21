@@ -2,3 +2,4 @@
 /bin/maven-archiver
 /bin/generated-sources
 /bin/*-sources.jar
+/nbproject/

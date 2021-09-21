@@ -10,9 +10,10 @@ public class Matrix {
     private float[][] data;
     
     // KONSTRUKTOR
-    public Matrix(int nCol, int nRow){
+    public Matrix(int nRow, int nCol){
         this.nCol = nCol;
         this.nRow = nRow;
+        this.data = new float[nRow][nCol];
     }
     
     // SELEKTOR
@@ -86,7 +87,7 @@ public class Matrix {
         }
         return true;
     }
-    public boolean isTriangularMatrix(){
+    public boolean isTriangular(){
         int i,j;
         boolean lower = true,upper = true;
         if (this.isSquare()){
