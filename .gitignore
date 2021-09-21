@@ -1,5 +1,7 @@
 /bin/maven-status
 /bin/maven-archiver
 /bin/generated-sources
+/bin/generated-test-sources
+/bin/surefire-reports
 /bin/*-sources.jar
 /nbproject/

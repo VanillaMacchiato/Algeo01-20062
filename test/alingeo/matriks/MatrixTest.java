@@ -5,30 +5,18 @@
  */
 package alingeo.matriks;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class MatrixTest {
-
-    @BeforeAll
-    public static void setUpClass() throws Exception {
+/**
+ *
+ * @author Windows 7
+ */
+public class MatrixTest {
+    
+    public MatrixTest() {
     }
 
-    @AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @AfterEach
-    public void tearDown() throws Exception {
-    }
     /**
      * Test of getNCol method, of class Matrix.
      */
@@ -213,6 +201,20 @@ class MatrixTest {
     }
 
     /**
+     * Test of isTriangular method, of class Matrix.
+     */
+    @Test
+    public void testIsTriangular() {
+        System.out.println("isTriangular");
+        Matrix instance = null;
+        boolean expResult = false;
+        boolean result = instance.isTriangular();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
      * Test of plus method, of class Matrix.
      */
     @Test
@@ -347,20 +349,6 @@ class MatrixTest {
         float k = 0.0F;
         Matrix instance = null;
         instance.ScalarRowMultiplication(row, k);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of isTriangular method, of class Matrix.
-     */
-    @Test
-    public void testIsTriangular() {
-        System.out.println("isTriangular");
-        Matrix instance = null;
-        boolean expResult = false;
-        boolean result = instance.isTriangular();
-        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
