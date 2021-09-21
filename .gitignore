@@ -1,1 +1,4 @@
-/src/target/
+/bin/maven-status
+/bin/maven-archiver
+/bin/generated-sources
+/bin/*-sources.jar
