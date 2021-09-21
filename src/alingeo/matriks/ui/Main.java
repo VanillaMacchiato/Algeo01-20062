@@ -1,11 +1,27 @@
+/*
+ * Copyright (C) 2021 rifqi
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package alingeo.matriks.ui;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+import javax.swing.JFileChooser;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author rifqi
@@ -13,7 +29,7 @@ package alingeo.matriks.ui;
 public class Main extends javax.swing.JFrame {
 
     /**
-     * Creates new form SwingUI
+     * Creates new form NewJFrame
      */
     public Main() {
         initComponents();
@@ -28,18 +44,21 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        Background = new javax.swing.JPanel();
+        Menu = new javax.swing.ButtonGroup();
+        FileOpener = new javax.swing.JFileChooser();
+        FileSaver = new javax.swing.JFileChooser();
         SidePanel = new javax.swing.JPanel();
-        MenuLabel = new javax.swing.JLabel();
+        SideHeader = new javax.swing.JPanel();
+        HeaderLabel = new javax.swing.JLabel();
         SideMenu = new javax.swing.JPanel();
         SPLLabel = new javax.swing.JLabel();
+        SPLGauss = new javax.swing.JRadioButton();
         SPLGaussJordan = new javax.swing.JRadioButton();
         SPLMatriksBalikan = new javax.swing.JRadioButton();
         SPLCrammer = new javax.swing.JRadioButton();
         DeterminanLabel = new javax.swing.JLabel();
         DeterminanKofaktor = new javax.swing.JRadioButton();
-        DeterminanOBE = new javax.swing.JRadioButton();
+        DeterimanOBE = new javax.swing.JRadioButton();
         InversLabel = new javax.swing.JLabel();
         InversGaussJordan = new javax.swing.JRadioButton();
         InversAdjoint = new javax.swing.JRadioButton();
@@ -47,296 +66,324 @@ public class Main extends javax.swing.JFrame {
         Interpolasi = new javax.swing.JRadioButton();
         Regresi = new javax.swing.JRadioButton();
         ExitButton = new javax.swing.JButton();
-        SPLMatriksBalikan1 = new javax.swing.JRadioButton();
-        LayeredPane = new javax.swing.JLayeredPane();
-        PanelSPLGaussJordan = new javax.swing.JPanel();
+        LayeredPanel = new javax.swing.JLayeredPane();
+        SPLGaussPanel = new javax.swing.JPanel();
+        SPLGaussTitle = new javax.swing.JLabel();
+        SPLGaussInst1 = new javax.swing.JLabel();
+        SPLGaussInst2 = new javax.swing.JLabel();
+        SPLGaussInst3 = new javax.swing.JLabel();
+        SPLGaussInst4 = new javax.swing.JLabel();
+        SPLGaussInst5 = new javax.swing.JLabel();
+        SPLGaussInst6 = new javax.swing.JLabel();
+        SPLGaussCalculate = new javax.swing.JButton();
+        SPLGaussOpenFile = new javax.swing.JButton();
+        SPLGaussFilepath = new javax.swing.JTextField();
+        SPLGaussSave = new javax.swing.JButton();
+        SPLGaussPrompt = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        SPLGaussInput = new javax.swing.JTextPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        SPLGaussIntermediate = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        SPLGaussOutput = new javax.swing.JTextPane();
+
+        FileOpener.setCurrentDirectory(new File (System.getProperty("user.home"))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(600, 500));
+        setPreferredSize(new java.awt.Dimension(600, 500));
         setResizable(false);
-        setSize(new java.awt.Dimension(600, 600));
+        setSize(new java.awt.Dimension(600, 500));
 
-        Background.setPreferredSize(new java.awt.Dimension(600, 460));
+        SidePanel.setBackground(new java.awt.Color(204, 204, 204));
+        SidePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 153, 153), null));
 
-        SidePanel.setBackground(new java.awt.Color(153, 153, 153));
+        SideHeader.setBackground(new java.awt.Color(153, 153, 153));
 
-        MenuLabel.setBackground(new java.awt.Color(255, 255, 255));
-        MenuLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        MenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        MenuLabel.setText("MENU");
+        HeaderLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        HeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        HeaderLabel.setText("Menu");
+        HeaderLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        SideMenu.setBackground(new java.awt.Color(204, 204, 204));
+        javax.swing.GroupLayout SideHeaderLayout = new javax.swing.GroupLayout(SideHeader);
+        SideHeader.setLayout(SideHeaderLayout);
+        SideHeaderLayout.setHorizontalGroup(
+            SideHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(HeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+        );
+        SideHeaderLayout.setVerticalGroup(
+            SideHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(HeaderLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+        );
 
-        SPLLabel.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        SPLLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SideMenu.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 30, 5));
+
+        SPLLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SPLLabel.setText("SPL");
+        SideMenu.add(SPLLabel);
 
-        SPLGaussJordan.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(SPLGaussJordan);
-        SPLGaussJordan.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        SPLGaussJordan.setLabel("Metode Gauss Jordan");
+        Menu.add(SPLGauss);
+        SPLGauss.setSelected(true);
+        SPLGauss.setText("Metode Gauss");
+        SPLGauss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SPLGaussActionPerformed(evt);
+            }
+        });
+        SideMenu.add(SPLGauss);
+
+        Menu.add(SPLGaussJordan);
+        SPLGaussJordan.setText("Metode Gauss Jordan");
         SPLGaussJordan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SPLGaussJordanActionPerformed(evt);
             }
         });
+        SideMenu.add(SPLGaussJordan);
 
-        SPLMatriksBalikan.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(SPLMatriksBalikan);
-        SPLMatriksBalikan.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        SPLMatriksBalikan.setLabel("Metode Matriks Balikan");
+        Menu.add(SPLMatriksBalikan);
+        SPLMatriksBalikan.setText("Metode Matriks Balikan");
+        SideMenu.add(SPLMatriksBalikan);
 
-        SPLCrammer.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(SPLCrammer);
-        SPLCrammer.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        SPLCrammer.setLabel("Metode Crammer");
+        Menu.add(SPLCrammer);
+        SPLCrammer.setText("Metode Crammer");
+        SideMenu.add(SPLCrammer);
 
-        DeterminanLabel.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        DeterminanLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        DeterminanLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         DeterminanLabel.setText("Determinan");
+        SideMenu.add(DeterminanLabel);
 
-        DeterminanKofaktor.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(DeterminanKofaktor);
-        DeterminanKofaktor.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Menu.add(DeterminanKofaktor);
         DeterminanKofaktor.setText("Ekspansi Kofaktor");
-        DeterminanKofaktor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeterminanKofaktorActionPerformed(evt);
-            }
-        });
+        SideMenu.add(DeterminanKofaktor);
 
-        DeterminanOBE.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(DeterminanOBE);
-        DeterminanOBE.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        DeterminanOBE.setText("Metode OBE");
-        DeterminanOBE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeterminanOBEActionPerformed(evt);
-            }
-        });
+        Menu.add(DeterimanOBE);
+        DeterimanOBE.setText("Metode OBE");
+        SideMenu.add(DeterimanOBE);
 
-        InversLabel.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        InversLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        InversLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         InversLabel.setText("Invers");
+        SideMenu.add(InversLabel);
 
-        InversGaussJordan.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(InversGaussJordan);
-        InversGaussJordan.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Menu.add(InversGaussJordan);
         InversGaussJordan.setText("Metode Gauss-Jordan");
-        InversGaussJordan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InversGaussJordanActionPerformed(evt);
-            }
-        });
+        SideMenu.add(InversGaussJordan);
 
-        InversAdjoint.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(InversAdjoint);
-        InversAdjoint.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Menu.add(InversAdjoint);
         InversAdjoint.setText("Metode Adjoint");
-        InversAdjoint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InversAdjointActionPerformed(evt);
-            }
-        });
+        SideMenu.add(InversAdjoint);
 
-        ProblemSolverLabel.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
-        ProblemSolverLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ProblemSolverLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ProblemSolverLabel.setText("Problem Solver");
+        SideMenu.add(ProblemSolverLabel);
 
-        Interpolasi.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(Interpolasi);
-        Interpolasi.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Menu.add(Interpolasi);
         Interpolasi.setText("Interpolasi");
-        Interpolasi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InterpolasiActionPerformed(evt);
-            }
-        });
+        SideMenu.add(Interpolasi);
 
-        Regresi.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(Regresi);
-        Regresi.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        Menu.add(Regresi);
         Regresi.setText("Regresi");
-        Regresi.addActionListener(new java.awt.event.ActionListener() {
+        SideMenu.add(Regresi);
+
+        ExitButton.setText("EXIT");
+        ExitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        ExitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegresiActionPerformed(evt);
+                ExitButtonActionPerformed(evt);
             }
         });
-
-        ExitButton.setBackground(new java.awt.Color(153, 153, 153));
-        ExitButton.setLabel("EXIT");
-
-        SPLMatriksBalikan1.setBackground(new java.awt.Color(204, 204, 204));
-        buttonGroup1.add(SPLMatriksBalikan1);
-        SPLMatriksBalikan1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
-        SPLMatriksBalikan1.setText("Metode Gauss");
-        SPLMatriksBalikan1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SPLMatriksBalikan1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout SideMenuLayout = new javax.swing.GroupLayout(SideMenu);
-        SideMenu.setLayout(SideMenuLayout);
-        SideMenuLayout.setHorizontalGroup(
-            SideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SPLLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(SideMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(SideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SPLMatriksBalikan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(SPLGaussJordan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SPLCrammer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DeterminanKofaktor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DeterminanOBE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(DeterminanLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(InversGaussJordan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(InversAdjoint, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(InversLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Interpolasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Regresi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ProblemSolverLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(SPLMatriksBalikan1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
-                .addContainerGap())
-            .addComponent(ExitButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        SideMenuLayout.setVerticalGroup(
-            SideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SideMenuLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(SPLLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SPLMatriksBalikan1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SPLGaussJordan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SPLMatriksBalikan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SPLCrammer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DeterminanLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DeterminanKofaktor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DeterminanOBE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(InversLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(InversGaussJordan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(InversAdjoint)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ProblemSolverLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Interpolasi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Regresi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ExitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        SideMenu.add(ExitButton);
 
         javax.swing.GroupLayout SidePanelLayout = new javax.swing.GroupLayout(SidePanel);
         SidePanel.setLayout(SidePanelLayout);
         SidePanelLayout.setHorizontalGroup(
             SidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(SideMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(MenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(SidePanelLayout.createSequentialGroup()
+                .addGroup(SidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(SideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(SideHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
         SidePanelLayout.setVerticalGroup(
             SidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SidePanelLayout.createSequentialGroup()
-                .addComponent(MenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(SidePanelLayout.createSequentialGroup()
+                .addComponent(SideHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(SideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        LayeredPanel.setLayout(new java.awt.CardLayout());
+
+        SPLGaussTitle.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        SPLGaussTitle.setText("SPL Metode Gauss");
+
+        SPLGaussInst1.setText("Input Matriks Ax=b :");
+
+        SPLGaussInst2.setText("Pisahkan elemen dengan spasi");
+
+        SPLGaussInst3.setText("Pisahkan baris dengan newline (enter)");
+
+        SPLGaussInst4.setText("Matriks eselon yang terbentuk");
+
+        SPLGaussInst5.setText("Hasil:");
+
+        SPLGaussInst6.setText("Tiap X dipisah newline");
+
+        SPLGaussCalculate.setText("Calculate");
+
+        SPLGaussOpenFile.setText("Open");
+        SPLGaussOpenFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SPLGaussOpenFileActionPerformed(evt);
+            }
+        });
+
+        SPLGaussFilepath.setEditable(false);
+        SPLGaussFilepath.setText("Open A File..");
+
+        SPLGaussSave.setText("Save");
+
+        SPLGaussPrompt.setText("Prompt");
+
+        jScrollPane1.setViewportView(SPLGaussInput);
+
+        SPLGaussIntermediate.setEditable(false);
+        jScrollPane2.setViewportView(SPLGaussIntermediate);
+
+        SPLGaussOutput.setEditable(false);
+        jScrollPane3.setViewportView(SPLGaussOutput);
+
+        javax.swing.GroupLayout SPLGaussPanelLayout = new javax.swing.GroupLayout(SPLGaussPanel);
+        SPLGaussPanel.setLayout(SPLGaussPanelLayout);
+        SPLGaussPanelLayout.setHorizontalGroup(
+            SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SPLGaussPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SPLGaussTitle)
+                    .addGroup(SPLGaussPanelLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SPLGaussInst1)
+                            .addComponent(SPLGaussInst2)
+                            .addComponent(SPLGaussInst3)
+                            .addGroup(SPLGaussPanelLayout.createSequentialGroup()
+                                .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(SPLGaussInst4)
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(SPLGaussInst5)
+                                    .addComponent(SPLGaussInst6)
+                                    .addComponent(SPLGaussCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(SPLGaussPanelLayout.createSequentialGroup()
+                                        .addComponent(SPLGaussFilepath, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(SPLGaussOpenFile))
+                                    .addComponent(SPLGaussSave, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SPLGaussPrompt)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        SPLGaussPanelLayout.setVerticalGroup(
+            SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SPLGaussPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(SPLGaussTitle)
+                .addGap(18, 18, 18)
+                .addComponent(SPLGaussInst1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(SideMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        LayeredPane.setBackground(new java.awt.Color(204, 204, 204));
-
-        PanelSPLGaussJordan.setBackground(new java.awt.Color(204, 204, 204));
-
-        javax.swing.GroupLayout PanelSPLGaussJordanLayout = new javax.swing.GroupLayout(PanelSPLGaussJordan);
-        PanelSPLGaussJordan.setLayout(PanelSPLGaussJordanLayout);
-        PanelSPLGaussJordanLayout.setHorizontalGroup(
-            PanelSPLGaussJordanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 527, Short.MAX_VALUE)
-        );
-        PanelSPLGaussJordanLayout.setVerticalGroup(
-            PanelSPLGaussJordanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 444, Short.MAX_VALUE)
-        );
-
-        LayeredPane.setLayer(PanelSPLGaussJordan, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout LayeredPaneLayout = new javax.swing.GroupLayout(LayeredPane);
-        LayeredPane.setLayout(LayeredPaneLayout);
-        LayeredPaneLayout.setHorizontalGroup(
-            LayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LayeredPaneLayout.createSequentialGroup()
-                .addComponent(PanelSPLGaussJordan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        LayeredPaneLayout.setVerticalGroup(
-            LayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LayeredPaneLayout.createSequentialGroup()
-                .addComponent(PanelSPLGaussJordan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout BackgroundLayout = new javax.swing.GroupLayout(Background);
-        Background.setLayout(BackgroundLayout);
-        BackgroundLayout.setHorizontalGroup(
-            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addComponent(SidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SPLGaussInst2)
+                .addGap(4, 4, 4)
+                .addComponent(SPLGaussInst3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(SPLGaussPanelLayout.createSequentialGroup()
+                        .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SPLGaussOpenFile, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SPLGaussFilepath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SPLGaussCalculate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SPLGaussSave)
+                        .addGap(11, 11, 11)
+                        .addComponent(SPLGaussPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SPLGaussInst4)
+                    .addComponent(SPLGaussInst5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LayeredPane))
-        );
-        BackgroundLayout.setVerticalGroup(
-            BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BackgroundLayout.createSequentialGroup()
-                .addGroup(BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(LayeredPane, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SidePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(SPLGaussInst6)
+                .addGap(4, 4, 4)
+                .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
-        getContentPane().add(Background, java.awt.BorderLayout.CENTER);
+        LayeredPanel.add(SPLGaussPanel, "card2");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(SidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(LayeredPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(SidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(LayeredPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DeterminanOBEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanOBEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DeterminanOBEActionPerformed
-
-    private void InversAdjointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InversAdjointActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InversAdjointActionPerformed
-
-    private void InversGaussJordanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InversGaussJordanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InversGaussJordanActionPerformed
-
-    private void RegresiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RegresiActionPerformed
-
-    private void InterpolasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InterpolasiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InterpolasiActionPerformed
-
-    private void DeterminanKofaktorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanKofaktorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DeterminanKofaktorActionPerformed
+    private void SPLGaussActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLGaussActionPerformed
+        if (SPLGauss.isSelected()){
+            LayeredPanel.removeAll();
+            LayeredPanel.add(SPLGaussPanel);
+            LayeredPanel.repaint();
+            LayeredPanel.revalidate();
+        }
+    }//GEN-LAST:event_SPLGaussActionPerformed
 
     private void SPLGaussJordanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLGaussJordanActionPerformed
-        // TODO add your handling code here:
-        System.out.println("SPLGaussJordan");
+        if (SPLGaussJordan.isSelected()){
+            LayeredPanel.removeAll();
+            LayeredPanel.add(SPLGaussPanel);
+            LayeredPanel.repaint();
+            LayeredPanel.revalidate();
+        }
     }//GEN-LAST:event_SPLGaussJordanActionPerformed
 
-    private void SPLMatriksBalikan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLMatriksBalikan1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SPLMatriksBalikan1ActionPerformed
+    private void SPLGaussOpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLGaussOpenFileActionPerformed
+        int result = FileOpener.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION){
+            File selectedFile = FileOpener.getSelectedFile();
+            SPLGaussFilepath.setText(selectedFile.getAbsolutePath());
+            try {
+                Scanner scanner = new Scanner(selectedFile);
+                String txt = "";
+                while (scanner.hasNextLine()){
+                    txt += scanner.nextLine() + "\n";
+                }
+                SPLGaussInput.setText(txt);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_SPLGaussOpenFileActionPerformed
+
+    private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ExitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,27 +422,47 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel Background;
+    private javax.swing.JRadioButton DeterimanOBE;
     private javax.swing.JRadioButton DeterminanKofaktor;
     private javax.swing.JLabel DeterminanLabel;
-    private javax.swing.JRadioButton DeterminanOBE;
     private javax.swing.JButton ExitButton;
+    private javax.swing.JFileChooser FileOpener;
+    private javax.swing.JFileChooser FileSaver;
+    private javax.swing.JLabel HeaderLabel;
     private javax.swing.JRadioButton Interpolasi;
     private javax.swing.JRadioButton InversAdjoint;
     private javax.swing.JRadioButton InversGaussJordan;
     private javax.swing.JLabel InversLabel;
-    private javax.swing.JLayeredPane LayeredPane;
-    private javax.swing.JLabel MenuLabel;
-    private javax.swing.JPanel PanelSPLGaussJordan;
+    private javax.swing.JLayeredPane LayeredPanel;
+    private javax.swing.ButtonGroup Menu;
     private javax.swing.JLabel ProblemSolverLabel;
     private javax.swing.JRadioButton Regresi;
     private javax.swing.JRadioButton SPLCrammer;
+    private javax.swing.JRadioButton SPLGauss;
+    private javax.swing.JButton SPLGaussCalculate;
+    private javax.swing.JTextField SPLGaussFilepath;
+    private javax.swing.JTextPane SPLGaussInput;
+    private javax.swing.JLabel SPLGaussInst1;
+    private javax.swing.JLabel SPLGaussInst2;
+    private javax.swing.JLabel SPLGaussInst3;
+    private javax.swing.JLabel SPLGaussInst4;
+    private javax.swing.JLabel SPLGaussInst5;
+    private javax.swing.JLabel SPLGaussInst6;
+    private javax.swing.JTextPane SPLGaussIntermediate;
     private javax.swing.JRadioButton SPLGaussJordan;
+    private javax.swing.JButton SPLGaussOpenFile;
+    private javax.swing.JTextPane SPLGaussOutput;
+    private javax.swing.JPanel SPLGaussPanel;
+    private javax.swing.JLabel SPLGaussPrompt;
+    private javax.swing.JButton SPLGaussSave;
+    private javax.swing.JLabel SPLGaussTitle;
     private javax.swing.JLabel SPLLabel;
     private javax.swing.JRadioButton SPLMatriksBalikan;
-    private javax.swing.JRadioButton SPLMatriksBalikan1;
+    private javax.swing.JPanel SideHeader;
     private javax.swing.JPanel SideMenu;
     private javax.swing.JPanel SidePanel;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }
