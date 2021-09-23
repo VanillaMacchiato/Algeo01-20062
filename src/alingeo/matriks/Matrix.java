@@ -87,7 +87,7 @@ public class Matrix {
         }
         return true;
     }
-    public boolean isTriangular(){
+    public int isTriangular(){
         int i,j;
         boolean lower = true,upper = true;
         if (this.isSquare()){
@@ -95,8 +95,7 @@ public class Matrix {
                 for (i=0;i<this.nRow;i++){
                     for(j=i;j<this.nCol;j++){
                         if (this.getElmt(i,j) != 0){
-                            lower = false;
-                            break lowerloop;
+                            return 1;
                         }
                     }
                 }
@@ -105,16 +104,14 @@ public class Matrix {
                 for (i=0; i<this.nRow;i++){
                     for(j=i;j>=0;j--){
                         if (this.getElmt(i, j) != 0){
-                            upper = false;
-                            break upperloop;
+                            return 2;
                         }
                     }
                 }
             }
-            return (lower || upper);
-        } else{
-            return false;
         }
+        return 0;
+        
     }
     
     // OPERASI
