@@ -13,10 +13,10 @@ import alingeo.matriks.Matrix;
  */
 public class DeterminantSolver {
 
-    public static float CofactorExpansion(Matrix M) {
+    public static double CofactorExpansion(Matrix M) {
         //prekondisi: M matriks persegi dan ukuran >= 2x2
         int i, j, k, x, y;
-        float tempsum;
+        double tempsum;
         Matrix tempm = new Matrix(M.getNRow() - 1, M.getNCol() - 1);
         if (M.getNCol() == 2 && M.getNRow() == 2) {
             return (M.getElmt(0, 0) * M.getElmt(1, 1) - M.getElmt(0, 1) * M.getElmt(1, 0));
@@ -48,14 +48,14 @@ public class DeterminantSolver {
         }
     }
 
-    public static float ERO(Matrix M) {
+    public static double ERO(Matrix M) {
         //Prekondisi: M matriks persegi
         for (int i = 0; i < M.getNRow(); i++) {
             for (int j = i; j < M.getNRow(); j++) {
                 M.RowSum(j, i, (-1) * M.getElmt(j, j) / M.getElmt(i, i));
             }
         }
-        float sum = 0;
+        double sum = 0;
         for (int i = 0; i < M.getNRow(); i++) {
             sum += M.getElmt(i, i);
         }
