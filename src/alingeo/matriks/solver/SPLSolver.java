@@ -35,7 +35,7 @@ public class SPLSolver {
     public static void GaussMethod(Matrix m){
         // Belum diimplementasikan:
         // 3 jenis solusi: 
-        float x[] = new float[m.getNCol() - 1];
+        double x[] = new double[m.getNCol() - 1];
         
         ForwardElimGauss(m);
         BackwardSubstitution(m, x);
@@ -50,7 +50,7 @@ public class SPLSolver {
     /* Melakukan Forward Elimination dengan metode Gauss */
     public static void ForwardElimGauss(Matrix m){
         int i, j, n_coef, rowMax;
-        float ratio, pivotElmt;
+        double ratio, pivotElmt;
         
         // coef mencari jumlah yang variabel tidak diketahui
         n_coef = m.getNRow() - 1;
@@ -91,7 +91,7 @@ public class SPLSolver {
     }
     
     /* Mendapatkan hasil X dari matriks REF atau RREF */
-    public static float[] BackwardSubstitution(Matrix m, float[] x){
+    public static double[] BackwardSubstitution(Matrix m, double[] x){
         int N = m.getNCol() - 1;
         boolean zero_coef, zero_rightmost;
         

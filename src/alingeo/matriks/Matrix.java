@@ -11,6 +11,10 @@ public class Matrix {
     private double[][] data;
 
     // KONSTRUKTOR
+    public Matrix(double[][] nData) {
+        this.setData(nData);
+    }
+
     public Matrix(int nRow, int nCol) {
         this.nCol = nCol;
         this.nRow = nRow;
@@ -27,12 +31,27 @@ public class Matrix {
     }
 
     public void setNCol(int nCol) {
-        this.nCol = nCol;
+        resize(this.nRow, nCol);
     }
 
     public void setNRow(int nRow) {
-        this.nRow = nRow;
+        resize(nRow, this.nCol);
     }
+    
+    public void resize(int nRow, int nCol) {
+        double[][] newData = new double[nRow][nCol];
+        int imin = nRow < this.nRow ? nRow : this.nRow;
+        int jmin = nCol < this.nCol ? nCol : this.nCol;
+        int i, j;
+        for (i = 0; i < imin; i++) {
+            for (j = 0; j < jmin; j++) {
+                newData[i][j] = this.data[i][j];
+            }
+        }
+        this.nRow = nRow;
+        this.nCol = nCol;
+        this.data = newData;
+    }    
 
     public double getElmt(int row, int col) {
         return this.data[row][col];
@@ -46,8 +65,10 @@ public class Matrix {
         return this.data;
     }
 
-    public void setData(double[][] data) {
-        this.data = data;
+    public final void setData(double[][] nData) {
+        this.nRow = nData.length;
+        this.nCol = this.nRow > 0 ? nData[0].length : 0;
+        this.data = nData;
     }
 
     public double[] getRow(int row) {

@@ -23,12 +23,9 @@ public class MatrixTest {
     @Test
     public void testGetNCol() {
         System.out.println("getNCol");
-        Matrix instance = null;
-        int expResult = 0;
-        int result = instance.getNCol();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(2, new Matrix(1, 2).getNCol());
+        assertEquals(10, new Matrix(3, 10).getNCol());
+        assertEquals(5, new Matrix(5, 5).getNCol());
     }
 
     /**
@@ -37,12 +34,9 @@ public class MatrixTest {
     @Test
     public void testGetNRow() {
         System.out.println("getNRow");
-        Matrix instance = null;
-        int expResult = 0;
-        int result = instance.getNRow();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(1, new Matrix(1, 2).getNRow());
+        assertEquals(3, new Matrix(3, 10).getNRow());
+        assertEquals(5, new Matrix(5, 5).getNRow());
     }
 
     /**
@@ -51,11 +45,29 @@ public class MatrixTest {
     @Test
     public void testSetNCol() {
         System.out.println("setNCol");
-        int nCol = 0;
-        Matrix instance = null;
-        instance.setNCol(nCol);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(new double[][] {
+            {1,2,3,1},
+            {3,2,4,2},
+            {4,9,1,0}
+        });
+        ins.setNCol(5);
+        assertEquals(5, ins.getNCol());
+        assertArrayEquals(new double [][] {
+            {1,2,3,1,0},
+            {3,2,4,2,0},
+            {4,9,1,0,0}
+        }, ins.getData());
+        ins.setNCol(1);
+        assertEquals(1, ins.getNCol());
+        assertArrayEquals(new double [][] {
+            {1},
+            {3},
+            {4}
+        }, ins.getData());
+        ins.setNCol(0);
+        ins.setNCol(10);
+        assertEquals(10, ins.getNCol());
+        assertArrayEquals(new double[3][10], ins.getData());
     }
 
     /**
@@ -64,11 +76,32 @@ public class MatrixTest {
     @Test
     public void testSetNRow() {
         System.out.println("setNRow");
-        int nRow = 0;
-        Matrix instance = null;
-        instance.setNRow(nRow);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(new double[][] {
+            {1,2},
+            {3,2},
+            {4,2},
+            {4,9},
+            {1,0}
+        });
+        ins.setNRow(2);
+        assertEquals(2, ins.getNRow());
+        assertArrayEquals(new double [][] {
+            {1,2},
+            {3,2},
+        }, ins.getData());
+        ins.setNRow(5);
+        assertEquals(5, ins.getNRow());
+        assertArrayEquals(new double [][] {
+            {1,2},
+            {3,2},
+            {0,0},
+            {0,0},
+            {0,0}
+        }, ins.getData());
+        ins.setNRow(0);
+        ins.setNRow(10);
+        assertEquals(10, ins.getNRow());
+        assertArrayEquals(new double[10][2], ins.getData());
     }
 
     /**
@@ -77,14 +110,16 @@ public class MatrixTest {
     @Test
     public void testGetElmt() {
         System.out.println("getElmt");
-        int row = 0;
-        int col = 0;
-        Matrix instance = null;
-        float expResult = 0.0F;
-        float result = instance.getElmt(row, col);
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(new double[][]{
+            {1.23, 11.25, 0},
+            {333, -123.2, 29},
+        });
+        assertEquals(1.23, ins.getElmt(0,0));
+        assertEquals(11.25, ins.getElmt(0,1));
+        assertEquals(0, ins.getElmt(0,2));
+        assertEquals(333, ins.getElmt(1,0));
+        assertEquals(-123.2, ins.getElmt(1,1));
+        assertEquals(29, ins.getElmt(1,2));
     }
 
     /**
@@ -93,13 +128,19 @@ public class MatrixTest {
     @Test
     public void testSetElmt() {
         System.out.println("setElmt");
-        int row = 0;
-        int col = 0;
-        float val = 0.0F;
-        Matrix instance = null;
-        instance.setElmt(row, col, val);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(3,3);
+        ins.setElmt(0, 0, 1.23);
+        assertEquals(1.23, ins.getElmt(0,0));
+        ins.setElmt(0, 1, 11.25);
+        assertEquals(11.25, ins.getElmt(0,1));
+        ins.setElmt(0, 2, 0);
+        assertEquals(0, ins.getElmt(0,2));
+        ins.setElmt(1, 0, 333);
+        assertEquals(333, ins.getElmt(1,0));
+        ins.setElmt(1, 1, -123.2);
+        assertEquals(-123.2, ins.getElmt(1,1));
+        ins.setElmt(1, 2, 29);
+        assertEquals(29, ins.getElmt(1,2));
     }
 
     /**
@@ -108,12 +149,24 @@ public class MatrixTest {
     @Test
     public void testGetData() {
         System.out.println("getData");
-        Matrix instance = null;
-        float[][] expResult = null;
-        float[][] result = instance.getData();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(3,3);
+        assertEquals(3, ins.getNRow());
+        assertEquals(3, ins.getNCol());
+        assertArrayEquals(new double[3][3], ins.getData());
+        ins = new Matrix(new double[][]{
+            {1, 2, 3},
+            {99.91, -12, 23.2},
+            {0, 0, 0},
+            {-12, 22, 1.2}
+        });
+        assertEquals(4, ins.getNRow());
+        assertEquals(3, ins.getNCol());
+        assertArrayEquals(new double[][]{
+            {1, 2, 3},
+            {99.91, -12, 23.2},
+            {0, 0, 0},
+            {-12, 22, 1.2}
+        }, ins.getData());
     }
 
     /**
@@ -122,11 +175,17 @@ public class MatrixTest {
     @Test
     public void testSetData() {
         System.out.println("setData");
-        float[][] data = null;
-        Matrix instance = null;
-        instance.setData(data);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(2, 2);
+        ins.setData(new double [][]{
+            {99, 12, 31},
+            {20, 20, 99}
+        });
+        assertEquals(2, ins.getNRow());
+        assertEquals(3, ins.getNCol());
+        assertArrayEquals(new double[][]{
+            {99, 12, 31},
+            {20, 20, 99}
+        }, ins.getData());
     }
 
     /**
@@ -137,8 +196,8 @@ public class MatrixTest {
         System.out.println("getRow");
         int row = 0;
         Matrix instance = null;
-        float[] expResult = null;
-        float[] result = instance.getRow(row);
+        double[] expResult = null;
+        double[] result = instance.getRow(row);
         assertArrayEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -151,7 +210,7 @@ public class MatrixTest {
     public void testSetRow() {
         System.out.println("setRow");
         int row = 0;
-        float[] data = null;
+        double[] data = null;
         Matrix instance = null;
         instance.setRow(row, data);
         // TODO review the generated test code and remove the default call to fail.
@@ -207,8 +266,8 @@ public class MatrixTest {
     public void testIsTriangular() {
         System.out.println("isTriangular");
         Matrix instance = null;
-        boolean expResult = false;
-        boolean result = instance.isTriangular();
+        int expResult = 0;
+        int result = instance.isTriangular();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -318,7 +377,7 @@ public class MatrixTest {
         System.out.println("RowSum");
         int row1 = 0;
         int row2 = 0;
-        float k = 0.0F;
+        double k = 0.0;
         Matrix instance = null;
         instance.RowSum(row1, row2, k);
         // TODO review the generated test code and remove the default call to fail.
@@ -346,7 +405,7 @@ public class MatrixTest {
     public void testScalarRowMultiplication() {
         System.out.println("ScalarRowMultiplication");
         int row = 0;
-        float k = 0.0F;
+        double k = 0.0;
         Matrix instance = null;
         instance.ScalarRowMultiplication(row, k);
         // TODO review the generated test code and remove the default call to fail.
