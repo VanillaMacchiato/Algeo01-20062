@@ -5,6 +5,7 @@
  */
 package alingeo.matriks;
 
+import alingeo.matriks.solver.SPLSolver;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -237,12 +238,14 @@ public class MatrixTest {
     @Test
     public void testIsEchelon() {
         System.out.println("isEchelon");
-        Matrix instance = null;
-        boolean expResult = false;
+        Matrix instance = new Matrix(3, 4);
+        instance.setData(new double [][]{
+            {1, 0, 3, 4},
+            {0, 1, 2, 0},
+            {0, 0, 1, 0}
+        });
         boolean result = instance.isEchelon();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(true, result);
     }
 
     /**
@@ -410,6 +413,86 @@ public class MatrixTest {
         instance.ScalarRowMultiplication(row, k);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+    
+    /**
+     * Test of ForwardElim method, of class SPLSolver.
+     */
+    @Test
+    public void testForwardElim() {
+        System.out.println("ForwardElim");
+        Matrix ins = new Matrix(3, 4);
+        ins.setData(new double [][]{
+            {1, 1, 1, 5},
+            {2, 3, 5, 8},
+            {4, 0, 5, 2}
+        });
+        SPLSolver.forwardElim(ins, true);
+        
+        for (int i = 0; i < 3; i++) { //this equals to the row in our matrix.
+           for (int j = 0; j < 4; j++) { //this equals to the column in each row.
+              System.out.print(ins.getElmt(i, j) + " ");
+           }
+           System.out.println(); //change line on console as row comes to end in the matrix.
+        }
+        assertArrayEquals(new double[][]{
+            {1, 0, 0, 3},
+            {0, 1, 0, 4},
+            {0, 0, 1, -2}
+        }, ins.getData());
+    }
+    
+        /**
+     * Test of GaussJordanMethod method, of class SPLSolver.
+     */
+    @Test
+    public void testGaussJordanMethod() {
+        System.out.println("GaussJordanMethod");
+        Matrix ins = new Matrix(3, 4);
+        ins.setData(new double [][]{
+            {1, 1, 1, 5},
+            {2, 3, 5, 8},
+            {4, 0, 5, 2}
+        });
+        Matrix result;
+        
+        result = SPLSolver.gaussJordanMethod(ins);
+
+        assertArrayEquals(new double[][]{
+            {3},
+            {4},
+            {-2}
+        }, result.getData());
+    }
+    
+    /**
+     * Test of GaussMethod method, of class SPLSolver.
+     */
+    @Test
+    public void testGaussMethod() {
+        System.out.println("GaussMethod");
+        Matrix ins = new Matrix(3, 4);
+        ins.setData(new double [][]{
+            {1, 1, 1, 5},
+            {2, 3, 5, 8},
+            {4, 0, 5, 2}
+        });
+        Matrix result;
+        result = SPLSolver.gaussMethod(ins);
+        
+//        for (int i = 0; i < result.getNRow(); i++) { //this equals to the row in our matrix.
+//            System.out.print("x"+ (i+1) + " = ");
+//            for (int j = 0; j < result.getNCol(); j++) { //this equals to the column in each row.
+//                System.out.print(result.getElmt(i, j));
+//            }
+//            System.out.println(); //change line on console as row comes to end in the matrix.
+//        }
+        
+        assertArrayEquals(new double[][]{
+            {3},
+            {4},
+            {-2}
+        }, result.getData());
     }
     
 }

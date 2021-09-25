@@ -32,91 +32,173 @@ import alingeo.matriks.Matrix;
  */
 public class SPLSolver {
     /* Mencari solusi pada matriks m dengan menggunakan metode Gauss  */
-    public static void GaussMethod(Matrix m){
-        // Belum diimplementasikan:
-        // 3 jenis solusi: 
-        double x[] = new double[m.getNCol() - 1];
+    public static Matrix gaussMethod(Matrix m){
+        int status;
+        Matrix result = new Matrix(m.getNCol(), m.getNCol());
         
-        ForwardElimGauss(m);
-        BackwardSubstitution(m, x);
+        forwardElim(m, false);
+        status = backwardSubstitution(m, result, false);
         
-        for (int i=0; i<m.getNCol()-1; i++){
-            System.out.print(x[i] + " ");
-        }
-        
-        
+        return result;
     }
     
-    /* Melakukan Forward Elimination dengan metode Gauss */
-    public static void ForwardElimGauss(Matrix m){
-        int i, j, n_coef, rowMax;
-        double ratio, pivotElmt;
+    public static Matrix gaussJordanMethod(Matrix m){
+        int status;
+        Matrix result = new Matrix(m.getNCol(), m.getNCol());
+        
+        forwardElim(m, true); 
+        status = backwardSubstitution(m, result, true);
+        
+        return result;
+    }
+    
+    /*  Melakukan Forward Elimination dengan metode Gauss atau Gauss-Jordan.
+        Metode Gauss akan menghasilkan Echelon Form,
+        sedangkan Gauss-Jordan menghasilkan Reduced Echelon Form. */
+    public static void forwardElim(Matrix m, boolean useGaussJordan){
+        int nRow, nCol, rowMax, rowMin, rowCurrent;
+        double ratio, elmtMax, elmtMin;
         
         // coef mencari jumlah yang variabel tidak diketahui
-        n_coef = m.getNRow() - 1;
+        nRow = m.getNRow();
+        nCol = m.getNCol();
+        rowCurrent = 0;
         
         // Traversal terhadap kolom untuk mengubah matriks menjadi echelon form
-        for (i=0;i<n_coef;i++){
+        for (int i=0;i<(nCol-1);i++){
             // Cek nilai maksimum pada kolom ke-i.
             // Jika ada nilai yang lebih tinggi, baris akan di swap.
             rowMax = i;
-            pivotElmt = m.getElmt(i, i);
-            for (j=i+1;j<n_coef;j++){
-                if (m.getElmt(j, i) > pivotElmt){
-                    pivotElmt = m.getElmt(j, i);
+            rowMin = i;
+            
+            elmtMax = m.getElmt(rowCurrent, i);
+            elmtMin = m.getElmt(rowCurrent, i);
+            for (int j=rowCurrent+1;j<nRow;j++){
+                if (m.getElmt(j, i) > elmtMax){
+                    elmtMax = m.getElmt(j, i);
                     rowMax = j;
+                }
+                if (m.getElmt(j, i) < elmtMin){
+                    elmtMin = m.getElmt(j, i);
+                    rowMin = j;
                 }
             }
             
-            // Menghindari zero division
-            if (pivotElmt == 0.0f){
+            // Menghindari zero diviteion
+            if ((elmtMin == 0.0) && (elmtMax == 0.0)){
                 continue;
             }
             
-            // row swap
-            if (i != rowMax){
-                m.RowSwap(i, rowMax);
+            // row swap jika elemen kolom ke-i bernilai nol
+            if ((m.getElmt(rowCurrent, i) == 0.0) && (elmtMax > 0.0)){
+                m.RowSwap(rowCurrent, rowMax);
+            } else if ((m.getElmt(rowCurrent, i) == 0.0) && (elmtMin < 0.0)) {
+                m.RowSwap(rowCurrent, rowMin);
             }
             
-            // Pengurang nilai baris di bawahnya dengan rasio
-            for (j=i+1;j<n_coef;j++){
-                ratio = m.getElmt(j, i) / m.getElmt(i, i);
-                
-                m.RowSum(j, i, -ratio);
+            // Membuat satu utama pada row ke-rowCurrent
+            m.ScalarRowMultiplication(rowCurrent, 1.0f/m.getElmt(rowCurrent, i));
+            
+            // Membuat Row Echelon Form
+            for (int j=rowCurrent+1;j<nRow;j++){
+                if (m.getElmt(j, i) != 0.0){
+                    ratio = m.getElmt(j, i) / m.getElmt(rowCurrent, i);
+
+                    m.RowSum(j, i, -ratio);
+                }
             }
+            
+            
+            // Membuat Reduced Row Echelon Form
+            if (useGaussJordan){
+                for (int j=0;j<(rowCurrent);j++){
+                    if (m.getElmt(j, i) != 0.0){
+                        ratio = m.getElmt(j, i) / m.getElmt(rowCurrent, i);
+
+                        m.RowSum(j, i, -ratio);
+                }
+            }
+            }
+            
+            // Jika operasi berhasil, row count akan bertambah
+            rowCurrent++;
+            if (rowCurrent == nRow) break;
         }
-        
-        // Membagi row 1 dengan baris paling kiri
-        m.ScalarRowMultiplication(0, 1.0f / m.getElmt(0, 0));
     }
     
     /* Mendapatkan hasil X dari matriks REF atau RREF */
-    public static double[] BackwardSubstitution(Matrix m, double[] x){
-        int N = m.getNCol() - 1;
-        boolean zero_coef, zero_rightmost;
+    public static int backwardSubstitution(Matrix m, Matrix result, boolean useGaussJordan){
+//        Matrix solution = new Matrix();
+        int nRow = m.getNRow();
+        int nCol = m.getNCol();
+        int nonZeroCoef = 0;
+        boolean zeroRightmost = false;
         
-        zero_rightmost = false;
-        zero_coef = true;
-        if (m.getElmt(m.getNRow()-1, m.getNCol()-1) == 0){
-            zero_rightmost = true;
+        // Traversal baris terakhir
+        for (int j=0; j<(nCol-1); j++){
+            if (m.getElmt(nRow-1,j) != 0.0){
+                nonZeroCoef += 1;
+            }
         }
-        // Jika baris paling bawah berisi nol kecuali paling kanan, matriks tidak ada solusi
-//        for (int i=0; i<N; i++){
-//            if 
-//        }
         
-        for (int i=N; i>=0; i--){
-            // Mendapatkan elemen paling kanan matriks
-            x[i] = m.getElmt(i, N+1);
-            
-            for (int j=i+1; j<N; j++){
-                x[i] -= x[j] * m.getElmt(i, j);
+        // Cek konstanta pada baris dan kolom terakhir
+        if ((m.getElmt(nRow-1, nCol-1)) == 0.0){
+            zeroRightmost = true;
+        }
+        
+        // Status -1: Matriks tidak ada solusi
+        if ((nonZeroCoef == 0) && (!zeroRightmost)){
+            return -1;
+        }
+        
+        // Status -2: Matriks mempunyai banyak solusi
+        if ((nonZeroCoef == 0) && (zeroRightmost)){
+//            isParameter
+            if (useGaussJordan){
+                for (int i=(nRow-2);i>0;i--){
+//                    x[i] 
+                    for (int j=0;j<nCol;j++){
+//                        if ()
+                    }
+                }
             }
             
-            x[i] /= m.getElmt(i, N);
+            return -2;
         }
         
-        return x;
+        // Cek baris terakhir apakah mempunyai lebih dari 1 variabel x
+        if (nonZeroCoef > 1){
+            // Jika ada, solusi bersifat parametrik
+            for (int j=0;j<(nCol-1);j++){
+                if (m.getElmt(nRow-1, j) != 0.0){
+                    // X ke-j adalah parametrik
+                }
+            }
+            
+            // Iterasi baris
+            for (int i=nRow-2;i>0;i--){
+                //
+                if (m.getElmt(i, i) == 0.0){
+                    
+                }
+            }
+        } else {
+            // Solusi unik dan tidak berparameter
+            result.setNCol(1);
+            result.setNRow(m.getNRow());
+
+            for (int i=nRow-1;i>=0;i--){
+                double tmp_sum = m.getElmt(i, nCol-1);
+                for (int j=i+1;j<(nCol-1);j++){
+                    tmp_sum -= m.getElmt(i, j) * result.getElmt(j, 0);
+                }
+                result.setElmt(i, 0, tmp_sum);
+            }
+            
+            return 0;
+        }
+        
+    return -3;
     }
 }
 
