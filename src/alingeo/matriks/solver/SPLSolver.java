@@ -39,15 +39,30 @@ public class SPLSolver {
         forwardElim(m, false);
         status = backwardSubstitution(m, result, false);
         
+        
+        for (int i = 0; i < m.getNRow(); i++) { //this equals to the row in our matrix.
+            for (int j = 0; j < m.getNCol(); j++) { //this equals to the column in each row.
+                System.out.print(m.getElmt(i, j) + " ");
+            }
+            System.out.println(); //change line on console as row comes to end in the matrix.
+        }
+        
         return result;
     }
     
     public static Matrix gaussJordanMethod(Matrix m){
         int status;
-        Matrix result = new Matrix(m.getNCol(), m.getNCol());
+        Matrix result = new Matrix(m.getNRow(), m.getNCol());
         
         forwardElim(m, true); 
         status = backwardSubstitution(m, result, true);
+        
+        for (int i = 0; i < m.getNRow(); i++) { //this equals to the row in our matrix.
+            for (int j = 0; j < m.getNCol(); j++) { //this equals to the column in each row.
+                System.out.print(m.getElmt(i, j) + " ");
+            }
+            System.out.println(); //change line on console as row comes to end in the matrix.
+        }
         
         return result;
     }
@@ -128,7 +143,6 @@ public class SPLSolver {
     
     /* Mendapatkan hasil X dari matriks REF atau RREF */
     public static int backwardSubstitution(Matrix m, Matrix result, boolean useGaussJordan){
-//        Matrix solution = new Matrix();
         int nRow = m.getNRow();
         int nCol = m.getNCol();
         int nonZeroCoef = 0;
@@ -153,13 +167,41 @@ public class SPLSolver {
         
         // Status -2: Matriks mempunyai banyak solusi
         if ((nonZeroCoef == 0) && (zeroRightmost)){
-//            isParameter
-            if (useGaussJordan){
-                for (int i=(nRow-2);i>0;i--){
-//                    x[i] 
-                    for (int j=0;j<nCol;j++){
-//                        if ()
-                    }
+            // e.g.
+            // [ 1 ... ... ... ... ]
+            // [ 0  1  ... ... ... ]
+            // [ 0  0   0   0   0  ]
+            int noOfParam = nCol - nRow;
+            
+            result.setNCol(noOfParam+1);
+            result.setNRow(nCol-1);
+            
+            for (int i=0;i<result.getNRow();i++){
+                for (int j=0;j<result.getNCol();j++){
+                    result.setElmt(i, j, 0);
+                }
+            }
+            
+            // X yang parametrik
+            int count = noOfParam;
+            for (int j=(nCol-2); j>=(nCol-noOfParam-1); j--){
+                result.setElmt(j, count, 1.0);
+                count--;
+            }
+            // X yang tidak parametrik
+            result.setElmt(nCol-noOfParam-2, 0, m.getElmt(nRow-2,nCol-1));
+            for (int j=1;j<result.getNCol();j++){
+                result.setElmt(nCol-noOfParam-2, j, -1*m.getElmt(nRow-2, j+nCol-noOfParam-2));
+            }
+            
+            for (int i=nRow-3;i>=0;i--){
+                for (int j=1;j<(result.getNCol());j++){
+                    result.setElmt(i, j, -m.getElmt(i, nCol-noOfParam-2+j));
+                }
+                
+                result.setElmt(i, 0, m.getElmt(i, nCol-1));
+                for (int j=i+1;j<(nCol-noOfParam-1);j++){
+                    result.RowSum(i, j, -m.getElmt(i, j));
                 }
             }
             
@@ -168,18 +210,41 @@ public class SPLSolver {
         
         // Cek baris terakhir apakah mempunyai lebih dari 1 variabel x
         if (nonZeroCoef > 1){
-            // Jika ada, solusi bersifat parametrik
-            for (int j=0;j<(nCol-1);j++){
-                if (m.getElmt(nRow-1, j) != 0.0){
-                    // X ke-j adalah parametrik
+            // e.g.
+            // [ 1 ... ... ... ...  ... ]
+            // [ 0  1  ... ... ...  ... ]
+            // [ 0  0   1  ... ...  ... ]
+            int noOfParam = nCol - nRow - 1;
+            
+            result.setNCol(noOfParam+1);
+            result.setNRow(nCol-1);
+            
+            for (int i=0;i<result.getNRow();i++){
+                for (int j=0;j<result.getNCol();j++){
+                    result.setElmt(i, j, 0);
                 }
             }
             
-            // Iterasi baris
-            for (int i=nRow-2;i>0;i--){
-                //
-                if (m.getElmt(i, i) == 0.0){
-                    
+            // X yang parametrik
+            int count = noOfParam;
+            for (int j=(nCol-2); j>=(nCol-noOfParam-1); j--){
+                result.setElmt(j, count, 1.0);
+                count--;
+            }
+            // X yang tidak parametrik
+            result.setElmt(nCol-noOfParam-2, 0, m.getElmt(nRow-1,nCol-1));
+            for (int j=1;j<result.getNCol();j++){
+                result.setElmt(nCol-noOfParam-2, j, -1*m.getElmt(nRow-1, j+nCol-noOfParam-2));
+            }
+            
+            for (int i=nRow-2;i>=0;i--){
+                for (int j=1;j<(result.getNCol());j++){
+                    result.setElmt(i, j, -m.getElmt(i, nCol-noOfParam-2+j));
+                }
+                
+                result.setElmt(i, 0, m.getElmt(i, nCol-1));
+                for (int j=i+1;j<(nCol-noOfParam-1);j++){
+                    result.RowSum(i, j, -m.getElmt(i, j));
                 }
             }
         } else {

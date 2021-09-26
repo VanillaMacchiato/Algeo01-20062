@@ -448,15 +448,25 @@ public class MatrixTest {
     @Test
     public void testGaussJordanMethod() {
         System.out.println("GaussJordanMethod");
-        Matrix ins = new Matrix(3, 4);
+        Matrix ins = new Matrix(4, 7);
         ins.setData(new double [][]{
-            {1, 1, 1, 5},
-            {2, 3, 5, 8},
-            {4, 0, 5, 2}
+            {1, 2, 3, 2, 1, 2, 3},
+            {2, 1, 2, 3, 2, 1, 2},
+            {3, 2, 1, 2, 3, 2, 1},
+            {0, 0, 0, 0, 0, 0, 0}
         });
         Matrix result;
         
         result = SPLSolver.gaussJordanMethod(ins);
+        
+        for (int i = 0; i < result.getNRow(); i++) { //this equals to the row in our matrix.
+            System.out.print("x"+ (i+1) + " = ");
+            for (int j = 0; j < result.getNCol(); j++) { //this equals to the column in each row.
+                System.out.print(result.getElmt(i, j) + " ");
+            }
+            System.out.println(); //change line on console as row comes to end in the matrix.
+        }
+        
 
         assertArrayEquals(new double[][]{
             {3},
@@ -471,22 +481,21 @@ public class MatrixTest {
     @Test
     public void testGaussMethod() {
         System.out.println("GaussMethod");
-        Matrix ins = new Matrix(3, 4);
+        Matrix ins = new Matrix(2, 5);
         ins.setData(new double [][]{
-            {1, 1, 1, 5},
-            {2, 3, 5, 8},
-            {4, 0, 5, 2}
+            {2, 3, 4, 3, 2},
+            {1, 2, 3, 4, 3},
         });
         Matrix result;
         result = SPLSolver.gaussMethod(ins);
         
-//        for (int i = 0; i < result.getNRow(); i++) { //this equals to the row in our matrix.
-//            System.out.print("x"+ (i+1) + " = ");
-//            for (int j = 0; j < result.getNCol(); j++) { //this equals to the column in each row.
-//                System.out.print(result.getElmt(i, j));
-//            }
-//            System.out.println(); //change line on console as row comes to end in the matrix.
-//        }
+        for (int i = 0; i < result.getNRow(); i++) { //this equals to the row in our matrix.
+            System.out.print("x"+ (i+1) + " = ");
+            for (int j = 0; j < result.getNCol(); j++) { //this equals to the column in each row.
+                System.out.print(result.getElmt(i, j)+ " ");
+            }
+            System.out.println(); //change line on console as row comes to end in the matrix.
+        }
         
         assertArrayEquals(new double[][]{
             {3},
