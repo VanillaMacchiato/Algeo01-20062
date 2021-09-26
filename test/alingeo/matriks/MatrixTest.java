@@ -459,15 +459,6 @@ public class MatrixTest {
         
         result = SPLSolver.gaussJordanMethod(ins);
         
-        for (int i = 0; i < result.getNRow(); i++) { //this equals to the row in our matrix.
-            System.out.print("x"+ (i+1) + " = ");
-            for (int j = 0; j < result.getNCol(); j++) { //this equals to the column in each row.
-                System.out.print(result.getElmt(i, j) + " ");
-            }
-            System.out.println(); //change line on console as row comes to end in the matrix.
-        }
-        
-
         assertArrayEquals(new double[][]{
             {3},
             {4},
@@ -488,14 +479,6 @@ public class MatrixTest {
         });
         Matrix result;
         result = SPLSolver.gaussMethod(ins);
-        
-        for (int i = 0; i < result.getNRow(); i++) { //this equals to the row in our matrix.
-            System.out.print("x"+ (i+1) + " = ");
-            for (int j = 0; j < result.getNCol(); j++) { //this equals to the column in each row.
-                System.out.print(result.getElmt(i, j)+ " ");
-            }
-            System.out.println(); //change line on console as row comes to end in the matrix.
-        }
         
         assertArrayEquals(new double[][]{
             {3},

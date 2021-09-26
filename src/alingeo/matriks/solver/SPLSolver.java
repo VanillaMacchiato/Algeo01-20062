@@ -39,14 +39,6 @@ public class SPLSolver {
         forwardElim(m, false);
         status = backwardSubstitution(m, result, false);
         
-        
-        for (int i = 0; i < m.getNRow(); i++) { //this equals to the row in our matrix.
-            for (int j = 0; j < m.getNCol(); j++) { //this equals to the column in each row.
-                System.out.print(m.getElmt(i, j) + " ");
-            }
-            System.out.println(); //change line on console as row comes to end in the matrix.
-        }
-        
         return result;
     }
     
@@ -56,13 +48,6 @@ public class SPLSolver {
         
         forwardElim(m, true); 
         status = backwardSubstitution(m, result, true);
-        
-        for (int i = 0; i < m.getNRow(); i++) { //this equals to the row in our matrix.
-            for (int j = 0; j < m.getNCol(); j++) { //this equals to the column in each row.
-                System.out.print(m.getElmt(i, j) + " ");
-            }
-            System.out.println(); //change line on console as row comes to end in the matrix.
-        }
         
         return result;
     }
