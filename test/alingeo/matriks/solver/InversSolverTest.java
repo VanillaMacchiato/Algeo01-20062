@@ -31,8 +31,22 @@ public class InversSolverTest {
         });
         assertEquals(null, InversSolver.GaussJordanMethod(m));
         m.setData(new double[][]{
-            {1, 2, 3}
+            {1, 2, 3},
+            {4, 1, 2},
+            {6, 6, 2}
         });
+        assertArrayEquals(new double[][]{
+            {-0.19230769230769237, 0.26923076923076916, 0.019230769230769277},
+            {0.07692307692307704, -0.3076923076923076, 0.19230769230769224},
+            {0.3461538461538461, 0.11538461538461535, -0.13461538461538458}
+        }, InversSolver.GaussJordanMethod(m).getData());
+        m.setData(new double[][]{
+            {1, 1, -1, -1},
+            {2, 5, -7, -5},
+            {2, -1, 1, 3},
+            {5, 2, -4, 2}
+        });
+        assertEquals(null, InversSolver.GaussJordanMethod(m));
     }
 
     /**
@@ -41,12 +55,38 @@ public class InversSolverTest {
     @Test
     public void testCofactorMatrix() {
         System.out.println("CofactorMatrix");
-        Matrix m = null;
-        Matrix expResult = null;
-        Matrix result = InversSolver.CofactorMatrix(m);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix m = new Matrix(new double[][]{
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        });
+        assertArrayEquals(new double[][]{
+            {-3, 6, -3},
+            {6, -12, 6},
+            {-3, 6, -3}
+        }, InversSolver.CofactorMatrix(m).getData());
+        m.setData(new double[][]{
+            {1, 2, 3},
+            {4, 1, 2},
+            {6, 6, 2}
+        });
+        assertArrayEquals(new double[][]{
+            {-10, 4, 18},
+            {14, -16, 6},
+            {1, 10, -7}
+        }, InversSolver.CofactorMatrix(m).getData());
+        m.setData(new double[][]{
+            {1, 1, -1, -1},
+            {2, 5, -7, -5},
+            {2, -1, 1, 3},
+            {5, 2, -4, 2}
+        });
+        assertArrayEquals(new double[][]{
+            {4, -16, -6, -6},
+            {-4, 16, 6, 6},
+            {-8, 32, 12, 12},
+            {4, -16, -6, -6}
+        }, InversSolver.CofactorMatrix(m).getData());
     }
 
     /**
@@ -55,12 +95,29 @@ public class InversSolverTest {
     @Test
     public void testAdjointMethod() {
         System.out.println("AdjointMethod");
-        Matrix m = null;
-        Matrix expResult = null;
-        Matrix result = InversSolver.AdjointMethod(m);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix m = new Matrix(new double[][]{
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        });
+        assertEquals(null, InversSolver.AdjointMethod(m));
+        m.setData(new double[][]{
+            {1, 2, 3},
+            {4, 1, 2},
+            {6, 6, 2}
+        });
+        assertArrayEquals(new double[][]{
+            {-0.19230769230769226, 0.26923076923076916, 0.019230769230769225},
+            {0.0769230769230769, -0.3076923076923076, 0.19230769230769226},
+            {0.34615384615384603, 0.11538461538461535, -0.13461538461538458}
+        }, InversSolver.AdjointMethod(m).getData());
+        m.setData(new double[][]{
+            {1, 1, -1, -1},
+            {2, 5, -7, -5},
+            {2, -1, 1, 3},
+            {5, 2, -4, 2}
+        });
+        assertEquals(null, InversSolver.AdjointMethod(m));
     }
 
 }

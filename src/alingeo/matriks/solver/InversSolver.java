@@ -67,7 +67,7 @@ public class InversSolver {
         res.transpose(); // adj = cfc^T
         for (i = 0; i < len; i++) {
             for (j = 0; j < len; j++) {
-                res.setElmt(i, j, m.getElmt(i, j) / det);
+                res.setElmt(i, j, res.getElmt(i, j) / det);
             }
         }
         return res;

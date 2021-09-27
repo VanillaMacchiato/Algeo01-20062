@@ -47,7 +47,9 @@ public class DeterminantSolver {
         for (int i = 0; i < out.getNCol(); i++) {
             result *= out.getElmt(i, i);
         }
-        res.setData(out.getData());
+        if (res != null) {
+            res.setData(out.getData());
+        }
         result *= ratio;
         return result;
     }
