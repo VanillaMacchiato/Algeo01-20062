@@ -24,10 +24,10 @@ public class InversSolver {
                 // Set elemen minor entri ij
                 // Set elemen jadi nilai kofaktor ij
                 res.setElmt(i, j,
-                    ((i + j) % 2 == 1 ? -1 : 1)
-                    * DeterminantSolver.CofactorExpansion(
-                        m.getMinorMatrix(i, j)
-                    )
+                        ((i + j) % 2 == 1 ? -1 : 1)
+                        * DeterminantSolver.CofactorExpansion(
+                                m.getMinorMatrix(i, j)
+                        )
                 );
             }
         }
@@ -38,7 +38,6 @@ public class InversSolver {
         // Prekondisi: m merupakan matriks persegi
         int i, j;
         int n = m.getNCol();
-        Matrix res = new Matrix(n, n);
         Matrix temp = m.copy();
         // Resize and fill up the diagonals with 1
         temp.resize(n * 2, n * 2);
@@ -53,7 +52,7 @@ public class InversSolver {
         }
         // Result by the 2nd col matrix ([0..n][n..n*2])
         // copy at first row with length n and at n col with length n
-        return res.copy(0, n, n, n);
+        return temp.copy(0, n, n, n);
     }
 
     public static Matrix AdjointMethod(Matrix m) {

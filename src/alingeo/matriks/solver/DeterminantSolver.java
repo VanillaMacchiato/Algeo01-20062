@@ -38,15 +38,17 @@ public class DeterminantSolver {
         return ERO(M, out);
     }
 
-    public static double ERO(Matrix M, Matrix out) {
+    public static double ERO(Matrix M, Matrix res) {
         //Prekondisi: M matriks persegi
+        Matrix out = M.copy();
         double ratio = Matrix.toEchelonFormRatio(M, out, false);
-        System.out.println(M.toString());
-        double res = 1;
-        for (int i = 0; i < M.getNCol(); i++) {
-            res *= M.getElmt(i, i);
+
+        double result = 1;
+        for (int i = 0; i < out.getNCol(); i++) {
+            result *= out.getElmt(i, i);
         }
-        res *= ratio;
-        return res;
+        res.setData(out.getData());
+        result *= ratio;
+        return result;
     }
 }

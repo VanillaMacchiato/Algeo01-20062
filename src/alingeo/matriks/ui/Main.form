@@ -214,13 +214,16 @@
                 <Property name="text" type="java.lang.String" value="Invers"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JRadioButton" name="InversGaussJordan">
+            <Component class="javax.swing.JRadioButton" name="InversGauss">
               <Properties>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="Menu"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Metode Gauss-Jordan"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InversGaussActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JRadioButton" name="InversAdjoint">
               <Properties>
@@ -808,6 +811,167 @@
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
                 <Component class="javax.swing.JTextPane" name="DeterminanOBEOutput">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="InversGaussPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="card2"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="SPLGaussTitle2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="SPLGaussInst16" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="SPLGaussInst17" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="SPLGaussInst18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jScrollPane9" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="SPLGaussInst20" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="InversGaussCalculate" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="InversGaussFilepath" min="-2" pref="99" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="InversGaussOpenFile" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="InversGaussSave" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                          <Component id="InversGaussPrompt" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane11" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="SPLGaussTitle2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="SPLGaussInst16" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="SPLGaussInst17" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Component id="SPLGaussInst18" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="InversGaussOpenFile" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="InversGaussFilepath" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="InversGaussCalculate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="InversGaussSave" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Component id="InversGaussPrompt" min="-2" pref="14" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane9" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="SPLGaussInst20" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="jScrollPane11" min="-2" pref="113" max="-2" attributes="0"/>
+                      <EmptySpace pref="107" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="SPLGaussTitle2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Black" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Invers Metode Gauss Jordan"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="SPLGaussInst16">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Input Matriks Ax=b :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="SPLGaussInst17">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pisahkan elemen dengan spasi"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="SPLGaussInst18">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pisahkan baris dengan newline (enter)"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="SPLGaussInst20">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Hasil:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="InversGaussCalculate">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Calculate"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InversGaussCalculateActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="InversGaussOpenFile">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Open"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InversGaussOpenFileActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="InversGaussFilepath">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="Open A File.."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="InversGaussSave">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Save"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="InversGaussPrompt">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Prompt"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextPane" name="InversGaussInput">
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane11">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextPane" name="InversGaussOutput">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>

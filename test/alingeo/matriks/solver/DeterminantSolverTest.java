@@ -69,7 +69,7 @@ public class DeterminantSolverTest {
             {7, 8, 9}
         });
         double expResult = 0.0;
-        double result = instance.ERO(M);
+        double result = instance.ERO(M, new Matrix(M.getData()));
         assertEquals(expResult, result, 0.01);
         M = new Matrix(new double[][]{
             {0, 0, 1},
@@ -77,7 +77,7 @@ public class DeterminantSolverTest {
             {2, 5, 6}
         });
         expResult = -4.0;
-        result = instance.ERO(M);
+        result = instance.ERO(M, new Matrix(M.getData()));
         assertEquals(expResult, result, 0.01);
         // TODO review the generated test code and remove the default call to fail.
     }

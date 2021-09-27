@@ -106,19 +106,22 @@ public class Matrix {
     }
 
     public boolean isEchelon() {
+        System.out.println(this);
         int i, j;
         int maxcol = -1;
         for (i = 0; i < this.nRow; i++) {
             for (j = 0; j < this.nCol; j++) {
                 if (this.getElmt(i, j) == 1) {
-                    if (i > maxcol) {
-                        maxcol = i;
+                    if (j > maxcol) {
+                        maxcol = j;
                         break;
                     } else {
                         return false;
                     }
                 } else if ((this.getElmt(i, j) != 0) && (this.getElmt(i, j) != 1)) {
                     return false;
+                } else if ((this.getElmt(i, j) == 0) && (j == this.getNCol() - 1)) {
+                    maxcol = this.getNCol() - 1;
                 }
             }
         }
@@ -441,7 +444,7 @@ public class Matrix {
     public static double toEchelonFormRatio(Matrix m, Matrix out, boolean reducedForm) {
         Matrix res = m.copy();
         double rat = res.toEchelonFormRatio(reducedForm);
-        out = res;
+        out.setData(res.getData());
         return rat;
     }
 }

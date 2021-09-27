@@ -1,6 +1,11 @@
 package alingeo.matriks.io;
 
 import alingeo.matriks.Matrix;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,4 +29,16 @@ public class Parser {
 
     }
 
+    public static Matrix fileToMatrix(File inp) {
+        String txt = "";
+        try {
+            Scanner scanner = new Scanner(inp);
+            while (scanner.hasNextLine()) {
+                txt += scanner.nextLine() + "\n";
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return stringToMatrix(txt);
+    }
 }
