@@ -37,7 +37,7 @@ public class SPLSolver {
         int status;
         Matrix result = new Matrix(m.getNCol(), m.getNCol());
 
-        backwardSubstitution(m, result);
+        backwardSubstitution(Matrix.toEchelonForm(m, false), result);
 
         return result;
     }
@@ -46,44 +46,74 @@ public class SPLSolver {
         int status;
         Matrix result = new Matrix(m.getNRow(), m.getNCol());
 
-        backwardSubstitution(m, result);
+        backwardSubstitution(Matrix.toEchelonForm(m, true), result);
 
         return result;
     }
 
     /* Mendapatkan hasil X dari matriks REF atau RREF */
-    public static void backwardSubstitution(Matrix m, Matrix result) {
+    public static int[] backwardSubstitution(Matrix m, Matrix result) {
         // Dependency matrix
         Matrix depMat = m.copy();
-        depMat.setNRow(m.getNCol()-1);
-        
+        depMat.setNRow(m.getNCol() - 1);
+        int i, j;
+
         int nRow = depMat.getNRow();
         int nCol = depMat.getNCol();
-        
+        int[] states = new int[nRow];
+
         // Iterasi baris untuk mendapatkan 1 utama di kolom ke-n menjadi
         // 1 utama di baris n dan kolom n
         int col = 0;
-        for (int i=(nRow-1);i>=0;i--){
-            for (int j=i-1;j>=0;j--){
+        for (i = (nRow - 1); i >= 0; i--) {
+            for (j = i - 1; j >= 0; j--) {
                 col = 0;
-                while ((depMat.getElmt(j, col) != 1.0) && (col < (nCol-1))){
+                while ((depMat.getElmt(j, col) != 1.0) && (col < (nCol - 1))) {
                     col++;
                 }
-                
-                if (col == i){
+
+                if (col == i) {
                     depMat.RowSwap(i, j);
                     break;
                 }
             }
         }
-        
-        for (int i=(nRow-2);i>=0;i--){
-            for (int j=(nRow-1);j>i;j--){
-                if (depMat.getElmt(i, j) != 0.0){
-                    depMat.RowSum(i, j, -1.0*depMat.getElmt(i, j));
+
+        double el;
+        for (i = (nRow - 1); i >= 0; i--) {
+            if (depMat.getElmt(i, i) == 0.0) {
+                // if constant does not 0, it shouldn't have a solution
+                if (depMat.getElmt(i, nRow) != 0.0) {
+                    return null;
+                }
+            } else {
+                // turn on the state
+                states[i] = -1; // means it has a value (parametric or constant)
+                // it's not parametric, clear the dependency up.
+                // parametric or constant may not be 0, otherwise should be 0
+                for (j = (nRow - 1); j > i; j--) {
+                    el = depMat.getElmt(i, j);
+                    if (el != 0) {
+                        if (states[j] == 0) { // parametric, turn it negative
+                            depMat.setElmt(i, j, el * -1);
+                        } else { // value, rowsum negative them all
+                            depMat.RowSum(i, j, el * -1);
+                        }
+                    }
                 }
             }
         }
-        result = depMat;
+        // dependency cleared up, set as result
+        result.setData(depMat.getData());
+
+        // turn states into corresponding parametric `val` if applicable
+        // where x.toString() = chr(ord('a')+(x%27)) + str(x/27)
+        int cnt = 0;
+        for (i = 0; i < nRow; i++) {
+            if (states[i] == 0) {
+                states[i] = (cnt++);
+            }
+        }
+        return states;
     }
 }

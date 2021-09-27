@@ -934,16 +934,16 @@ public class MatrixTest {
             {1.2, 0, -1},
             {9, 10, 2}
         });
-        assertEquals("1.20 0.00 -1.00\n9.00 10.00 2.00", ins.toString());
+        assertEquals("1,20 0,00 -1,00\n9,00 10,00 2,00", ins.toString());
         ins.setData(new double[][]{
             {0, 0},
             {9.99, 10}
         });
-        assertEquals("0.00 0.00\n9.99 10.00", ins.toString());
+        assertEquals("0,00 0,00\n9,99 10,00", ins.toString());
         ins.setData(new double[][]{
             {1.23}
         });
-        assertEquals("1.23", ins.toString());
+        assertEquals("1,23", ins.toString());
     }
 
     /**
@@ -991,7 +991,7 @@ public class MatrixTest {
         assertArrayEquals(new double[][]{
             {1, 0, 0.5, -4.5, 3.5},
             {-0.0, 1, 0.5, 2.5, -0.5}
-        }, instance.getData());
+        }, out.getData());
         instance = new Matrix(new double[][]{
             {0, 2},
             {0, 5},
@@ -1005,6 +1005,6 @@ public class MatrixTest {
             {0, 1},
             {0, 0},
             {0, 0}
-        }, instance.getData());
+        }, out.getData());
     }
 }
