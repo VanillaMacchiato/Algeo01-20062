@@ -822,9 +822,9 @@ public class Main extends javax.swing.JFrame {
         if (M.isSquare()) {
             Matrix output = InversSolver.GaussJordanMethod(M);
             if (output != null) {
-                DeterminanOBEOutput.setText(output.toString());
+                InversGaussOutput.setText(output.toString());
             } else {
-                DeterminanOBEOutput.setText("Invers tidak ditemukan.");
+                InversGaussPrompt.setText("Invers tidak ditemukan.");
             }
         } else {
             InversGaussPrompt.setText("Matriks tidak persegi");

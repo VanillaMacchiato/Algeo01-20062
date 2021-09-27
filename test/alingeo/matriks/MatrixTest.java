@@ -554,11 +554,33 @@ public class MatrixTest {
     @Test
     public void testMul_Matrix() {
         System.out.println("mul");
-        Matrix m2 = null;
-        Matrix instance = null;
-        instance.mul(m2);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix m1 = new Matrix(new double[][]{
+            {1, 2, 3, 4},
+            {0, -1, 2, 3},
+            {0, 0, 0, 1}
+        });
+        Matrix m2 = new Matrix(new double[][]{
+            {-1, -2},
+            {0, 1},
+            {0, 0},
+            {-2, -3}
+        });
+        m1.mul(m2);
+        assertArrayEquals(new double[][]{
+            {-9, -12},
+            {-6, -10},
+            {-2, -3}
+        }, m1.getData());
+        m2.setData(new double[][]{
+            {1},
+            {-2}
+        });
+        m1.mul(m2);
+        assertArrayEquals(new double[][]{
+            {15},
+            {14},
+            {4}
+        }, m1.getData());
     }
 
     /**
@@ -567,10 +589,35 @@ public class MatrixTest {
     @Test
     public void testTranspose() {
         System.out.println("transpose");
-        Matrix instance = null;
-        instance.transpose();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(new double[][]{
+            {5, 0, 1, 2},
+            {2, 3, 4, -1}
+        });
+        ins.transpose();
+        assertArrayEquals(new double[][]{
+            {5, 2},
+            {0, 3},
+            {1, 4},
+            {2, -1}
+        }, ins.getData());
+        ins.setData(new double[][]{
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        });
+        ins.transpose();
+        assertArrayEquals(new double[][]{
+            {1, 4, 7},
+            {2, 5, 8},
+            {3, 6, 9}
+        }, ins.getData());
+        ins.setData(new double[][]{
+            {1}
+        });
+        ins.transpose();
+        assertArrayEquals(new double[][]{
+            {1}
+        }, ins.getData());
     }
 
     /**
@@ -579,13 +626,29 @@ public class MatrixTest {
     @Test
     public void testRowSum() {
         System.out.println("RowSum");
-        int row1 = 0;
-        int row2 = 0;
-        double k = 0.0;
-        Matrix instance = null;
-        instance.RowSum(row1, row2, k);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(new double[][]{
+            {1, 2, 3},
+            {-1, 1, -2},
+            {0.1, 2.2, 3.2}
+        });
+        ins.RowSum(1, 0, 5);
+        assertArrayEquals(new double[][]{
+            {1, 2, 3},
+            {4, 11, 13},
+            {0.1, 2.2, 3.2}
+        }, ins.getData());
+        ins.RowSum(2, 1, 1);
+        assertArrayEquals(new double[][]{
+            {1, 2, 3},
+            {4, 11, 13},
+            {4.1, 13.2, 16.2}
+        }, ins.getData());
+        ins.RowSum(0, 1, 2);
+        assertArrayEquals(new double[][]{
+            {9, 24, 29},
+            {4, 11, 13},
+            {4.1, 13.2, 16.2}
+        }, ins.getData());
     }
 
     /**
@@ -594,12 +657,24 @@ public class MatrixTest {
     @Test
     public void testRowSwap() {
         System.out.println("RowSwap");
-        int row1 = 0;
-        int row2 = 0;
-        Matrix instance = null;
-        instance.RowSwap(row1, row2);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(new double[][]{
+            {1, 2, 3},
+            {-1, 1, -2},
+            {0.1, 2.2, 3.2}
+        });
+        ins.RowSwap(0, 1);
+        ins.RowSwap(1, 2);
+        assertArrayEquals(new double[][]{
+            {-1, 1, -2},
+            {0.1, 2.2, 3.2},
+            {1, 2, 3}
+        }, ins.getData());
+        ins.RowSwap(0, 1);
+        assertArrayEquals(new double[][]{
+            {0.1, 2.2, 3.2},
+            {-1, 1, -2},
+            {1, 2, 3}
+        }, ins.getData());
     }
 
     /**
@@ -794,57 +869,20 @@ public class MatrixTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        Matrix instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of plus method, of class Matrix.
-     */
-    @Test
-    public void testPlus() {
-        System.out.println("plus");
-        Matrix m1 = null;
-        Matrix m2 = null;
-        Matrix expResult = null;
-        Matrix result = Matrix.plus(m1, m2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of min method, of class Matrix.
-     */
-    @Test
-    public void testMin() {
-        System.out.println("min");
-        Matrix m1 = null;
-        Matrix m2 = null;
-        Matrix expResult = null;
-        Matrix result = Matrix.min(m1, m2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of mul method, of class Matrix.
-     */
-    @Test
-    public void testMul_Matrix_Matrix() {
-        System.out.println("mul");
-        Matrix m1 = null;
-        Matrix m2 = null;
-        Matrix expResult = null;
-        Matrix result = Matrix.mul(m1, m2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(new double[][]{
+            {1.2, 0, -1},
+            {9, 10, 2}
+        });
+        assertEquals("1,20 0,00 -1,00\n9,00 10,00 2,00", ins.toString());
+        ins.setData(new double[][]{
+            {0, 0},
+            {9.99, 10}
+        });
+        assertEquals("0,00 0,00\n9,99 10,00", ins.toString());
+        ins.setData(new double[][]{
+            {1.23}
+        });
+        assertEquals("1,23", ins.toString());
     }
 
     /**

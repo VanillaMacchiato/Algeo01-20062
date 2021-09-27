@@ -24,10 +24,10 @@ public class InversSolver {
                 // Set elemen minor entri ij
                 // Set elemen jadi nilai kofaktor ij
                 res.setElmt(i, j,
-                        ((i + j) % 2 == 1 ? -1 : 1)
-                        * DeterminantSolver.CofactorExpansion(
-                                m.getMinorMatrix(i, j)
-                        )
+                    ((i + j) % 2 == 1 ? -1 : 1)
+                    * DeterminantSolver.CofactorExpansion(
+                        m.getMinorMatrix(i, j)
+                    )
                 );
             }
         }
@@ -40,12 +40,12 @@ public class InversSolver {
         int n = m.getNCol();
         Matrix temp = m.copy();
         // Resize and fill up the diagonals with 1
-        temp.resize(n * 2, n * 2);
+        temp.setNCol(n * 2);
         for (i = n; i < n * 2; i++) {
             temp.setElmt(i - n, i, 1);
         }
         // Get the reduced echelon form
-        temp = Matrix.toEchelonForm(temp, true);
+        temp.toEchelonForm(true);
         // Make sure that the 1nd col matrix ([0..n][0..n]) is identity
         if (!temp.copy(n, n).isIdentity()) {
             return null;

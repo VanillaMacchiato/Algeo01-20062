@@ -14,23 +14,26 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Windows 7
  */
 public class InversSolverTest {
-    
+
     public InversSolverTest() {
     }
 
     /**
      * Test of GaussJordanMethod method, of class InversSolver.
      */
-    /*@Test
+    @Test
     public void testGaussJordanMethod() {
         System.out.println("GaussJordanMethod");
-        Matrix m = null;
-        Matrix expResult = null;
-        Matrix result = InversSolver.GaussJordanMethod(m);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }*/
+        Matrix m = new Matrix(new double[][]{
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        });
+        assertEquals(null, InversSolver.GaussJordanMethod(m));
+        m.setData(new double[][]{
+            {1, 2, 3}
+        });
+    }
 
     /**
      * Test of CofactorMatrix method, of class InversSolver.
@@ -59,5 +62,5 @@ public class InversSolverTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }
