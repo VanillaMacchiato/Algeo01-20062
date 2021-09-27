@@ -319,13 +319,13 @@ public class Matrix {
 
             // Membuat satu utama pada row ke-rowCurrent
             totalRatio *= this.getElmt(rowCurrent, i);
-            this.ScalarRowMultiplication(rowCurrent, 1.0f / this.getElmt(rowCurrent, i));
+            this.ScalarRowMultiplication(rowCurrent, 1.0 / this.getElmt(rowCurrent, i));
 
             // Membuat Row Echelon Form
             for (int j = rowCurrent + 1; j < nR; j++) {
                 if (this.getElmt(j, i) != 0.0) {
                     ratio = this.getElmt(j, i) / this.getElmt(rowCurrent, i);
-                    this.RowSum(j, i, -ratio);
+                    this.RowSum(j, rowCurrent, -ratio);
                 }
             }
 
@@ -334,7 +334,7 @@ public class Matrix {
                 for (int j = 0; j < (rowCurrent); j++) {
                     if (this.getElmt(j, i) != 0.0) {
                         ratio = this.getElmt(j, i) / this.getElmt(rowCurrent, i);
-                        this.RowSum(j, i, -ratio);
+                        this.RowSum(j, rowCurrent, -ratio);
                     }
                 }
             }
