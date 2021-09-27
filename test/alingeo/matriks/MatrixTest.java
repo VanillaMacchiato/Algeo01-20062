@@ -198,8 +198,8 @@ public class MatrixTest {
             {0, 5.1}
         });
         assertArrayEquals(new double[]{0.2, 99}, ins.getRow(0));
-        assertArrayEquals(new double[]{-2.1, -10}, ins.getRow(0));
-        assertArrayEquals(new double[]{0, 5.1}, ins.getRow(0));
+        assertArrayEquals(new double[]{-2.1, -10}, ins.getRow(1));
+        assertArrayEquals(new double[]{0, 5.1}, ins.getRow(2));
         ins = new Matrix(new double[1][0]);
         assertArrayEquals(new double[0], ins.getRow(0));
     }
@@ -250,7 +250,8 @@ public class MatrixTest {
         assertEquals(true, ins.isEchelon());
         ins.setData(new double[][]{
             {1, 9},
-            {0, 1},});
+            {0, 1}
+        });
         assertEquals(true, ins.isEchelon());
         ins.setData(new double[][]{
             {0, 1, 0.9, 1},
@@ -276,7 +277,8 @@ public class MatrixTest {
         ins.setData(new double[][]{
             {1, 1},
             {0, 0},
-            {0, 1},});
+            {0, 1}
+        });
         assertEquals(false, ins.isEchelon());
     }
 
@@ -287,14 +289,15 @@ public class MatrixTest {
     public void testIsEchelonReduced() {
         System.out.println("isEchelonReduced");
         Matrix ins = new Matrix(new double[][]{
-            {1, 0, 3, 4},
-            {0, 1, 2, 9},
+            {1, 0, 3, 0},
+            {0, 1, 2, 0},
             {0, 0, 0, 1}
         });
         assertEquals(true, ins.isEchelonReduced());
         ins.setData(new double[][]{
             {1, 0},
-            {0, 1},});
+            {0, 1}
+        });
         assertEquals(true, ins.isEchelonReduced());
         ins.setData(new double[][]{
             {1, 0, 9, 0},
@@ -317,7 +320,8 @@ public class MatrixTest {
         ins.setData(new double[][]{
             {1, 1},
             {9, 1},
-            {0, 1},});
+            {0, 1}
+        });
         assertEquals(false, ins.isEchelonReduced());
     }
 
@@ -328,10 +332,549 @@ public class MatrixTest {
     public void testIsTriangular() {
         System.out.println("isTriangular");
         Matrix ins = new Matrix(new double[][]{
-            {1, 0, 0},
-            {0, 1, 0},
-            {0, 0, 1}
+            {9, 0, 0},
+            {0, -1, 0},
+            {0, 0, 1.1}
         });
-        assertEquals(0, ins.isTriangular());
+        assertEquals(Matrix.TriangularType.Diagonal, ins.isTriangular());
+        ins.setData(new double[1][1]);
+        assertEquals(Matrix.TriangularType.Diagonal, ins.isTriangular());
+        ins.setData(new double[][]{
+            {0, 2},
+            {9, 1}
+        });
+        assertEquals(Matrix.TriangularType.None, ins.isTriangular());
+        ins.setData(new double[][]{
+            {1, 1, 2},
+            {0, 2, -0.1}
+        });
+        assertEquals(Matrix.TriangularType.None, ins.isTriangular());
+        ins.setData(new double[][]{
+            {0, 1},
+            {1, 0}
+        });
+        assertEquals(Matrix.TriangularType.None, ins.isTriangular());
+        ins.setData(new double[][]{
+            {0, 0, 1},
+            {0, 0, 0},
+            {0, 0, 0}
+        });
+        assertEquals(Matrix.TriangularType.Lower, ins.isTriangular());
+        ins.setData(new double[][]{
+            {-1.2, 9.9},
+            {0, 2.1}
+        });
+        assertEquals(Matrix.TriangularType.Lower, ins.isTriangular());
+        ins.setData(new double[][]{
+            {0, -0, 1, 21},
+            {0, -4, 0.1, 2},
+            {0, 0, 9, 9},
+            {0, 0, 0, 0}
+        });
+        assertEquals(Matrix.TriangularType.Lower, ins.isTriangular());
+        ins.setData(new double[][]{
+            {0, 0, 0.0},
+            {1, 0, -0.0},
+            {0, 0, 0}
+        });
+        assertEquals(Matrix.TriangularType.Upper, ins.isTriangular());
+        ins.setData(new double[][]{
+            {-1.2, 0},
+            {99, 0}
+        });
+        assertEquals(Matrix.TriangularType.Upper, ins.isTriangular());
+        ins.setData(new double[][]{
+            {9, -0, 0, -0.0},
+            {2.3, 0, 0, 0.0},
+            {-2, 0, -4, 0},
+            {1, -3, 0, 0}
+        });
+        assertEquals(Matrix.TriangularType.Upper, ins.isTriangular());
+    }
+
+    /**
+     * Test of resize method, of class Matrix.
+     */
+    @Test
+    public void testResize() {
+        System.out.println("resize");
+        Matrix ins = new Matrix(new double[][]{
+            {0, 99.99, -0.1, 44},
+            {10, 2, 33, 99},
+            {2, 0.1, 0, 2}
+        });
+        ins.resize(4, 3);
+        assertEquals(4, ins.getNRow());
+        assertEquals(3, ins.getNCol());
+        assertArrayEquals(new double[][]{
+            {0, 99.99, -0.1},
+            {10, 2, 33},
+            {2, 0.1, 0},
+            {0, 0, 0}
+        }, ins.getData());
+        ins.resize(1, 4);
+        assertEquals(1, ins.getNRow());
+        assertEquals(4, ins.getNCol());
+        assertArrayEquals(new double[][]{
+            {0, 99.99, -0.1, 0}
+        }, ins.getData());
+        ins.resize(1, 1);
+        assertEquals(1, ins.getNRow());
+        assertEquals(1, ins.getNCol());
+        assertArrayEquals(new double[1][1], ins.getData());
+    }
+
+    /**
+     * Test of isIdentity method, of class Matrix.
+     */
+    @Test
+    public void testIsIdentity() {
+        System.out.println("isIdentity");
+        Matrix ins = new Matrix(new double[][]{
+            {1, 0, 0, 0},
+            {0, 1, 0, 0},
+            {0, 0, 1, 0},
+            {0, 0, 0, 1}
+        });
+        assertEquals(true, ins.isIdentity());
+        ins.setData(new double[][]{
+            {1, 0},
+            {0, 1}
+        });
+        assertEquals(true, ins.isIdentity());
+        ins.setData(new double[][]{
+            {1}
+        });
+        assertEquals(true, ins.isIdentity());
+        ins.setData(new double[][]{
+            {1, 1, 1},
+            {1, 1, 0},
+            {0, 9, 9}
+        });
+        assertEquals(false, ins.isIdentity());
+        ins.setData(new double[][]{
+            {1, 1, 1},
+            {1, 1, 0},
+            {0, 9, 1}
+        });
+        assertEquals(false, ins.isIdentity());
+        ins.setData(new double[2][2]);
+        assertEquals(false, ins.isIdentity());
+    }
+
+    /**
+     * Test of add method, of class Matrix.
+     */
+    @Test
+    public void testAdd() {
+        System.out.println("add");
+        Matrix m1 = new Matrix(new double[][]{
+            {1, 2, 3, 4},
+            {0, -1, 2, 3},
+            {0, 0, 0, 1}
+        });
+        Matrix m2 = new Matrix(new double[][]{
+            {-1, -2, -3, -4},
+            {0, 1, -2, -3},
+            {0, 0, 0, -1}
+        });
+        m1.add(m2);
+        assertArrayEquals(new double[3][4], m1.getData());
+        m2.setData(new double[][]{
+            {0.12, -0.99, 2.1, 2},
+            {-12, 3, 1.1, 9},
+            {99, -29, 1.2, 33}
+        });
+        m1.add(m2);
+        assertArrayEquals(new double[][]{
+            {0.12, -0.99, 2.1, 2},
+            {-12, 3, 1.1, 9},
+            {99, -29, 1.2, 33}
+        }, m1.getData());
+        m1.resize(2, 2);
+        m2.setData(new double[][]{
+            {12.3, 99.99},
+            {3, 0}
+        });
+        m1.add(m2);
+        assertArrayEquals(new double[][]{
+            {12.42, 99},
+            {-9, 3}
+        }, m1.getData());
+    }
+
+    /**
+     * Test of sub method, of class Matrix.
+     */
+    @Test
+    public void testSub() {
+        System.out.println("sub");
+        Matrix m1 = new Matrix(new double[][]{
+            {1, 2, 3, 4},
+            {0, -1, 2, 3},
+            {0, 0, 0, 1}
+        });
+        Matrix m2 = new Matrix(new double[][]{
+            {-1, -2, -3, -4},
+            {0, 1, -2, -3},
+            {0, 0, 0, -1}
+        });
+        m1.sub(m2);
+        assertArrayEquals(new double[][]{
+            {2, 4, 6, 8},
+            {0, -2, 4, 6},
+            {0, 0, 0, 2}
+        }, m1.getData());
+        m2.setData(new double[][]{
+            {0.12, -0.99, 2.1, 2},
+            {-12, 3, 1.1, 9},
+            {99, -29, 1.2, 33}
+        });
+        m1.sub(m2);
+        assertArrayEquals(new double[][]{
+            {1.88, 4.99, 3.9, 6},
+            {12, -5, 2.9, -3},
+            {-99, 29, -1.2, -31}
+        }, m1.getData());
+        m1.resize(2, 2);
+        m2.setData(new double[][]{
+            {12.88, 99.99},
+            {3, 0}
+        });
+        m1.sub(m2);
+        assertArrayEquals(new double[][]{
+            {-11, -95},
+            {9, -5}
+        }, m1.getData());
+    }
+
+    /**
+     * Test of mul method, of class Matrix.
+     */
+    @Test
+    public void testMul_Matrix() {
+        System.out.println("mul");
+        Matrix m2 = null;
+        Matrix instance = null;
+        instance.mul(m2);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of transpose method, of class Matrix.
+     */
+    @Test
+    public void testTranspose() {
+        System.out.println("transpose");
+        Matrix instance = null;
+        instance.transpose();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of RowSum method, of class Matrix.
+     */
+    @Test
+    public void testRowSum() {
+        System.out.println("RowSum");
+        int row1 = 0;
+        int row2 = 0;
+        double k = 0.0;
+        Matrix instance = null;
+        instance.RowSum(row1, row2, k);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of RowSwap method, of class Matrix.
+     */
+    @Test
+    public void testRowSwap() {
+        System.out.println("RowSwap");
+        int row1 = 0;
+        int row2 = 0;
+        Matrix instance = null;
+        instance.RowSwap(row1, row2);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of ScalarRowMultiplication method, of class Matrix.
+     */
+    @Test
+    public void testScalarRowMultiplication() {
+        System.out.println("ScalarRowMultiplication");
+        int row = 0;
+        double k = 0.0;
+        Matrix instance = null;
+        instance.ScalarRowMultiplication(row, k);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toEchelonFormRatio method, of class Matrix.
+     */
+    @Test
+    public void testToEchelonFormRatio_boolean() {
+        System.out.println("toEchelonFormRatio");
+        boolean reducedForm = false;
+        Matrix instance = null;
+        double expResult = 0.0;
+        double result = instance.toEchelonFormRatio(reducedForm);
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toEchelonForm method, of class Matrix.
+     */
+    @Test
+    public void testToEchelonForm_boolean() {
+        System.out.println("toEchelonForm");
+        boolean reducedForm = false;
+        Matrix instance = null;
+        instance.toEchelonForm(reducedForm);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getMinorMatrix method, of class Matrix.
+     */
+    @Test
+    public void testGetMinorMatrix() {
+        System.out.println("getMinorMatrix");
+        int row = 0;
+        int col = 0;
+        Matrix instance = null;
+        Matrix expResult = null;
+        Matrix result = instance.getMinorMatrix(row, col);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of copy method, of class Matrix.
+     */
+    @Test
+    public void testCopy_startrange() {
+        System.out.println("copy start range");
+        Matrix ins = new Matrix(new double[][]{
+            {0, 1, 2},
+            {3, -1, 2},
+            {2, 3, 4},
+            {5, 5, 6}
+        });
+        Matrix exp = ins.copy(1, 2, 1, 2);
+        // Make sure it's properly copied
+        assertArrayEquals(new double[][]{
+            {-1, 2},
+            {3, 4}
+        }, exp.getData());
+        exp = ins.copy(2, 1, 0, 2);
+        // Make sure it's properly copied p2
+        assertArrayEquals(new double[][]{
+            {2, 3}
+        }, exp.getData());
+        exp = ins.copy(3, 1, 1, 2);
+        // Make sure it's properly copied p3
+        assertArrayEquals(new double[][]{
+            {5, 6}
+        }, exp.getData());
+        exp = ins.copy(0, 0, 0, 0);
+        // Make sure it's properly copied p4
+        assertArrayEquals(new double[0][0], exp.getData());
+        exp = ins.copy(2, 2, 0, 3);
+        // Make sure it's properly copied p5
+        assertArrayEquals(new double[][]{
+            {2, 3, 4},
+            {5, 5, 6}
+        }, exp.getData());
+        exp.resize(1, 2);
+        // Instance should not be changed
+        assertArrayEquals(new double[][]{
+            {0, 1, 2},
+            {3, -1, 2},
+            {2, 3, 4},
+            {5, 5, 6}
+        }, ins.getData());
+    }
+
+    /**
+     * Test of copy method, of class Matrix.
+     */
+    @Test
+    public void testCopy_range() {
+        System.out.println("copy range");
+        Matrix ins = new Matrix(new double[][]{
+            {0, 1, 2},
+            {3, -1, 2},
+            {2, 3, 4},
+            {5, 5, 6}
+        });
+        Matrix exp = ins.copy(4, 2);
+        // Make sure it's properly copied
+        assertArrayEquals(new double[][]{
+            {0, 1},
+            {3, -1},
+            {2, 3},
+            {5, 5}
+        }, exp.getData());
+        exp = ins.copy(2, 2);
+        // Make sure it's properly copied p2
+        assertArrayEquals(new double[][]{
+            {0, 1},
+            {3, -1}
+        }, exp.getData());
+        exp = ins.copy(1, 1);
+        // Make sure it's properly copied p3
+        assertArrayEquals(new double[][]{
+            {0}
+        }, exp.getData());
+        exp = ins.copy(0, 0);
+        // Make sure it's properly copied p4
+        assertArrayEquals(new double[0][0], exp.getData());
+        exp = ins.copy(2, 3);
+        // Make sure it's properly copied p5
+        assertArrayEquals(new double[][]{
+            {0, 1, 2},
+            {3, -1, 2}
+        }, exp.getData());
+        exp.resize(1, 2);
+        // Instance should not be changed
+        assertArrayEquals(new double[][]{
+            {0, 1, 2},
+            {3, -1, 2},
+            {2, 3, 4},
+            {5, 5, 6}
+        }, ins.getData());
+    }
+
+    /**
+     * Test of copy method, of class Matrix.
+     */
+    @Test
+    public void testCopy_itself() {
+        System.out.println("copy itself");
+        Matrix ins = new Matrix(new double[][]{
+            {0, 1, 2},
+            {3, -1, 2},
+            {2, 3, 4}
+        });
+        Matrix exp = ins.copy();
+        // Make sure it's the same
+        assertArrayEquals(new double[][]{
+            {0, 1, 2},
+            {3, -1, 2},
+            {2, 3, 4}
+        }, exp.getData());
+        exp.resize(2, 3);
+        // Instance should not be changed
+        assertArrayEquals(new double[][]{
+            {0, 1, 2},
+            {3, -1, 2},
+            {2, 3, 4}
+        }, ins.getData());
+        assertArrayEquals(new double[][]{
+            {0, 1, 2},
+            {3, -1, 2}
+        }, exp.getData());
+    }
+
+    /**
+     * Test of toString method, of class Matrix.
+     */
+    @Test
+    public void testToString() {
+        System.out.println("toString");
+        Matrix instance = null;
+        String expResult = "";
+        String result = instance.toString();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of plus method, of class Matrix.
+     */
+    @Test
+    public void testPlus() {
+        System.out.println("plus");
+        Matrix m1 = null;
+        Matrix m2 = null;
+        Matrix expResult = null;
+        Matrix result = Matrix.plus(m1, m2);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of min method, of class Matrix.
+     */
+    @Test
+    public void testMin() {
+        System.out.println("min");
+        Matrix m1 = null;
+        Matrix m2 = null;
+        Matrix expResult = null;
+        Matrix result = Matrix.min(m1, m2);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of mul method, of class Matrix.
+     */
+    @Test
+    public void testMul_Matrix_Matrix() {
+        System.out.println("mul");
+        Matrix m1 = null;
+        Matrix m2 = null;
+        Matrix expResult = null;
+        Matrix result = Matrix.mul(m1, m2);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toEchelonForm method, of class Matrix.
+     */
+    @Test
+    public void testToEchelonForm_Matrix_boolean() {
+        System.out.println("toEchelonForm");
+        Matrix m = null;
+        boolean reducedForm = false;
+        Matrix expResult = null;
+        Matrix result = Matrix.toEchelonForm(m, reducedForm);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toEchelonFormRatio method, of class Matrix.
+     */
+    @Test
+    public void testToEchelonFormRatio_3args() {
+        System.out.println("toEchelonFormRatio");
+        Matrix m = null;
+        Matrix out = null;
+        boolean reducedForm = false;
+        double expResult = 0.0;
+        double result = Matrix.toEchelonFormRatio(m, out, reducedForm);
+        assertEquals(expResult, result, 0.0);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }

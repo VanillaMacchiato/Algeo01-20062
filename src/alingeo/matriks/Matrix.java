@@ -1,13 +1,18 @@
 package alingeo.matriks;
 
-import java.lang.Math;
-
 /**
  * @author Amar Fadil
  * @author Vito Ghifari
  * @author Rifqi Naufal Abdjul
  */
 public class Matrix {
+
+    public enum TriangularType {
+        None,
+        Upper,
+        Lower,
+        Diagonal
+    }
 
     private int nCol, nRow;
     private double[][] data;
@@ -33,11 +38,11 @@ public class Matrix {
     }
 
     public void setNCol(int nCol) {
-        resize(this.nRow, nCol);
+        this.resize(this.nRow, nCol);
     }
 
     public void setNRow(int nRow) {
-        resize(nRow, this.nCol);
+        this.resize(nRow, this.nCol);
     }
 
     public void resize(int nRow, int nCol) {
@@ -69,7 +74,7 @@ public class Matrix {
 
     public final void setData(double[][] nData) {
         this.nRow = nData.length;
-        this.nCol = this.nRow > 0 ? nData[0].length : 0;
+        this.nCol = nData.length > 0 ? nData[0].length : 0;
         this.data = nData;
     }
 
@@ -141,33 +146,50 @@ public class Matrix {
         return true;
     }
 
-    public int isTriangular() {
+    public TriangularType isTriangular() {
         int i, j;
-        boolean lower = true, upper = true;
+        boolean lower = false, upper = false;
         if (this.isSquare()) {
+            lower = true;
+            upper = true;
             lowerloop:
             {
-                for (i = 0; i < this.nRow; i++) {
-                    for (j = i; j < this.nCol; j++) {
+                i = 1;
+                while (i < this.nRow && lower) {
+                    j = 0;
+                    while (j < i && lower) {
                         if (this.getElmt(i, j) != 0) {
-                            return 1;
+                            lower = false;
                         }
+                        j++;
                     }
+                    i++;
                 }
             }
             upperloop:
             {
-                for (i = 0; i < this.nRow; i++) {
-                    for (j = i; j >= 0; j--) {
+                i = 0;
+                while (i < this.nRow && upper) {
+                    j = i + 1;
+                    while (j < this.nCol && upper) {
                         if (this.getElmt(i, j) != 0) {
-                            return 2;
+                            upper = false;
                         }
+                        j++;
                     }
+                    i++;
                 }
             }
         }
-        return 0;
-
+        if (upper && lower) {
+            return TriangularType.Diagonal;
+        } else if (upper) {
+            return TriangularType.Upper;
+        } else if (lower) {
+            return TriangularType.Lower;
+        } else {
+            return TriangularType.None;
+        }
     }
 
     // OPERASI
@@ -356,7 +378,7 @@ public class Matrix {
         int i, j;
         for (i = 0; i < lRow; i++) {
             for (j = 0; j < lCol; j++) {
-                res.setElmt(i, j, this.getElmt(i + sRow, j + lRow));
+                res.setElmt(i, j, this.getElmt(i + sRow, j + sCol));
             }
         }
         return res;

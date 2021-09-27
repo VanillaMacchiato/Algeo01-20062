@@ -694,10 +694,10 @@ public class Main extends javax.swing.JFrame {
         Parser parse = new Parser();
         Matrix M = Parser.stringToMatrix(DeterminanOBEInput.getText());
         if (M.isSquare()) {
-            DeterminantSolver solver = new DeterminantSolver();
-            double output = solver.ERO(M);
+            Matrix res = new Matrix(M.getNRow(), M.getNCol());
+            double output = DeterminantSolver.ERO(M, res);
             DeterminanOBEOutput.setText(String.format("%.2f", (double) Math.round(100 * output) / 100));
-            DeterminanOBEIntermediate.setText(solver.getEROMatrix().toString());
+            DeterminanOBEIntermediate.setText(res.toString());
         } else {
             DeterminanOBEPrompt.setText("Matriks tidak persegi");
         }
