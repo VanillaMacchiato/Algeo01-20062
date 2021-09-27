@@ -22,6 +22,13 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.lang.Math;
+
+import alingeo.matriks.Matrix;
+import alingeo.matriks.io.Parser;
+import alingeo.matriks.solver.SPLSolver;
+import alingeo.matriks.solver.DeterminantSolver;
+
 /**
  *
  * @author rifqi
@@ -58,7 +65,7 @@ public class Main extends javax.swing.JFrame {
         SPLCrammer = new javax.swing.JRadioButton();
         DeterminanLabel = new javax.swing.JLabel();
         DeterminanKofaktor = new javax.swing.JRadioButton();
-        DeterimanOBE = new javax.swing.JRadioButton();
+        DeterminanOBE = new javax.swing.JRadioButton();
         InversLabel = new javax.swing.JLabel();
         InversGaussJordan = new javax.swing.JRadioButton();
         InversAdjoint = new javax.swing.JRadioButton();
@@ -86,13 +93,42 @@ public class Main extends javax.swing.JFrame {
         SPLGaussIntermediate = new javax.swing.JTextPane();
         jScrollPane3 = new javax.swing.JScrollPane();
         SPLGaussOutput = new javax.swing.JTextPane();
-
-        FileOpener.setCurrentDirectory(new File (System.getProperty("user.home"))
-        );
+        DeterminanKofaktorPanel = new javax.swing.JPanel();
+        DeterminanKofaktorTitle = new javax.swing.JLabel();
+        SPLGaussInst7 = new javax.swing.JLabel();
+        SPLGaussInst8 = new javax.swing.JLabel();
+        SPLGaussInst9 = new javax.swing.JLabel();
+        SPLGaussInst11 = new javax.swing.JLabel();
+        DeterminanKofaktorCalculate = new javax.swing.JButton();
+        DeterminanKofaktorOpenFile = new javax.swing.JButton();
+        DeterminanKofaktorFilepath = new javax.swing.JTextField();
+        DeterminanKofaktorSave = new javax.swing.JButton();
+        DeterminanKofaktorPrompt = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        DeterminanKofaktorInput = new javax.swing.JTextPane();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        DeterminanKofaktorOutput = new javax.swing.JTextPane();
+        DeterminanOBEPanel = new javax.swing.JPanel();
+        SPLGaussTitle1 = new javax.swing.JLabel();
+        SPLGaussInst10 = new javax.swing.JLabel();
+        SPLGaussInst12 = new javax.swing.JLabel();
+        SPLGaussInst13 = new javax.swing.JLabel();
+        SPLGaussInst14 = new javax.swing.JLabel();
+        SPLGaussInst15 = new javax.swing.JLabel();
+        DeterminanOBECalculate = new javax.swing.JButton();
+        DeterminanOBEOpenFile = new javax.swing.JButton();
+        DeterminanOBEFilepath = new javax.swing.JTextField();
+        DeterminanOBESave = new javax.swing.JButton();
+        DeterminanOBEPrompt = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        DeterminanOBEInput = new javax.swing.JTextPane();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        DeterminanOBEIntermediate = new javax.swing.JTextPane();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        DeterminanOBEOutput = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(600, 500));
-        setPreferredSize(new java.awt.Dimension(600, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(600, 500));
 
@@ -156,11 +192,21 @@ public class Main extends javax.swing.JFrame {
 
         Menu.add(DeterminanKofaktor);
         DeterminanKofaktor.setText("Ekspansi Kofaktor");
+        DeterminanKofaktor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeterminanKofaktorActionPerformed(evt);
+            }
+        });
         SideMenu.add(DeterminanKofaktor);
 
-        Menu.add(DeterimanOBE);
-        DeterimanOBE.setText("Metode OBE");
-        SideMenu.add(DeterimanOBE);
+        Menu.add(DeterminanOBE);
+        DeterminanOBE.setText("Metode OBE");
+        DeterminanOBE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeterminanOBEActionPerformed(evt);
+            }
+        });
+        SideMenu.add(DeterminanOBE);
 
         InversLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         InversLabel.setText("Invers");
@@ -232,6 +278,11 @@ public class Main extends javax.swing.JFrame {
         SPLGaussInst6.setText("Tiap X dipisah newline");
 
         SPLGaussCalculate.setText("Calculate");
+        SPLGaussCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SPLGaussCalculateActionPerformed(evt);
+            }
+        });
 
         SPLGaussOpenFile.setText("Open");
         SPLGaussOpenFile.addActionListener(new java.awt.event.ActionListener() {
@@ -327,6 +378,216 @@ public class Main extends javax.swing.JFrame {
 
         LayeredPanel.add(SPLGaussPanel, "card2");
 
+        DeterminanKofaktorTitle.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        DeterminanKofaktorTitle.setText("Determinan Metode Ekspansi Kofaktor");
+
+        SPLGaussInst7.setText("Input Matriks Ax=b :");
+
+        SPLGaussInst8.setText("Pisahkan elemen dengan spasi");
+
+        SPLGaussInst9.setText("Pisahkan baris dengan newline (enter)");
+
+        SPLGaussInst11.setText("Hasil:");
+
+        DeterminanKofaktorCalculate.setText("Calculate");
+        DeterminanKofaktorCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeterminanKofaktorCalculateActionPerformed(evt);
+            }
+        });
+
+        DeterminanKofaktorOpenFile.setText("Open");
+        DeterminanKofaktorOpenFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeterminanKofaktorOpenFileActionPerformed(evt);
+            }
+        });
+
+        DeterminanKofaktorFilepath.setEditable(false);
+        DeterminanKofaktorFilepath.setText("Open A File..");
+
+        DeterminanKofaktorSave.setText("Save");
+
+        DeterminanKofaktorPrompt.setText("Prompt");
+
+        jScrollPane4.setViewportView(DeterminanKofaktorInput);
+
+        DeterminanKofaktorOutput.setEditable(false);
+        jScrollPane6.setViewportView(DeterminanKofaktorOutput);
+
+        javax.swing.GroupLayout DeterminanKofaktorPanelLayout = new javax.swing.GroupLayout(DeterminanKofaktorPanel);
+        DeterminanKofaktorPanel.setLayout(DeterminanKofaktorPanelLayout);
+        DeterminanKofaktorPanelLayout.setHorizontalGroup(
+            DeterminanKofaktorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeterminanKofaktorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(DeterminanKofaktorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DeterminanKofaktorTitle)
+                    .addGroup(DeterminanKofaktorPanelLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(DeterminanKofaktorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SPLGaussInst7)
+                            .addComponent(SPLGaussInst8)
+                            .addComponent(SPLGaussInst9)
+                            .addGroup(DeterminanKofaktorPanelLayout.createSequentialGroup()
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addGroup(DeterminanKofaktorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(SPLGaussInst11)
+                                    .addComponent(DeterminanKofaktorCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(DeterminanKofaktorPanelLayout.createSequentialGroup()
+                                        .addComponent(DeterminanKofaktorFilepath, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(DeterminanKofaktorOpenFile))
+                                    .addComponent(DeterminanKofaktorSave, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DeterminanKofaktorPrompt)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        DeterminanKofaktorPanelLayout.setVerticalGroup(
+            DeterminanKofaktorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeterminanKofaktorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(DeterminanKofaktorTitle)
+                .addGap(18, 18, 18)
+                .addComponent(SPLGaussInst7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SPLGaussInst8)
+                .addGap(4, 4, 4)
+                .addComponent(SPLGaussInst9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DeterminanKofaktorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(DeterminanKofaktorPanelLayout.createSequentialGroup()
+                        .addGroup(DeterminanKofaktorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DeterminanKofaktorOpenFile, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DeterminanKofaktorFilepath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DeterminanKofaktorCalculate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DeterminanKofaktorSave)
+                        .addGap(11, 11, 11)
+                        .addComponent(DeterminanKofaktorPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(SPLGaussInst11)
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE))
+        );
+
+        LayeredPanel.add(DeterminanKofaktorPanel, "card2");
+
+        SPLGaussTitle1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        SPLGaussTitle1.setText("Determinan Metode OBE");
+
+        SPLGaussInst10.setText("Input Matriks Ax=b :");
+
+        SPLGaussInst12.setText("Pisahkan elemen dengan spasi");
+
+        SPLGaussInst13.setText("Pisahkan baris dengan newline (enter)");
+
+        SPLGaussInst14.setText("Matriks eselon yang terbentuk");
+
+        SPLGaussInst15.setText("Hasil:");
+
+        DeterminanOBECalculate.setText("Calculate");
+        DeterminanOBECalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeterminanOBECalculateActionPerformed(evt);
+            }
+        });
+
+        DeterminanOBEOpenFile.setText("Open");
+        DeterminanOBEOpenFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeterminanOBEOpenFileActionPerformed(evt);
+            }
+        });
+
+        DeterminanOBEFilepath.setEditable(false);
+        DeterminanOBEFilepath.setText("Open A File..");
+
+        DeterminanOBESave.setText("Save");
+
+        DeterminanOBEPrompt.setText("Prompt");
+
+        jScrollPane5.setViewportView(DeterminanOBEInput);
+
+        DeterminanOBEIntermediate.setEditable(false);
+        jScrollPane7.setViewportView(DeterminanOBEIntermediate);
+
+        DeterminanOBEOutput.setEditable(false);
+        jScrollPane8.setViewportView(DeterminanOBEOutput);
+
+        javax.swing.GroupLayout DeterminanOBEPanelLayout = new javax.swing.GroupLayout(DeterminanOBEPanel);
+        DeterminanOBEPanel.setLayout(DeterminanOBEPanelLayout);
+        DeterminanOBEPanelLayout.setHorizontalGroup(
+            DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeterminanOBEPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SPLGaussTitle1)
+                    .addGroup(DeterminanOBEPanelLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SPLGaussInst10)
+                            .addComponent(SPLGaussInst12)
+                            .addComponent(SPLGaussInst13)
+                            .addGroup(DeterminanOBEPanelLayout.createSequentialGroup()
+                                .addGroup(DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(SPLGaussInst14)
+                                    .addComponent(jScrollPane5)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(SPLGaussInst15)
+                                    .addComponent(DeterminanOBECalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(DeterminanOBEPanelLayout.createSequentialGroup()
+                                        .addComponent(DeterminanOBEFilepath, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(DeterminanOBEOpenFile))
+                                    .addComponent(DeterminanOBESave, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(DeterminanOBEPrompt)
+                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        DeterminanOBEPanelLayout.setVerticalGroup(
+            DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DeterminanOBEPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(SPLGaussTitle1)
+                .addGap(18, 18, 18)
+                .addComponent(SPLGaussInst10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SPLGaussInst12)
+                .addGap(4, 4, 4)
+                .addComponent(SPLGaussInst13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(DeterminanOBEPanelLayout.createSequentialGroup()
+                        .addGroup(DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DeterminanOBEOpenFile, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(DeterminanOBEFilepath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DeterminanOBECalculate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(DeterminanOBESave)
+                        .addGap(11, 11, 11)
+                        .addComponent(DeterminanOBEPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SPLGaussInst14)
+                    .addComponent(SPLGaussInst15))
+                .addGap(24, 24, 24)
+                .addGroup(DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane7)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(107, Short.MAX_VALUE))
+        );
+
+        LayeredPanel.add(DeterminanOBEPanel, "card2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -346,7 +607,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SPLGaussActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLGaussActionPerformed
-        if (SPLGauss.isSelected()){
+        if (SPLGauss.isSelected()) {
             LayeredPanel.removeAll();
             LayeredPanel.add(SPLGaussPanel);
             LayeredPanel.repaint();
@@ -355,7 +616,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_SPLGaussActionPerformed
 
     private void SPLGaussJordanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLGaussJordanActionPerformed
-        if (SPLGaussJordan.isSelected()){
+        if (SPLGaussJordan.isSelected()) {
             LayeredPanel.removeAll();
             LayeredPanel.add(SPLGaussPanel);
             LayeredPanel.repaint();
@@ -365,13 +626,13 @@ public class Main extends javax.swing.JFrame {
 
     private void SPLGaussOpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLGaussOpenFileActionPerformed
         int result = FileOpener.showOpenDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION){
+        if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = FileOpener.getSelectedFile();
             SPLGaussFilepath.setText(selectedFile.getAbsolutePath());
             try {
                 Scanner scanner = new Scanner(selectedFile);
                 String txt = "";
-                while (scanner.hasNextLine()){
+                while (scanner.hasNextLine()) {
                     txt += scanner.nextLine() + "\n";
                 }
                 SPLGaussInput.setText(txt);
@@ -385,6 +646,90 @@ public class Main extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_ExitButtonActionPerformed
 
+    private void DeterminanKofaktorOpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanKofaktorOpenFileActionPerformed
+        int result = FileOpener.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = FileOpener.getSelectedFile();
+            DeterminanKofaktorFilepath.setText(selectedFile.getAbsolutePath());
+            try {
+                Scanner scanner = new Scanner(selectedFile);
+                String txt = "";
+                while (scanner.hasNextLine()) {
+                    txt += scanner.nextLine() + "\n";
+                }
+                DeterminanKofaktorInput.setText(txt);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_DeterminanKofaktorOpenFileActionPerformed
+
+    private void DeterminanKofaktorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanKofaktorActionPerformed
+        if (DeterminanKofaktor.isSelected()) {
+            LayeredPanel.removeAll();
+            LayeredPanel.add(DeterminanKofaktorPanel);
+            LayeredPanel.repaint();
+            LayeredPanel.revalidate();
+        }
+    }//GEN-LAST:event_DeterminanKofaktorActionPerformed
+
+    private void SPLGaussCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLGaussCalculateActionPerformed
+        Matrix M = Parser.stringToMatrix(SPLGaussInput.getText());
+        SPLSolver solver = new SPLSolver();
+        // TODO FINISH SPL GAUSS
+    }//GEN-LAST:event_SPLGaussCalculateActionPerformed
+
+    private void DeterminanKofaktorCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanKofaktorCalculateActionPerformed
+        Matrix M = Parser.stringToMatrix(DeterminanKofaktorInput.getText());
+        if (M.isSquare()) {
+            DeterminantSolver solver = new DeterminantSolver();
+            double output = solver.CofactorExpansion(M);
+            DeterminanKofaktorOutput.setText(String.format("%.2f", (double) Math.round(100 * output) / 100));
+        } else {
+            DeterminanKofaktorPrompt.setText("Matriks tidak persegi");
+        }
+    }//GEN-LAST:event_DeterminanKofaktorCalculateActionPerformed
+
+    private void DeterminanOBECalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanOBECalculateActionPerformed
+        Parser parse = new Parser();
+        Matrix M = Parser.stringToMatrix(DeterminanOBEInput.getText());
+        if (M.isSquare()) {
+            DeterminantSolver solver = new DeterminantSolver();
+            double output = solver.ERO(M);
+            DeterminanOBEOutput.setText(String.format("%.2f", (double) Math.round(100 * output) / 100));
+            DeterminanOBEIntermediate.setText(solver.getEROMatrix().toString());
+        } else {
+            DeterminanOBEPrompt.setText("Matriks tidak persegi");
+        }
+    }//GEN-LAST:event_DeterminanOBECalculateActionPerformed
+
+    private void DeterminanOBEOpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanOBEOpenFileActionPerformed
+        int result = FileOpener.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = FileOpener.getSelectedFile();
+            DeterminanOBEFilepath.setText(selectedFile.getAbsolutePath());
+            try {
+                Scanner scanner = new Scanner(selectedFile);
+                String txt = "";
+                while (scanner.hasNextLine()) {
+                    txt += scanner.nextLine() + "\n";
+                }
+                DeterminanOBEInput.setText(txt);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_DeterminanOBEOpenFileActionPerformed
+
+    private void DeterminanOBEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanOBEActionPerformed
+        if (DeterminanOBE.isSelected()) {
+            LayeredPanel.removeAll();
+            LayeredPanel.add(DeterminanOBEPanel);
+            LayeredPanel.repaint();
+            LayeredPanel.revalidate();
+        }
+    }//GEN-LAST:event_DeterminanOBEActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -392,7 +737,7 @@ public class Main extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -422,9 +767,27 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton DeterimanOBE;
     private javax.swing.JRadioButton DeterminanKofaktor;
+    private javax.swing.JButton DeterminanKofaktorCalculate;
+    private javax.swing.JTextField DeterminanKofaktorFilepath;
+    private javax.swing.JTextPane DeterminanKofaktorInput;
+    private javax.swing.JButton DeterminanKofaktorOpenFile;
+    private javax.swing.JTextPane DeterminanKofaktorOutput;
+    private javax.swing.JPanel DeterminanKofaktorPanel;
+    private javax.swing.JLabel DeterminanKofaktorPrompt;
+    private javax.swing.JButton DeterminanKofaktorSave;
+    private javax.swing.JLabel DeterminanKofaktorTitle;
     private javax.swing.JLabel DeterminanLabel;
+    private javax.swing.JRadioButton DeterminanOBE;
+    private javax.swing.JButton DeterminanOBECalculate;
+    private javax.swing.JTextField DeterminanOBEFilepath;
+    private javax.swing.JTextPane DeterminanOBEInput;
+    private javax.swing.JTextPane DeterminanOBEIntermediate;
+    private javax.swing.JButton DeterminanOBEOpenFile;
+    private javax.swing.JTextPane DeterminanOBEOutput;
+    private javax.swing.JPanel DeterminanOBEPanel;
+    private javax.swing.JLabel DeterminanOBEPrompt;
+    private javax.swing.JButton DeterminanOBESave;
     private javax.swing.JButton ExitButton;
     private javax.swing.JFileChooser FileOpener;
     private javax.swing.JFileChooser FileSaver;
@@ -443,11 +806,20 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField SPLGaussFilepath;
     private javax.swing.JTextPane SPLGaussInput;
     private javax.swing.JLabel SPLGaussInst1;
+    private javax.swing.JLabel SPLGaussInst10;
+    private javax.swing.JLabel SPLGaussInst11;
+    private javax.swing.JLabel SPLGaussInst12;
+    private javax.swing.JLabel SPLGaussInst13;
+    private javax.swing.JLabel SPLGaussInst14;
+    private javax.swing.JLabel SPLGaussInst15;
     private javax.swing.JLabel SPLGaussInst2;
     private javax.swing.JLabel SPLGaussInst3;
     private javax.swing.JLabel SPLGaussInst4;
     private javax.swing.JLabel SPLGaussInst5;
     private javax.swing.JLabel SPLGaussInst6;
+    private javax.swing.JLabel SPLGaussInst7;
+    private javax.swing.JLabel SPLGaussInst8;
+    private javax.swing.JLabel SPLGaussInst9;
     private javax.swing.JTextPane SPLGaussIntermediate;
     private javax.swing.JRadioButton SPLGaussJordan;
     private javax.swing.JButton SPLGaussOpenFile;
@@ -456,6 +828,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel SPLGaussPrompt;
     private javax.swing.JButton SPLGaussSave;
     private javax.swing.JLabel SPLGaussTitle;
+    private javax.swing.JLabel SPLGaussTitle1;
     private javax.swing.JLabel SPLLabel;
     private javax.swing.JRadioButton SPLMatriksBalikan;
     private javax.swing.JPanel SideHeader;
@@ -464,5 +837,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     // End of variables declaration//GEN-END:variables
 }

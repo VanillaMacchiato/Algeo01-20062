@@ -24,19 +24,4 @@ public class Parser {
 
     }
 
-    public static String matrixToString(Matrix M) {
-        String output = "";
-        for (int i = 0; i < M.getNRow(); i++) {
-            for (int j = 0; j < M.getNCol(); j++) {
-                output += String.format("%.2f", M.getElmt(i, j));
-                if (j < M.getNCol() - 1) {
-                    output += " ";
-                }
-            }
-            if (i < M.getNRow() - 1) {
-                output += "\n";
-            }
-        }
-        return output;
-    }
 }

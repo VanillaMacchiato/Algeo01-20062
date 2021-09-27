@@ -1,5 +1,7 @@
 package alingeo.matriks;
 
+import java.lang.Math;
+
 /**
  * @author Amar Fadil
  * @author Vito Ghifari
@@ -100,14 +102,18 @@ public class Matrix {
 
     public boolean isEchelon() {
         int i, j;
+        int maxcol = -1;
         for (i = 0; i < this.nRow; i++) {
             for (j = 0; j < this.nCol; j++) {
-                if (this.getElmt(i, j) != 0) {
-                    if (this.getElmt(i, j) == 1) {
+                if (this.getElmt(i, j) == 1) {
+                    if (i > maxcol) {
+                        maxcol = i;
                         break;
                     } else {
                         return false;
                     }
+                } else if ((this.getElmt(i, j) != 0) && (this.getElmt(i, j) != 1)) {
+                    return false;
                 }
             }
         }
@@ -245,9 +251,10 @@ public class Matrix {
     /*  Melakukan Forward Elimination dengan metode Gauss atau Gauss-Jordan.
         Metode Gauss akan menghasilkan Echelon Form,
         sedangkan Gauss-Jordan menghasilkan Reduced Echelon Form. */
-    public void ToEchelonForm(boolean reducedForm) {
+    public double toEchelonFormRatio(boolean reducedForm) {
         int nR, nC, rowMax, rowMin, rowCurrent;
         double ratio, elmtMax, elmtMin;
+        double totalRatio = 1;
 
         // coef mencari jumlah yang variabel tidak diketahui
         nR = this.getNRow();
@@ -276,24 +283,27 @@ public class Matrix {
 
             // Menghindari zero diviteion
             if ((elmtMin == 0.0) && (elmtMax == 0.0)) {
+                totalRatio = 0;
                 continue;
             }
 
             // row swap jika elemen kolom ke-i bernilai nol
             if ((this.getElmt(rowCurrent, i) == 0.0) && (elmtMax > 0.0)) {
                 this.RowSwap(rowCurrent, rowMax);
+                totalRatio *= -1;
             } else if ((this.getElmt(rowCurrent, i) == 0.0) && (elmtMin < 0.0)) {
                 this.RowSwap(rowCurrent, rowMin);
+                totalRatio *= -1;
             }
 
             // Membuat satu utama pada row ke-rowCurrent
+            totalRatio *= this.getElmt(rowCurrent, i);
             this.ScalarRowMultiplication(rowCurrent, 1.0f / this.getElmt(rowCurrent, i));
 
             // Membuat Row Echelon Form
             for (int j = rowCurrent + 1; j < nR; j++) {
                 if (this.getElmt(j, i) != 0.0) {
                     ratio = this.getElmt(j, i) / this.getElmt(rowCurrent, i);
-
                     this.RowSum(j, i, -ratio);
                 }
             }
@@ -314,6 +324,11 @@ public class Matrix {
                 break;
             }
         }
+        return totalRatio;
+    }
+
+    public void toEchelonForm(boolean reducedForm) {
+        this.toEchelonFormRatio(reducedForm);
     }
 
     public Matrix getMinorMatrix(int row, int col) {
@@ -360,16 +375,17 @@ public class Matrix {
         return this.copy(this.nRow, this.nCol);
     }
 
-    public String toString(Matrix M) {
+    @Override
+    public String toString() {
         String output = "";
-        for (int i = 0; i < M.getNRow(); i++) {
-            for (int j = 0; j < M.getNCol(); j++) {
-                output += String.format("%.2f", M.getElmt(i, j));
-                if (j < M.getNCol() - 1) {
+        for (int i = 0; i < this.getNRow(); i++) {
+            for (int j = 0; j < this.getNCol(); j++) {
+                output += String.format("%.2f", (double) Math.round(100 * this.getElmt(i, j) / 100));
+                if (j < this.getNCol() - 1) {
                     output += " ";
                 }
             }
-            if (i < M.getNRow() - 1) {
+            if (i < this.getNRow() - 1) {
                 output += "\n";
             }
         }
@@ -423,7 +439,7 @@ public class Matrix {
 
     public static Matrix ToEchelonForm(Matrix m, boolean reducedForm) {
         Matrix res = new Matrix(m.getData());
-        res.ToEchelonForm(reducedForm);
+        res.toEchelonForm(reducedForm);
         return res;
     }
 }
