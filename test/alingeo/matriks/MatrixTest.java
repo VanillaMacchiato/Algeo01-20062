@@ -684,11 +684,26 @@ public class MatrixTest {
     public void testScalarRowMultiplication() {
         System.out.println("ScalarRowMultiplication");
         int row = 0;
-        double k = 0.0;
-        Matrix instance = null;
+        double k = 2;
+        Matrix instance = new Matrix(new double[][]{
+            {0, 4, 2},
+            {0, 0, 1},
+            {3, 0, 0}
+        });
         instance.ScalarRowMultiplication(row, k);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertArrayEquals(new double[][]{
+            {0, 8, 4},
+            {0, 0, 1},
+            {3, 0, 0}
+        }, instance.getData());
+        k = 0;
+        instance.ScalarRowMultiplication(row, k);
+        assertArrayEquals(new double[][]{
+            {0, 0, 0},
+            {0, 0, 1},
+            {3, 0, 0}
+        }, instance.getData());
+
     }
 
     /**
@@ -697,13 +712,30 @@ public class MatrixTest {
     @Test
     public void testToEchelonFormRatio_boolean() {
         System.out.println("toEchelonFormRatio");
-        boolean reducedForm = false;
-        Matrix instance = null;
-        double expResult = 0.0;
-        double result = instance.toEchelonFormRatio(reducedForm);
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean reducedForm = true;
+        Matrix instance = new Matrix(new double[][]{
+            {1, 3, 2, 3, 2},
+            {2, 4, 3, 1, 5}
+        });
+        instance.toEchelonFormRatio(reducedForm);
+        assertArrayEquals(new double[][]{
+            {1, 0, 0.5, -4.5, 3.5},
+            {-0.0, 1, 0.5, 2.5, -0.5}
+        }, instance.getData());
+        instance = new Matrix(new double[][]{
+            {0, 2},
+            {0, 5},
+            {3, 6},
+            {4, 2}
+        });
+        instance.toEchelonFormRatio(reducedForm);
+        assertArrayEquals(new double[][]{
+            {1, 0},
+            {0, 1},
+            {0, 0},
+            {0, 0}
+        }, instance.getData());
+
     }
 
     /**
@@ -711,12 +743,29 @@ public class MatrixTest {
      */
     @Test
     public void testToEchelonForm_boolean() {
-        System.out.println("toEchelonForm");
-        boolean reducedForm = false;
-        Matrix instance = null;
+        boolean reducedForm = true;
+        Matrix instance = new Matrix(new double[][]{
+            {1, 3, 2, 3, 2},
+            {2, 4, 3, 1, 5}
+        });
         instance.toEchelonForm(reducedForm);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertArrayEquals(new double[][]{
+            {1, 0, 0.5, -4.5, 3.5},
+            {-0.0, 1, 0.5, 2.5, -0.5}
+        }, instance.getData());
+        instance = new Matrix(new double[][]{
+            {0, 2},
+            {0, 5},
+            {3, 6},
+            {4, 2}
+        });
+        instance.toEchelonForm(reducedForm);
+        assertArrayEquals(new double[][]{
+            {1, 0},
+            {0, 1},
+            {0, 0},
+            {0, 0}
+        }, instance.getData());
     }
 
     /**
@@ -727,12 +776,24 @@ public class MatrixTest {
         System.out.println("getMinorMatrix");
         int row = 0;
         int col = 0;
-        Matrix instance = null;
-        Matrix expResult = null;
-        Matrix result = instance.getMinorMatrix(row, col);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix instance = new Matrix(new double[][]{
+            {5, 1, 2, 3},
+            {6, 1, 2, 2},
+            {0, 0, 1, 2},
+            {0, 0, 2, 5}
+        });
+        Matrix result = instance.getMinorMatrix(2, 1);
+        assertArrayEquals(new double[][]{
+            {5, 2, 3},
+            {6, 2, 2},
+            {0, 2, 5}
+        }, result.getData());
+        result = instance.getMinorMatrix(3, 0);
+        assertArrayEquals(new double[][]{
+            {1, 2, 3},
+            {1, 2, 2},
+            {0, 1, 2}
+        }, result.getData());
     }
 
     /**
@@ -873,16 +934,16 @@ public class MatrixTest {
             {1.2, 0, -1},
             {9, 10, 2}
         });
-        assertEquals("1,20 0,00 -1,00\n9,00 10,00 2,00", ins.toString());
+        assertEquals("1.20 0.00 -1.00\n9.00 10.00 2.00", ins.toString());
         ins.setData(new double[][]{
             {0, 0},
             {9.99, 10}
         });
-        assertEquals("0,00 0,00\n9,99 10,00", ins.toString());
+        assertEquals("0.00 0.00\n9.99 10.00", ins.toString());
         ins.setData(new double[][]{
             {1.23}
         });
-        assertEquals("1,23", ins.toString());
+        assertEquals("1.23", ins.toString());
     }
 
     /**
@@ -890,14 +951,29 @@ public class MatrixTest {
      */
     @Test
     public void testToEchelonForm_Matrix_boolean() {
-        System.out.println("toEchelonForm");
-        Matrix m = null;
-        boolean reducedForm = false;
-        Matrix expResult = null;
-        Matrix result = Matrix.toEchelonForm(m, reducedForm);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean reducedForm = true;
+        Matrix instance = new Matrix(new double[][]{
+            {1, 3, 2, 3, 2},
+            {2, 4, 3, 1, 5}
+        });
+        Matrix out = Matrix.toEchelonForm(instance, reducedForm);
+        assertArrayEquals(new double[][]{
+            {1, 0, 0.5, -4.5, 3.5},
+            {-0.0, 1, 0.5, 2.5, -0.5}
+        }, out.getData());
+        instance = new Matrix(new double[][]{
+            {0, 2},
+            {0, 5},
+            {3, 6},
+            {4, 2}
+        });
+        out = Matrix.toEchelonForm(instance, reducedForm);
+        assertArrayEquals(new double[][]{
+            {1, 0},
+            {0, 1},
+            {0, 0},
+            {0, 0}
+        }, out.getData());
     }
 
     /**
@@ -905,14 +981,30 @@ public class MatrixTest {
      */
     @Test
     public void testToEchelonFormRatio_3args() {
-        System.out.println("toEchelonFormRatio");
-        Matrix m = null;
-        Matrix out = null;
-        boolean reducedForm = false;
-        double expResult = 0.0;
-        double result = Matrix.toEchelonFormRatio(m, out, reducedForm);
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean reducedForm = true;
+        Matrix instance = new Matrix(new double[][]{
+            {1, 3, 2, 3, 2},
+            {2, 4, 3, 1, 5}
+        });
+        Matrix out = instance.copy();
+        Matrix.toEchelonFormRatio(instance, out, reducedForm);
+        assertArrayEquals(new double[][]{
+            {1, 0, 0.5, -4.5, 3.5},
+            {-0.0, 1, 0.5, 2.5, -0.5}
+        }, instance.getData());
+        instance = new Matrix(new double[][]{
+            {0, 2},
+            {0, 5},
+            {3, 6},
+            {4, 2}
+        });
+        out = instance.copy();
+        Matrix.toEchelonFormRatio(instance, out, reducedForm);
+        assertArrayEquals(new double[][]{
+            {1, 0},
+            {0, 1},
+            {0, 0},
+            {0, 0}
+        }, instance.getData());
     }
 }

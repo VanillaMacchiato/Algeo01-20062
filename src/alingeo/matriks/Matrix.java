@@ -130,6 +130,9 @@ public class Matrix {
 
     public boolean isEchelonReduced() {
         int i, j, k;
+        if (!this.isEchelon()) {
+            return false;
+        }
         for (i = 0; i < this.nRow; i++) {
             for (j = 0; j < this.nCol; j++) {
                 if (this.getElmt(i, j) != 0) {
