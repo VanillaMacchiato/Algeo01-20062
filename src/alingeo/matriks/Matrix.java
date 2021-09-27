@@ -37,7 +37,7 @@ public class Matrix {
     public void setNRow(int nRow) {
         resize(nRow, this.nCol);
     }
-    
+
     public void resize(int nRow, int nCol) {
         double[][] newData = new double[nRow][nCol];
         int imin = nRow < this.nRow ? nRow : this.nRow;
@@ -51,7 +51,7 @@ public class Matrix {
         this.nRow = nRow;
         this.nCol = nCol;
         this.data = newData;
-    }    
+    }
 
     public double getElmt(int row, int col) {
         return this.data[row][col];
@@ -151,19 +151,6 @@ public class Matrix {
     }
 
     // OPERASI
-    static Matrix plus(Matrix m1, Matrix m2) {
-        //Prekondisi: ukuran m1 dan m2 sama
-        Matrix m;
-        int i, j;
-        m = new Matrix(m1.getNRow(), m1.getNCol());
-        for (i = 0; i < m.getNRow(); i++) {
-            for (j = 0; j < m.getNCol(); j++) {
-                m.setElmt(i, j, m1.getElmt(i, j) + m2.getElmt(i, j));
-            }
-        }
-        return m;
-    }
-
     public void plus(Matrix m) {
         //Prekondisi: ukuran objek dan m sama
         int i, j;
@@ -174,19 +161,6 @@ public class Matrix {
         }
     }
 
-    static Matrix min(Matrix m1, Matrix m2) {
-        //Prekondisi: ukuran m1 dan m2 sama
-        Matrix m;
-        int i, j;
-        m = new Matrix(m1.getNRow(), m1.getNCol());
-        for (i = 0; i < m.getNRow(); i++) {
-            for (j = 0; j < m.getNCol(); j++) {
-                m.setElmt(i, j, m1.getElmt(i, j) - m2.getElmt(i, j));
-            }
-        }
-        return m;
-    }
-
     public void min(Matrix m) {
         //Prekondisi: ukuran objek dan m sama
         int i, j;
@@ -195,24 +169,6 @@ public class Matrix {
                 this.setElmt(i, j, this.getElmt(i, j) - m.getElmt(i, j));
             }
         }
-    }
-
-    static Matrix multiplication(Matrix m1, Matrix m2) {
-        //Prekondisi: ukuran kolom m1 dan baris m2 sama
-        Matrix m;
-        int i, j, k;
-        double sum;
-        m = new Matrix(m1.getNRow(), m2.getNCol());
-        for (i = 0; i < m.getNRow(); i++) {
-            for (j = 0; j < m.getNCol(); j++) {
-                sum = 0;
-                for (k = 0; k < m2.getNRow(); k++) {
-                    sum += m1.getElmt(i, k) * m2.getElmt(k, j);
-                }
-                m.setElmt(i, j, sum);
-            }
-        }
-        return m;
     }
 
     public void multiplication(Matrix m2) {
@@ -269,5 +225,170 @@ public class Matrix {
         for (i = 0; i < this.getNCol(); i++) {
             this.setElmt(row, i, this.getElmt(row, i) * k);
         }
+    }
+
+    // Helper
+    /*  Melakukan Forward Elimination dengan metode Gauss atau Gauss-Jordan.
+        Metode Gauss akan menghasilkan Echelon Form,
+        sedangkan Gauss-Jordan menghasilkan Reduced Echelon Form. */
+    public void ToEchelonForm(boolean reducedForm) {
+        int nR, nC, rowMax, rowMin, rowCurrent;
+        double ratio, elmtMax, elmtMin;
+
+        // coef mencari jumlah yang variabel tidak diketahui
+        nR = this.getNRow();
+        nC = this.getNCol();
+        rowCurrent = 0;
+
+        // Traversal terhadap kolom untuk mengubah matriks menjadi echelon form
+        for (int i = 0; i < (nC - 1); i++) {
+            // Cek nilai maksimum pada kolom ke-i.
+            // Jika ada nilai yang lebih tinggi, baris akan di swap.
+            rowMax = i;
+            rowMin = i;
+
+            elmtMax = this.getElmt(rowCurrent, i);
+            elmtMin = this.getElmt(rowCurrent, i);
+            for (int j = rowCurrent + 1; j < nR; j++) {
+                if (this.getElmt(j, i) > elmtMax) {
+                    elmtMax = this.getElmt(j, i);
+                    rowMax = j;
+                }
+                if (this.getElmt(j, i) < elmtMin) {
+                    elmtMin = this.getElmt(j, i);
+                    rowMin = j;
+                }
+            }
+
+            // Menghindari zero diviteion
+            if ((elmtMin == 0.0) && (elmtMax == 0.0)) {
+                continue;
+            }
+
+            // row swap jika elemen kolom ke-i bernilai nol
+            if ((this.getElmt(rowCurrent, i) == 0.0) && (elmtMax > 0.0)) {
+                this.RowSwap(rowCurrent, rowMax);
+            } else if ((this.getElmt(rowCurrent, i) == 0.0) && (elmtMin < 0.0)) {
+                this.RowSwap(rowCurrent, rowMin);
+            }
+
+            // Membuat satu utama pada row ke-rowCurrent
+            this.ScalarRowMultiplication(rowCurrent, 1.0f / this.getElmt(rowCurrent, i));
+
+            // Membuat Row Echelon Form
+            for (int j = rowCurrent + 1; j < nR; j++) {
+                if (this.getElmt(j, i) != 0.0) {
+                    ratio = this.getElmt(j, i) / this.getElmt(rowCurrent, i);
+
+                    this.RowSum(j, i, -ratio);
+                }
+            }
+
+            // Membuat Reduced Row Echelon Form
+            if (reducedForm) {
+                for (int j = 0; j < (rowCurrent); j++) {
+                    if (this.getElmt(j, i) != 0.0) {
+                        ratio = this.getElmt(j, i) / this.getElmt(rowCurrent, i);
+                        this.RowSum(j, i, -ratio);
+                    }
+                }
+            }
+
+            // Jika operasi berhasil, row count akan bertambah
+            rowCurrent++;
+            if (rowCurrent == nR) {
+                break;
+            }
+        }
+    }
+
+    public Matrix getMinorMatrix(int row, int col) {
+        // Prekondisi: Matriks adalah matriks persegi
+        int k, l, im, jm;
+        int n = this.getNRow();
+        Matrix temp = new Matrix(n - 1, n - 1);
+        im = 0;
+        for (k = 0; k < n - 1; k++) {
+            if (im == row) {
+                im++;
+            }
+            jm = 0;
+            for (l = 0; l < n - 1; l++) {
+                if (jm == col) {
+                    jm++;
+                }
+                temp.setElmt(k, l, this.getElmt(im, jm));
+                jm++;
+            }
+            im++;
+        }
+        return temp;
+    }
+
+    public String toString(Matrix M) {
+        String output = "";
+        for (int i = 0; i < M.getNRow(); i++) {
+            for (int j = 0; j < M.getNCol(); j++) {
+                output += String.format("%.2f", M.getElmt(i, j));
+                if (j < M.getNCol() - 1) {
+                    output += " ";
+                }
+            }
+            if (i < M.getNRow() - 1) {
+                output += "\n";
+            }
+        }
+        return output;
+    }
+
+    // Static
+    public static Matrix plus(Matrix m1, Matrix m2) {
+        //Prekondisi: ukuran m1 dan m2 sama
+        Matrix m;
+        int i, j;
+        m = new Matrix(m1.getNRow(), m1.getNCol());
+        for (i = 0; i < m.getNRow(); i++) {
+            for (j = 0; j < m.getNCol(); j++) {
+                m.setElmt(i, j, m1.getElmt(i, j) + m2.getElmt(i, j));
+            }
+        }
+        return m;
+    }
+
+    public static Matrix min(Matrix m1, Matrix m2) {
+        //Prekondisi: ukuran m1 dan m2 sama
+        Matrix m;
+        int i, j;
+        m = new Matrix(m1.getNRow(), m1.getNCol());
+        for (i = 0; i < m.getNRow(); i++) {
+            for (j = 0; j < m.getNCol(); j++) {
+                m.setElmt(i, j, m1.getElmt(i, j) - m2.getElmt(i, j));
+            }
+        }
+        return m;
+    }
+
+    public static Matrix multiplication(Matrix m1, Matrix m2) {
+        //Prekondisi: ukuran kolom m1 dan baris m2 sama
+        Matrix m;
+        int i, j, k;
+        double sum;
+        m = new Matrix(m1.getNRow(), m2.getNCol());
+        for (i = 0; i < m.getNRow(); i++) {
+            for (j = 0; j < m.getNCol(); j++) {
+                sum = 0;
+                for (k = 0; k < m2.getNRow(); k++) {
+                    sum += m1.getElmt(i, k) * m2.getElmt(k, j);
+                }
+                m.setElmt(i, j, sum);
+            }
+        }
+        return m;
+    }
+
+    public static Matrix ToEchelonForm(Matrix m, boolean reducedForm) {
+        Matrix res = new Matrix(m.getData());
+        res.ToEchelonForm(reducedForm);
+        return res;
     }
 }
