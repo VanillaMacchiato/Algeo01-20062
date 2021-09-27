@@ -13,10 +13,7 @@ import alingeo.matriks.Matrix;
  * @author Amar Fadil
  */
 public class InversSolver {
-    //public static Matrix GaussJordanMethod(Matrix m) {
-    // Prekondisi: m merupakan matriks persegi
 
-    //}
     public static Matrix CofactorMatrix(Matrix m) {
         // Prekondisi: m merupakan matriks persegi
         int i, j;
@@ -35,6 +32,28 @@ public class InversSolver {
             }
         }
         return res;
+    }
+
+    public static Matrix GaussJordanMethod(Matrix m) {
+        // Prekondisi: m merupakan matriks persegi
+        int i, j;
+        int n = m.getNCol();
+        Matrix res = new Matrix(n, n);
+        Matrix temp = m.copy();
+        // Resize and fill up the diagonals with 1
+        temp.resize(n * 2, n * 2);
+        for (i = n; i < n * 2; i++) {
+            temp.setElmt(i - n, i, 1);
+        }
+        // Get the reduced echelon form
+        temp = Matrix.ToEchelonForm(temp, true);
+        // Make sure that the 1nd col matrix ([0..n][0..n]) is identity
+        if (!temp.copy(n, n).isIdentity()) {
+            return null;
+        }
+        // Result by the 2nd col matrix ([0..n][n..n*2])
+        // copy at first row with length n and at n col with length n
+        return res.copy(0, n, n, n);
     }
 
     public static Matrix AdjointMethod(Matrix m) {

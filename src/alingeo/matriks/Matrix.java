@@ -84,6 +84,20 @@ public class Matrix {
         return (this.nCol == this.nRow);
     }
 
+    public boolean isIdentity() {
+        int i, j;
+        for (i = 0; i < this.nRow; i++) {
+            for (j = 0; j < this.nCol; j++) {
+                if (i == j && this.getElmt(i, j) != 1) {
+                    return false;
+                } else if (i != j && this.getElmt(i, j) != 0) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public boolean isEchelon() {
         int i, j;
         for (i = 0; i < this.nRow; i++) {
@@ -323,6 +337,27 @@ public class Matrix {
             im++;
         }
         return temp;
+    }
+
+    public Matrix copy(int sRow, int lRow, int sCol, int lCol) {
+        // Prekondisi: sRow < lRow <= NRow-sRow; sCol < lCol <= NCol - sRow;
+        Matrix res = new Matrix(lRow, lCol);
+        int i, j;
+        for (i = 0; i < lRow; i++) {
+            for (j = 0; j < lCol; j++) {
+                res.setElmt(i, j, this.getElmt(i + sRow, j + lRow));
+            }
+        }
+        return res;
+    }
+
+    public Matrix copy(int lRow, int lCol) {
+        // Prekondisi: row <= NRow dan col <= NCol
+        return this.copy(0, lRow, 0, lCol);
+    }
+
+    public Matrix copy() {
+        return this.copy(this.nRow, this.nCol);
     }
 
     public String toString(Matrix M) {
