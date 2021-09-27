@@ -38,9 +38,9 @@ public class SPLSolver {
         Matrix result = new Matrix(m.getNCol(), m.getNCol());
 
         status = backwardSubstitution(
-                Matrix.ToEchelonForm(m, false),
-                result,
-                false
+            Matrix.toEchelonForm(m, false),
+            result,
+            false
         );
 
         return result;
@@ -51,9 +51,9 @@ public class SPLSolver {
         Matrix result = new Matrix(m.getNRow(), m.getNCol());
 
         status = backwardSubstitution(
-                Matrix.ToEchelonForm(m, true),
-                result,
-                true
+            Matrix.toEchelonForm(m, true),
+            result,
+            true
         );
 
         return result;

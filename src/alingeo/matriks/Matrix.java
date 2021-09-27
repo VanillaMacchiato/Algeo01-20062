@@ -171,7 +171,7 @@ public class Matrix {
     }
 
     // OPERASI
-    public void plus(Matrix m) {
+    public void add(Matrix m) {
         //Prekondisi: ukuran objek dan m sama
         int i, j;
         for (i = 0; i < this.nRow; i++) {
@@ -181,7 +181,7 @@ public class Matrix {
         }
     }
 
-    public void min(Matrix m) {
+    public void sub(Matrix m) {
         //Prekondisi: ukuran objek dan m sama
         int i, j;
         for (i = 0; i < this.nRow; i++) {
@@ -191,7 +191,7 @@ public class Matrix {
         }
     }
 
-    public void multiplication(Matrix m2) {
+    public void mul(Matrix m2) {
         //Prekondisi: ukuran kolom objek dan baris m2 sama
         Matrix m;
         int i, j, k;
@@ -206,9 +206,7 @@ public class Matrix {
                 m.setElmt(i, j, sum);
             }
         }
-        this.data = m.getData();
-        this.nCol = m.getNCol();
-        this.nRow = m.getNRow();
+        this.setData(m.getData());
     }
 
     public void transpose() {
@@ -220,9 +218,7 @@ public class Matrix {
                 m.setElmt(i, j, this.getElmt(j, i));
             }
         }
-        this.data = m.getData();
-        this.nCol = m.getNCol();
-        this.nRow = m.getNRow();
+        this.setData(m.getData());
     }
 
     // OBE
@@ -395,51 +391,35 @@ public class Matrix {
     // Static
     public static Matrix plus(Matrix m1, Matrix m2) {
         //Prekondisi: ukuran m1 dan m2 sama
-        Matrix m;
-        int i, j;
-        m = new Matrix(m1.getNRow(), m1.getNCol());
-        for (i = 0; i < m.getNRow(); i++) {
-            for (j = 0; j < m.getNCol(); j++) {
-                m.setElmt(i, j, m1.getElmt(i, j) + m2.getElmt(i, j));
-            }
-        }
+        Matrix m = m1.copy();
+        m.add(m2);
         return m;
     }
 
     public static Matrix min(Matrix m1, Matrix m2) {
         //Prekondisi: ukuran m1 dan m2 sama
-        Matrix m;
-        int i, j;
-        m = new Matrix(m1.getNRow(), m1.getNCol());
-        for (i = 0; i < m.getNRow(); i++) {
-            for (j = 0; j < m.getNCol(); j++) {
-                m.setElmt(i, j, m1.getElmt(i, j) - m2.getElmt(i, j));
-            }
-        }
+        Matrix m = m1.copy();
+        m.mul(m2);
         return m;
     }
 
-    public static Matrix multiplication(Matrix m1, Matrix m2) {
+    public static Matrix mul(Matrix m1, Matrix m2) {
         //Prekondisi: ukuran kolom m1 dan baris m2 sama
-        Matrix m;
-        int i, j, k;
-        double sum;
-        m = new Matrix(m1.getNRow(), m2.getNCol());
-        for (i = 0; i < m.getNRow(); i++) {
-            for (j = 0; j < m.getNCol(); j++) {
-                sum = 0;
-                for (k = 0; k < m2.getNRow(); k++) {
-                    sum += m1.getElmt(i, k) * m2.getElmt(k, j);
-                }
-                m.setElmt(i, j, sum);
-            }
-        }
+        Matrix m = m1.copy();
+        m.mul(m2);
         return m;
     }
 
-    public static Matrix ToEchelonForm(Matrix m, boolean reducedForm) {
-        Matrix res = new Matrix(m.getData());
+    public static Matrix toEchelonForm(Matrix m, boolean reducedForm) {
+        Matrix res = m.copy();
         res.toEchelonForm(reducedForm);
         return res;
+    }
+
+    public static double toEchelonFormRatio(Matrix m, Matrix out, boolean reducedForm) {
+        Matrix res = m.copy();
+        double rat = res.toEchelonFormRatio(reducedForm);
+        out = res;
+        return rat;
     }
 }

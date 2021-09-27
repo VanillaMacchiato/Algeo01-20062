@@ -46,7 +46,7 @@ public class InversSolver {
             temp.setElmt(i - n, i, 1);
         }
         // Get the reduced echelon form
-        temp = Matrix.ToEchelonForm(temp, true);
+        temp = Matrix.toEchelonForm(temp, true);
         // Make sure that the 1nd col matrix ([0..n][0..n]) is identity
         if (!temp.copy(n, n).isIdentity()) {
             return null;

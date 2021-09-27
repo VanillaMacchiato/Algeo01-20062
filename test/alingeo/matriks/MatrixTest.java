@@ -192,13 +192,16 @@ public class MatrixTest {
     @Test
     public void testGetRow() {
         System.out.println("getRow");
-        int row = 0;
-        Matrix instance = null;
-        double[] expResult = null;
-        double[] result = instance.getRow(row);
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(new double[][]{
+            {0.2, 99},
+            {-2.1, -10},
+            {0, 5.1}
+        });
+        assertArrayEquals(new double[]{0.2, 99}, ins.getRow(0));
+        assertArrayEquals(new double[]{-2.1, -10}, ins.getRow(0));
+        assertArrayEquals(new double[]{0, 5.1}, ins.getRow(0));
+        ins = new Matrix(new double[1][0]);
+        assertArrayEquals(new double[0], ins.getRow(0));
     }
 
     /**
@@ -207,12 +210,11 @@ public class MatrixTest {
     @Test
     public void testSetRow() {
         System.out.println("setRow");
-        int row = 0;
-        double[] data = null;
-        Matrix instance = null;
-        instance.setRow(row, data);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(2, 3);
+        ins.setRow(1, new double[]{1, 2, 3});
+        assertArrayEquals(new double[]{1, 2, 3}, ins.getRow(1));
+        ins.setRow(0, new double[]{99.99, 1.23, 0});
+        assertArrayEquals(new double[]{99.99, 1.23, 0}, ins.getRow(0));
     }
 
     /**
@@ -221,12 +223,17 @@ public class MatrixTest {
     @Test
     public void testIsSquare() {
         System.out.println("isSquare");
-        Matrix instance = null;
-        boolean expResult = false;
-        boolean result = instance.isSquare();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(new double[][]{
+            {1, 2, 3},
+            {2, 2, 0}
+        });
+        assertEquals(false, ins.isSquare());
+        ins.resize(3, 3);
+        assertEquals(true, ins.isSquare());
+        ins.resize(0, 0);
+        assertEquals(true, ins.isSquare());
+        ins.resize(3, 1);
+        assertEquals(false, ins.isSquare());
     }
 
     /**
@@ -235,14 +242,42 @@ public class MatrixTest {
     @Test
     public void testIsEchelon() {
         System.out.println("isEchelon");
-        Matrix instance = new Matrix(3, 4);
-        instance.setData(new double[][]{
+        Matrix ins = new Matrix(new double[][]{
             {1, 0, 3, 4},
             {0, 1, 2, 0},
             {0, 0, 1, 0}
         });
-        boolean result = instance.isEchelon();
-        assertEquals(true, result);
+        assertEquals(true, ins.isEchelon());
+        ins.setData(new double[][]{
+            {1, 9},
+            {0, 1},});
+        assertEquals(true, ins.isEchelon());
+        ins.setData(new double[][]{
+            {0, 1, 0.9, 1},
+            {0, 0, 1, 1}
+        });
+        assertEquals(true, ins.isEchelon());
+        ins.setData(new double[][]{
+            {0, 0, 1},
+            {0, 0, 0}
+        });
+        assertEquals(true, ins.isEchelon());
+        ins.setData(new double[][]{
+            {0, 0, 1, 2},
+            {0, 1, 1, 9},
+            {1, 1, 1, 1}
+        });
+        assertEquals(false, ins.isEchelon());
+        ins.setData(new double[][]{
+            {9, 1, 1},
+            {0, 0, 1}
+        });
+        assertEquals(false, ins.isEchelon());
+        ins.setData(new double[][]{
+            {1, 1},
+            {0, 0},
+            {0, 1},});
+        assertEquals(false, ins.isEchelon());
     }
 
     /**
@@ -251,12 +286,39 @@ public class MatrixTest {
     @Test
     public void testIsEchelonReduced() {
         System.out.println("isEchelonReduced");
-        Matrix instance = null;
-        boolean expResult = false;
-        boolean result = instance.isEchelonReduced();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(new double[][]{
+            {1, 0, 3, 4},
+            {0, 1, 2, 9},
+            {0, 0, 0, 1}
+        });
+        assertEquals(true, ins.isEchelonReduced());
+        ins.setData(new double[][]{
+            {1, 0},
+            {0, 1},});
+        assertEquals(true, ins.isEchelonReduced());
+        ins.setData(new double[][]{
+            {1, 0, 9, 0},
+            {0, 1, 1, 0},
+            {0, 0, 0, 1},
+            {0, 0, 0, 0}
+        });
+        assertEquals(true, ins.isEchelonReduced());
+        ins.setData(new double[][]{
+            {0, 0, 1, 2},
+            {0, 1, 1, 9},
+            {1, 1, 1, 1}
+        });
+        assertEquals(false, ins.isEchelonReduced());
+        ins.setData(new double[][]{
+            {1, 1, 1},
+            {0, 1, 0}
+        });
+        assertEquals(false, ins.isEchelonReduced());
+        ins.setData(new double[][]{
+            {1, 1},
+            {9, 1},
+            {0, 1},});
+        assertEquals(false, ins.isEchelonReduced());
     }
 
     /**
@@ -265,150 +327,11 @@ public class MatrixTest {
     @Test
     public void testIsTriangular() {
         System.out.println("isTriangular");
-        Matrix instance = null;
-        int expResult = 0;
-        int result = instance.isTriangular();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of plus method, of class Matrix.
-     */
-    @Test
-    public void testPlus_Matrix_Matrix() {
-        System.out.println("plus");
-        Matrix m1 = null;
-        Matrix m2 = null;
-        Matrix expResult = null;
-        Matrix result = Matrix.plus(m1, m2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of plus method, of class Matrix.
-     */
-    @Test
-    public void testPlus_Matrix() {
-        System.out.println("plus");
-        Matrix m = null;
-        Matrix instance = null;
-        instance.plus(m);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of min method, of class Matrix.
-     */
-    @Test
-    public void testMin_Matrix_Matrix() {
-        System.out.println("min");
-        Matrix m1 = null;
-        Matrix m2 = null;
-        Matrix expResult = null;
-        Matrix result = Matrix.min(m1, m2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of min method, of class Matrix.
-     */
-    @Test
-    public void testMin_Matrix() {
-        System.out.println("min");
-        Matrix m = null;
-        Matrix instance = null;
-        instance.min(m);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of multiplication method, of class Matrix.
-     */
-    @Test
-    public void testMultiplication_Matrix_Matrix() {
-        System.out.println("multiplication");
-        Matrix m1 = null;
-        Matrix m2 = null;
-        Matrix expResult = null;
-        Matrix result = Matrix.multiplication(m1, m2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of multiplication method, of class Matrix.
-     */
-    @Test
-    public void testMultiplication_Matrix() {
-        System.out.println("multiplication");
-        Matrix m2 = null;
-        Matrix instance = null;
-        instance.multiplication(m2);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of transpose method, of class Matrix.
-     */
-    @Test
-    public void testTranspose() {
-        System.out.println("transpose");
-        Matrix instance = null;
-        instance.transpose();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of RowSum method, of class Matrix.
-     */
-    @Test
-    public void testRowSum() {
-        System.out.println("RowSum");
-        int row1 = 0;
-        int row2 = 0;
-        double k = 0.0;
-        Matrix instance = null;
-        instance.RowSum(row1, row2, k);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of RowSwap method, of class Matrix.
-     */
-    @Test
-    public void testRowSwap() {
-        System.out.println("RowSwap");
-        int row1 = 0;
-        int row2 = 0;
-        Matrix instance = null;
-        instance.RowSwap(row1, row2);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of ScalarRowMultiplication method, of class Matrix.
-     */
-    @Test
-    public void testScalarRowMultiplication() {
-        System.out.println("ScalarRowMultiplication");
-        int row = 0;
-        double k = 0.0;
-        Matrix instance = null;
-        instance.ScalarRowMultiplication(row, k);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Matrix ins = new Matrix(new double[][]{
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+        });
+        assertEquals(0, ins.isTriangular());
     }
 }

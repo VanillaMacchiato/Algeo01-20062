@@ -13,13 +13,7 @@ import alingeo.matriks.Matrix;
  */
 public class DeterminantSolver {
 
-    private Matrix EROMatrix;
-
-    public Matrix getEROMatrix() {
-        return this.EROMatrix;
-    }
-
-    public double CofactorExpansion(Matrix M) {
+    public static double CofactorExpansion(Matrix M) {
         //prekondisi: M matriks persegi dan ukuran >= 2x2
         double tempsum = 0;
 
@@ -29,9 +23,9 @@ public class DeterminantSolver {
             for (int i = 0; i < M.getNCol(); i++) {
                 if (M.getElmt(0, i) != 0) {
                     if (i % 2 == 0) {
-                        tempsum += M.getElmt(0, i) * this.CofactorExpansion(M.getMinorMatrix(0, i));
+                        tempsum += M.getElmt(0, i) * CofactorExpansion(M.getMinorMatrix(0, i));
                     } else {
-                        tempsum -= M.getElmt(0, i) * this.CofactorExpansion(M.getMinorMatrix(0, i));
+                        tempsum -= M.getElmt(0, i) * CofactorExpansion(M.getMinorMatrix(0, i));
                     }
                 }
             }
@@ -39,10 +33,14 @@ public class DeterminantSolver {
         return tempsum;
     }
 
-    public double ERO(Matrix M) {
+    public static double ERO(Matrix M) {
+        Matrix out = null;
+        return ERO(M, out);
+    }
+
+    public static double ERO(Matrix M, Matrix out) {
         //Prekondisi: M matriks persegi
-        double ratio = M.toEchelonFormRatio(false);
-        this.EROMatrix = M;
+        double ratio = Matrix.toEchelonFormRatio(M, out, false);
         System.out.println(M.toString());
         double res = 1;
         for (int i = 0; i < M.getNCol(); i++) {
