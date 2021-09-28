@@ -452,4 +452,15 @@ public class Matrix {
         out.setData(res.getData());
         return rat;
     }
+    
+    public static Matrix transpose(Matrix m) {
+        int i, j;
+        Matrix res = new Matrix(m.getNCol(), m.getNRow());
+        for (i = 0; i < m.getNRow(); i++) {
+            for (j = 0; j < m.getNCol(); j++) {
+                res.setElmt(j, i, m.getElmt(i, j));
+            }
+        }
+        return res;
+    }
 }
