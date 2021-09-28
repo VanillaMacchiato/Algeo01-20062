@@ -730,10 +730,10 @@ public class MatrixTest {
         });
         instance.toEchelonFormRatio(reducedForm);
         assertArrayEquals(new double[][]{
-            {1, 0},
-            {0, 1},
-            {0, 0},
-            {0, 0}
+            {1, 0.5},
+            {0, 5},
+            {0, 4.5},
+            {0, 2}
         }, instance.getData());
 
     }
@@ -761,10 +761,10 @@ public class MatrixTest {
         });
         instance.toEchelonForm(reducedForm);
         assertArrayEquals(new double[][]{
-            {1, 0},
-            {0, 1},
-            {0, 0},
-            {0, 0}
+            {1, 0.5},
+            {0, 5},
+            {0, 4.5},
+            {0, 2}
         }, instance.getData());
     }
 
@@ -934,16 +934,16 @@ public class MatrixTest {
             {1.2, 0, -1},
             {9, 10, 2}
         });
-        assertEquals("1,20 0,00 -1,00\n9,00 10,00 2,00", ins.toString());
+        assertEquals("1.20 0.00 -1.00\n9.00 10.00 2.00", ins.toString());
         ins.setData(new double[][]{
             {0, 0},
             {9.99, 10}
         });
-        assertEquals("0,00 0,00\n9,99 10,00", ins.toString());
+        assertEquals("0.00 0.00\n9.99 10.00", ins.toString());
         ins.setData(new double[][]{
             {1.23}
         });
-        assertEquals("1,23", ins.toString());
+        assertEquals("1.23", ins.toString());
     }
 
     /**
@@ -969,10 +969,10 @@ public class MatrixTest {
         });
         out = Matrix.toEchelonForm(instance, reducedForm);
         assertArrayEquals(new double[][]{
-            {1, 0},
-            {0, 1},
-            {0, 0},
-            {0, 0}
+            {1, 0.5},
+            {0, 5},
+            {0, 4.5},
+            {0, 2}
         }, out.getData());
     }
 
@@ -1001,10 +1001,10 @@ public class MatrixTest {
         out = instance.copy();
         Matrix.toEchelonFormRatio(instance, out, reducedForm);
         assertArrayEquals(new double[][]{
-            {1, 0},
-            {0, 1},
-            {0, 0},
-            {0, 0}
+            {1, 0.5},
+            {0, 5},
+            {0, 4.5},
+            {0, 2}
         }, out.getData());
     }
 }

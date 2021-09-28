@@ -1,1 +1,5 @@
-# Algeo01-20062
+# Program Matriks Sederhana
+> by The Answer of Life
+
+# Struktur
+# 

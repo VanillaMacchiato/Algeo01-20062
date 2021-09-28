@@ -23,6 +23,7 @@ import java.util.Locale;
 import alingeo.matriks.Matrix;
 import alingeo.matriks.io.Parser;
 import alingeo.matriks.solver.SPLSolver;
+import alingeo.matriks.solver.SPLSolver.SolutionResult;
 import alingeo.matriks.solver.DeterminantSolver;
 import alingeo.matriks.solver.InversSolver;
 
@@ -1069,9 +1070,8 @@ public class Main extends javax.swing.JFrame {
             Matrix M = Parser.stringToMatrix(SPLGaussInput.getText());
             M.toEchelonForm(false);
             SPLGaussIntermediate.setText(M.toString());
-            Matrix result = new Matrix(0, 0);
-            int[] states = SPLSolver.backwardSubstitution(M, result);
-            SPLGaussOutput.setText(SPLSolver.generateSolution(states, result));
+            SolutionResult res = SPLSolver.backwardSubstitution(M);
+            SPLGaussOutput.setText(res.toString());
         } catch (Exception e) {
             SPLGaussPrompt.setText("Input tidak valid");
         }
@@ -1205,9 +1205,8 @@ public class Main extends javax.swing.JFrame {
             Matrix M = Parser.stringToMatrix(SPLGaussJordanInput.getText());
             M.toEchelonForm(true);
             SPLGaussJordanIntermediate.setText(M.toString());
-            Matrix result = new Matrix(0, 0);
-            int[] states = SPLSolver.backwardSubstitution(M, result);
-            SPLGaussJordanOutput.setText(SPLSolver.generateSolution(states, result));
+            SolutionResult res = SPLSolver.backwardSubstitution(M);
+            SPLGaussJordanOutput.setText(res.toString());
         } catch (Exception e) {
             SPLGaussJordanPrompt.setText("Input tidak valid");
         }

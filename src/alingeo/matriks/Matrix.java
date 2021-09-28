@@ -74,6 +74,19 @@ public class Matrix {
         return this.data;
     }
 
+    public double[][] getData(int roundTo) {
+        int nr = this.getNRow();
+        int nc = this.getNCol();
+        double decPoint = Math.pow(10, roundTo);
+        double[][] rndData = new double[nr][nc];
+        for (int i = 0; i < nr; i++) {
+            for (int j = 0; j < nc; j++) {
+                rndData[i][j] = Math.round(decPoint * this.data[i][j]) / decPoint;
+            }
+        }
+        return rndData;
+    }
+
     public final void setData(double[][] nData) {
         this.nRow = nData.length;
         this.nCol = nData.length > 0 ? nData[0].length : 0;
@@ -89,6 +102,10 @@ public class Matrix {
     }
 
     // PREDIKAT
+    public boolean isEqElmt(int i, int j, int b) {
+        return Math.abs(this.getElmt(i, j) - b) < 0.000001;
+    }
+
     public boolean isSquare() {
         return (this.nCol == this.nRow);
     }
@@ -97,9 +114,9 @@ public class Matrix {
         int i, j;
         for (i = 0; i < this.nRow; i++) {
             for (j = 0; j < this.nCol; j++) {
-                if (i == j && this.getElmt(i, j) != 1) {
+                if (i == j && !this.isEqElmt(i, j, 1)) {
                     return false;
-                } else if (i != j && this.getElmt(i, j) != 0) {
+                } else if (i != j && !this.isEqElmt(i, j, 0)) {
                     return false;
                 }
             }
@@ -401,12 +418,16 @@ public class Matrix {
         return this.copy(this.nRow, this.nCol);
     }
 
-    @Override
-    public String toString() {
+    public String toString(int decPoint) {
         String output = "";
+        double p = Math.pow(10, decPoint);
         for (int i = 0; i < this.getNRow(); i++) {
             for (int j = 0; j < this.getNCol(); j++) {
-                output += String.format(Locale.ROOT, "%.2f", ((double) Math.round(100 * this.getElmt(i, j))) / 100);
+                output += String.format(
+                    Locale.ROOT,
+                    "%." + decPoint + "f",
+                    ((double) Math.round(p * this.getElmt(i, j))) / p
+                );
                 if (j < this.getNCol() - 1) {
                     output += " ";
                 }
@@ -416,6 +437,11 @@ public class Matrix {
             }
         }
         return output;
+    }
+
+    @Override
+    public String toString() {
+        return this.toString(2);
     }
 
     // Static
@@ -452,7 +478,7 @@ public class Matrix {
         out.setData(res.getData());
         return rat;
     }
-    
+
     public static Matrix transpose(Matrix m) {
         int i, j;
         Matrix res = new Matrix(m.getNCol(), m.getNRow());
