@@ -116,4 +116,55 @@ public class SPLSolver {
         }
         return states;
     }
+
+    public static String generateVarString(int num) {
+        int n = num / 26;
+        String res = Character.toString(((int) 'a' + (num % 26)));
+        if (n > 0) {
+            res += Integer.toString(n);
+        }
+        return res;
+    }
+
+    public static String generateSolution(int[] states, Matrix result) {
+        if (states == null) {
+            return "No solution exist. The system is inconsistent.";
+        }
+        int cnt, i, j;
+        double el;
+        String res = "";
+        for (i = 0; i < states.length; i++) {
+            res += "x" + (i + 1) + " = ";
+            if (states[i] == -1) {
+                cnt = 0;
+                for (j = i + 1; j <= states.length; j++) {
+                    el = result.getElmt(i, j);
+                    if (el != 0) {
+                        if (cnt != 0) {
+                            if (el > 0) {
+                                res += " + ";
+                            } else {
+                                res += " - ";
+                                el *= -1;
+                            }
+                        } else if (el == -1.0) {
+                            res += "-";
+                            el *= -1;
+                        }
+                        if (el != 1.0 || j == states.length) {
+                            res += el;
+                        }
+                        if (j < states.length) {
+                            res += generateVarString(states[j]);
+                        }
+                        cnt++;
+                    }
+                }
+            } else {
+                res += generateVarString(states[i]);
+            }
+            res += "\n";
+        }
+        return res;
+    }
 }

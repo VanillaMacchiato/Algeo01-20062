@@ -1,5 +1,7 @@
 package alingeo.matriks;
 
+import java.util.Locale;
+
 /**
  * @author Amar Fadil
  * @author Vito Ghifari
@@ -404,7 +406,7 @@ public class Matrix {
         String output = "";
         for (int i = 0; i < this.getNRow(); i++) {
             for (int j = 0; j < this.getNCol(); j++) {
-                output += String.format("%.2f", ((double) Math.round(100 * this.getElmt(i, j))) / 100);
+                output += String.format(Locale.ROOT, "%.2f", ((double) Math.round(100 * this.getElmt(i, j))) / 100);
                 if (j < this.getNCol() - 1) {
                     output += " ";
                 }

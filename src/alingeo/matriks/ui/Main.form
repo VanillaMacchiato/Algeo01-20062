@@ -287,40 +287,37 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="SPLGaussTitle" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="SPLGaussInst1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="SPLGaussInst2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="SPLGaussInst3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="SPLGaussInst2" alignment="0" pref="364" max="32767" attributes="0"/>
+                              <Component id="SPLGaussTitle" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="SPLGaussInst1" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="SPLGaussInst3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="SPLGaussInst4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane2" min="-2" pref="160" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="SPLGaussInst5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="SPLGaussInst6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="SPLGaussCalculate" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="SPLGaussInst4" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane1" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane2" min="-2" pref="160" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="SPLGaussInst5" min="-2" max="-2" attributes="0"/>
-                                          <Component id="SPLGaussInst6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="SPLGaussCalculate" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="SPLGaussFilepath" min="-2" pref="99" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="SPLGaussOpenFile" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="SPLGaussSave" min="-2" pref="84" max="-2" attributes="0"/>
-                                          <Component id="SPLGaussPrompt" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jScrollPane3" min="-2" pref="164" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="SPLGaussFilepath" min="-2" pref="99" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="SPLGaussOpenFile" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Component id="SPLGaussSave" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="SPLGaussPrompt" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane3" min="-2" pref="164" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -448,6 +445,9 @@
               </SubComponents>
             </Container>
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+              <Properties>
+                <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
+              </Properties>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
@@ -489,7 +489,6 @@
                               <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="SPLGaussInst7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="SPLGaussInst8" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="SPLGaussInst9" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jScrollPane4" min="-2" pref="160" max="-2" attributes="0"/>
@@ -507,6 +506,7 @@
                                           <Component id="jScrollPane6" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Component id="SPLGaussInst8" alignment="0" min="-2" pref="158" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -650,7 +650,6 @@
                               <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="SPLGaussInst10" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="SPLGaussInst12" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="SPLGaussInst13" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -672,6 +671,7 @@
                                           <Component id="jScrollPane8" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Component id="SPLGaussInst12" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -837,7 +837,6 @@
                               <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="SPLGaussInst16" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="SPLGaussInst17" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="SPLGaussInst18" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jScrollPane9" min="-2" pref="160" max="-2" attributes="0"/>
@@ -855,6 +854,7 @@
                                           <Component id="jScrollPane11" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Component id="SPLGaussInst17" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -972,6 +972,193 @@
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
                 <Component class="javax.swing.JTextPane" name="InversGaussOutput">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="InversAdjoinPanel">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="card2"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="SPLGaussTitle3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="SPLGaussInst19" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="SPLGaussInst21" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="SPLGaussInst22" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="SPLGaussInst23" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane10" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane12" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="SPLGaussInst24" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="InversAdjoinCalculate" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="InversAdjoinFilepath" min="-2" pref="99" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="InversAdjoinOpenFile" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="InversAdjoinSave" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                          <Component id="InversAdjoinPrompt" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jScrollPane13" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="SPLGaussTitle3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="SPLGaussInst19" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="SPLGaussInst21" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Component id="SPLGaussInst22" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="InversAdjoinOpenFile" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                  <Component id="InversAdjoinFilepath" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="InversAdjoinCalculate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="InversAdjoinSave" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Component id="InversAdjoinPrompt" min="-2" pref="14" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane10" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="SPLGaussInst23" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="SPLGaussInst24" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jScrollPane12" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane13" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="107" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="SPLGaussTitle3">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI Black" size="18" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Invers Metode Adjoin"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="SPLGaussInst19">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Input Matriks Ax=b :"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="SPLGaussInst21">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pisahkan elemen dengan spasi"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="SPLGaussInst22">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Pisahkan baris dengan newline (enter)"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="SPLGaussInst23">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Matriks Kofaktor yang terbentuk"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="SPLGaussInst24">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Hasil:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="InversAdjoinCalculate">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Calculate"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InversAdjoinCalculateActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="InversAdjoinOpenFile">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Open"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InversAdjoinOpenFileActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="InversAdjoinFilepath">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="Open A File.."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="InversAdjoinSave">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Save"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="InversAdjoinPrompt">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Prompt"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane10">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextPane" name="InversAdjoinInput">
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane12">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextPane" name="InversAdjoinIntermediate">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JScrollPane" name="jScrollPane13">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+              <SubComponents>
+                <Component class="javax.swing.JTextPane" name="InversAdjoinOutput">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>

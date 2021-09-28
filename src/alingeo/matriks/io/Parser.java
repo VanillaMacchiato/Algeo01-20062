@@ -4,6 +4,7 @@ import alingeo.matriks.Matrix;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,4 +43,18 @@ public class Parser {
         return stringToMatrix(txt);
     }
 
+    @SuppressWarnings("ConvertToTryWithResources")
+    public static void stringToFile(String inp, String dir) {
+        try {
+            PrintWriter writer = new PrintWriter(dir);
+            String[] inplines = inp.split("\n");
+            for (String inpline : inplines) {
+                writer.println(inpline);
+            }
+            writer.close();
+        } catch (FileNotFoundException e) {
+            Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }
 }

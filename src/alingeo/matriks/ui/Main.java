@@ -18,7 +18,7 @@ package alingeo.matriks.ui;
 
 import javax.swing.JFileChooser;
 import java.io.File;
-import java.lang.Math;
+import java.util.Locale;
 
 import alingeo.matriks.Matrix;
 import alingeo.matriks.io.Parser;
@@ -138,6 +138,24 @@ public class Main extends javax.swing.JFrame {
         InversGaussInput = new javax.swing.JTextPane();
         jScrollPane11 = new javax.swing.JScrollPane();
         InversGaussOutput = new javax.swing.JTextPane();
+        InversAdjoinPanel = new javax.swing.JPanel();
+        SPLGaussTitle3 = new javax.swing.JLabel();
+        SPLGaussInst19 = new javax.swing.JLabel();
+        SPLGaussInst21 = new javax.swing.JLabel();
+        SPLGaussInst22 = new javax.swing.JLabel();
+        SPLGaussInst23 = new javax.swing.JLabel();
+        SPLGaussInst24 = new javax.swing.JLabel();
+        InversAdjoinCalculate = new javax.swing.JButton();
+        InversAdjoinOpenFile = new javax.swing.JButton();
+        InversAdjoinFilepath = new javax.swing.JTextField();
+        InversAdjoinSave = new javax.swing.JButton();
+        InversAdjoinPrompt = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        InversAdjoinInput = new javax.swing.JTextPane();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        InversAdjoinIntermediate = new javax.swing.JTextPane();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        InversAdjoinOutput = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(600, 500));
@@ -317,6 +335,8 @@ public class Main extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(SPLGaussInput);
 
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+
         SPLGaussIntermediate.setEditable(false);
         jScrollPane2.setViewportView(SPLGaussIntermediate);
 
@@ -328,33 +348,31 @@ public class Main extends javax.swing.JFrame {
         SPLGaussPanelLayout.setHorizontalGroup(
             SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SPLGaussPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SPLGaussTitle)
+                    .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(SPLGaussInst2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                        .addComponent(SPLGaussTitle))
+                    .addComponent(SPLGaussInst1)
+                    .addComponent(SPLGaussInst3)
                     .addGroup(SPLGaussPanelLayout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SPLGaussInst1)
-                            .addComponent(SPLGaussInst2)
-                            .addComponent(SPLGaussInst3)
+                        .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(SPLGaussInst4)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(SPLGaussInst5)
+                            .addComponent(SPLGaussInst6)
+                            .addComponent(SPLGaussCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(SPLGaussPanelLayout.createSequentialGroup()
-                                .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(SPLGaussInst4)
-                                    .addComponent(jScrollPane1)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
-                                .addGroup(SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(SPLGaussInst5)
-                                    .addComponent(SPLGaussInst6)
-                                    .addComponent(SPLGaussCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(SPLGaussPanelLayout.createSequentialGroup()
-                                        .addComponent(SPLGaussFilepath, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(SPLGaussOpenFile))
-                                    .addComponent(SPLGaussSave, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(SPLGaussPrompt)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                                .addComponent(SPLGaussFilepath, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SPLGaussOpenFile))
+                            .addComponent(SPLGaussSave, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SPLGaussPrompt)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(56, 56, 56))
         );
         SPLGaussPanelLayout.setVerticalGroup(
             SPLGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -444,7 +462,6 @@ public class Main extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addGroup(DeterminanKofaktorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(SPLGaussInst7)
-                            .addComponent(SPLGaussInst8)
                             .addComponent(SPLGaussInst9)
                             .addGroup(DeterminanKofaktorPanelLayout.createSequentialGroup()
                                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -458,7 +475,8 @@ public class Main extends javax.swing.JFrame {
                                         .addComponent(DeterminanKofaktorOpenFile))
                                     .addComponent(DeterminanKofaktorSave, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(DeterminanKofaktorPrompt)
-                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(SPLGaussInst8, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         DeterminanKofaktorPanelLayout.setVerticalGroup(
@@ -548,7 +566,6 @@ public class Main extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addGroup(DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(SPLGaussInst10)
-                            .addComponent(SPLGaussInst12)
                             .addComponent(SPLGaussInst13)
                             .addGroup(DeterminanOBEPanelLayout.createSequentialGroup()
                                 .addGroup(DeterminanOBEPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -565,7 +582,8 @@ public class Main extends javax.swing.JFrame {
                                         .addComponent(DeterminanOBEOpenFile))
                                     .addComponent(DeterminanOBESave, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(DeterminanOBEPrompt)
-                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(SPLGaussInst12, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         DeterminanOBEPanelLayout.setVerticalGroup(
@@ -654,7 +672,6 @@ public class Main extends javax.swing.JFrame {
                         .addGap(13, 13, 13)
                         .addGroup(InversGaussPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(SPLGaussInst16)
-                            .addComponent(SPLGaussInst17)
                             .addComponent(SPLGaussInst18)
                             .addGroup(InversGaussPanelLayout.createSequentialGroup()
                                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -668,7 +685,8 @@ public class Main extends javax.swing.JFrame {
                                         .addComponent(InversGaussOpenFile))
                                     .addComponent(InversGaussSave, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(InversGaussPrompt)
-                                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(SPLGaussInst17, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         InversGaussPanelLayout.setVerticalGroup(
@@ -703,6 +721,117 @@ public class Main extends javax.swing.JFrame {
         );
 
         LayeredPanel.add(InversGaussPanel, "card2");
+
+        SPLGaussTitle3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        SPLGaussTitle3.setText("Invers Metode Adjoin");
+
+        SPLGaussInst19.setText("Input Matriks Ax=b :");
+
+        SPLGaussInst21.setText("Pisahkan elemen dengan spasi");
+
+        SPLGaussInst22.setText("Pisahkan baris dengan newline (enter)");
+
+        SPLGaussInst23.setText("Matriks Kofaktor yang terbentuk");
+
+        SPLGaussInst24.setText("Hasil:");
+
+        InversAdjoinCalculate.setText("Calculate");
+        InversAdjoinCalculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InversAdjoinCalculateActionPerformed(evt);
+            }
+        });
+
+        InversAdjoinOpenFile.setText("Open");
+        InversAdjoinOpenFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InversAdjoinOpenFileActionPerformed(evt);
+            }
+        });
+
+        InversAdjoinFilepath.setEditable(false);
+        InversAdjoinFilepath.setText("Open A File..");
+
+        InversAdjoinSave.setText("Save");
+
+        InversAdjoinPrompt.setText("Prompt");
+
+        jScrollPane10.setViewportView(InversAdjoinInput);
+
+        InversAdjoinIntermediate.setEditable(false);
+        jScrollPane12.setViewportView(InversAdjoinIntermediate);
+
+        InversAdjoinOutput.setEditable(false);
+        jScrollPane13.setViewportView(InversAdjoinOutput);
+
+        javax.swing.GroupLayout InversAdjoinPanelLayout = new javax.swing.GroupLayout(InversAdjoinPanel);
+        InversAdjoinPanel.setLayout(InversAdjoinPanelLayout);
+        InversAdjoinPanelLayout.setHorizontalGroup(
+            InversAdjoinPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InversAdjoinPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(InversAdjoinPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SPLGaussTitle3)
+                    .addGroup(InversAdjoinPanelLayout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(InversAdjoinPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SPLGaussInst19)
+                            .addComponent(SPLGaussInst21)
+                            .addComponent(SPLGaussInst22)
+                            .addGroup(InversAdjoinPanelLayout.createSequentialGroup()
+                                .addGroup(InversAdjoinPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(SPLGaussInst23)
+                                    .addComponent(jScrollPane10)
+                                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(InversAdjoinPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(SPLGaussInst24)
+                                    .addComponent(InversAdjoinCalculate, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(InversAdjoinPanelLayout.createSequentialGroup()
+                                        .addComponent(InversAdjoinFilepath, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(InversAdjoinOpenFile))
+                                    .addComponent(InversAdjoinSave, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(InversAdjoinPrompt)
+                                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+        InversAdjoinPanelLayout.setVerticalGroup(
+            InversAdjoinPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InversAdjoinPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(SPLGaussTitle3)
+                .addGap(18, 18, 18)
+                .addComponent(SPLGaussInst19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(SPLGaussInst21)
+                .addGap(4, 4, 4)
+                .addComponent(SPLGaussInst22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(InversAdjoinPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(InversAdjoinPanelLayout.createSequentialGroup()
+                        .addGroup(InversAdjoinPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(InversAdjoinOpenFile, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(InversAdjoinFilepath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(InversAdjoinCalculate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(InversAdjoinSave)
+                        .addGap(11, 11, 11)
+                        .addComponent(InversAdjoinPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(InversAdjoinPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SPLGaussInst23)
+                    .addComponent(SPLGaussInst24))
+                .addGap(24, 24, 24)
+                .addGroup(InversAdjoinPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane12)
+                    .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(107, Short.MAX_VALUE))
+        );
+
+        LayeredPanel.add(InversAdjoinPanel, "card2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -772,30 +901,45 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_DeterminanKofaktorActionPerformed
 
     private void SPLGaussCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLGaussCalculateActionPerformed
-        Matrix M = Parser.stringToMatrix(SPLGaussInput.getText());
-        SPLSolver solver = new SPLSolver();
-        // TODO FINISH SPL GAUSS
+        try {
+            Matrix M = Parser.stringToMatrix(SPLGaussInput.getText());
+            M.toEchelonForm(false);
+            SPLGaussIntermediate.setText(M.toString());
+            Matrix result = new Matrix(0, 0);
+            int[] states = SPLSolver.backwardSubstitution(M, result);
+            SPLGaussOutput.setText(SPLSolver.generateSolution(states, result));
+        } catch (Exception e) {
+            SPLGaussPrompt.setText("Input tidak valid");
+        }
     }//GEN-LAST:event_SPLGaussCalculateActionPerformed
 
     private void DeterminanKofaktorCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanKofaktorCalculateActionPerformed
-        Matrix M = Parser.stringToMatrix(DeterminanKofaktorInput.getText());
-        if (M.isSquare()) {
-            double output = DeterminantSolver.CofactorExpansion(M);
-            DeterminanKofaktorOutput.setText(String.format("%.2f", (double) Math.round(100 * output) / 100));
-        } else {
-            DeterminanKofaktorPrompt.setText("Matriks tidak persegi");
+        try {
+            Matrix M = Parser.stringToMatrix(DeterminanKofaktorInput.getText());
+            if (M.isSquare()) {
+                double output = DeterminantSolver.CofactorExpansion(M);
+                DeterminanKofaktorOutput.setText(String.format(Locale.ROOT, "%.2f", (double) Math.round(100 * output) / 100));
+            } else {
+                DeterminanKofaktorPrompt.setText("Matriks tidak persegi");
+            }
+        } catch (Exception e) {
+            DeterminanKofaktorPrompt.setText("Input tidak valid");
         }
     }//GEN-LAST:event_DeterminanKofaktorCalculateActionPerformed
 
     private void DeterminanOBECalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanOBECalculateActionPerformed
-        Matrix M = Parser.stringToMatrix(DeterminanOBEInput.getText());
-        if (M.isSquare()) {
-            Matrix res = new Matrix(M.getNRow(), M.getNCol());
-            double output = DeterminantSolver.ERO(M, res);
-            DeterminanOBEOutput.setText(String.format("%.2f", (double) Math.round(100 * output) / 100));
-            DeterminanOBEIntermediate.setText(res.toString());
-        } else {
-            DeterminanOBEPrompt.setText("Matriks tidak persegi");
+        try {
+            Matrix M = Parser.stringToMatrix(DeterminanOBEInput.getText());
+            if (M.isSquare()) {
+                Matrix res = new Matrix(M.getNRow(), M.getNCol());
+                double output = DeterminantSolver.ERO(M, res);
+                DeterminanOBEOutput.setText(String.format(Locale.ROOT, "%.2f", (double) Math.round(100 * output) / 100));
+                DeterminanOBEIntermediate.setText(res.toString());
+            } else {
+                DeterminanOBEPrompt.setText("Matriks tidak persegi");
+            }
+        } catch (Exception e) {
+            DeterminanOBEPrompt.setText("Input tidak valid");
         }
     }//GEN-LAST:event_DeterminanOBECalculateActionPerformed
 
@@ -818,16 +962,20 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_DeterminanOBEActionPerformed
 
     private void InversGaussCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InversGaussCalculateActionPerformed
-        Matrix M = Parser.stringToMatrix(InversGaussInput.getText());
-        if (M.isSquare()) {
-            Matrix output = InversSolver.GaussJordanMethod(M);
-            if (output != null) {
-                InversGaussOutput.setText(output.toString());
+        try {
+            Matrix M = Parser.stringToMatrix(InversGaussInput.getText());
+            if (M.isSquare()) {
+                Matrix output = InversSolver.GaussJordanMethod(M);
+                if (output != null) {
+                    InversGaussOutput.setText(output.toString());
+                } else {
+                    InversGaussPrompt.setText("Invers tidak ditemukan.");
+                }
             } else {
-                InversGaussPrompt.setText("Invers tidak ditemukan.");
+                InversGaussPrompt.setText("Matriks tidak persegi");
             }
-        } else {
-            InversGaussPrompt.setText("Matriks tidak persegi");
+        } catch (Exception e) {
+            InversGaussPrompt.setText("Input tidak valid");
         }
     }//GEN-LAST:event_InversGaussCalculateActionPerformed
 
@@ -848,6 +996,33 @@ public class Main extends javax.swing.JFrame {
             LayeredPanel.revalidate();
         }
     }//GEN-LAST:event_InversGaussActionPerformed
+
+    private void InversAdjoinCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InversAdjoinCalculateActionPerformed
+        try {
+            Matrix M = Parser.stringToMatrix(InversAdjoinInput.getText());
+            if (M.isSquare()) {
+                Matrix output = InversSolver.AdjointMethod(M);
+                if (output != null) {
+                    InversAdjoinOutput.setText(output.toString());
+                } else {
+                    InversAdjoinPrompt.setText("Invers tidak ditemukan.");
+                }
+            } else {
+                InversAdjoinPrompt.setText("Matriks tidak persegi");
+            }
+        } catch (Exception e) {
+            InversAdjoinPrompt.setText("Input tidak valid");
+        }
+    }//GEN-LAST:event_InversAdjoinCalculateActionPerformed
+
+    private void InversAdjoinOpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InversAdjoinOpenFileActionPerformed
+        int result = FileOpener.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = FileOpener.getSelectedFile();
+            InversAdjoinFilepath.setText(selectedFile.getAbsolutePath());
+            InversAdjoinInput.setText(Parser.fileToMatrix(selectedFile).toString());
+        }
+    }//GEN-LAST:event_InversAdjoinOpenFileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -912,6 +1087,15 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JFileChooser FileSaver;
     private javax.swing.JLabel HeaderLabel;
     private javax.swing.JRadioButton Interpolasi;
+    private javax.swing.JButton InversAdjoinCalculate;
+    private javax.swing.JTextField InversAdjoinFilepath;
+    private javax.swing.JTextPane InversAdjoinInput;
+    private javax.swing.JTextPane InversAdjoinIntermediate;
+    private javax.swing.JButton InversAdjoinOpenFile;
+    private javax.swing.JTextPane InversAdjoinOutput;
+    private javax.swing.JPanel InversAdjoinPanel;
+    private javax.swing.JLabel InversAdjoinPrompt;
+    private javax.swing.JButton InversAdjoinSave;
     private javax.swing.JRadioButton InversAdjoint;
     private javax.swing.JRadioButton InversGauss;
     private javax.swing.JButton InversGaussCalculate;
@@ -942,8 +1126,13 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel SPLGaussInst16;
     private javax.swing.JLabel SPLGaussInst17;
     private javax.swing.JLabel SPLGaussInst18;
+    private javax.swing.JLabel SPLGaussInst19;
     private javax.swing.JLabel SPLGaussInst2;
     private javax.swing.JLabel SPLGaussInst20;
+    private javax.swing.JLabel SPLGaussInst21;
+    private javax.swing.JLabel SPLGaussInst22;
+    private javax.swing.JLabel SPLGaussInst23;
+    private javax.swing.JLabel SPLGaussInst24;
     private javax.swing.JLabel SPLGaussInst3;
     private javax.swing.JLabel SPLGaussInst4;
     private javax.swing.JLabel SPLGaussInst5;
@@ -961,13 +1150,17 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel SPLGaussTitle;
     private javax.swing.JLabel SPLGaussTitle1;
     private javax.swing.JLabel SPLGaussTitle2;
+    private javax.swing.JLabel SPLGaussTitle3;
     private javax.swing.JLabel SPLLabel;
     private javax.swing.JRadioButton SPLMatriksBalikan;
     private javax.swing.JPanel SideHeader;
     private javax.swing.JPanel SideMenu;
     private javax.swing.JPanel SidePanel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
