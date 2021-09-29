@@ -1,6 +1,7 @@
 package alingeo.matriks.problem;
 
 import alingeo.matriks.Matrix;
+import alingeo.matriks.Util;
 import alingeo.matriks.solver.SPLSolver;
 import alingeo.matriks.solver.SPLSolver.SolutionResult;
 import java.util.Locale;
@@ -91,8 +92,10 @@ public class Interpolation {
 
     public void fit() {
         if (this.count > 1 && !this.isFit()) {
-            this.result = SPLSolver.inverseMethod(this.buffer);
-            this.isFit = true;
+            this.result = SPLSolver.gaussMethod(this.buffer);
+            if (this.result.getType() != SolutionResult.SolutionType.NOT_SUPPORTED) {
+                this.isFit = true;
+            }
         }
     }
 
@@ -110,15 +113,14 @@ public class Interpolation {
         return res;
     }
 
-    public String toString(int decPoint) {
+    public String toString(Util.Formatting type) {
         if (!this.isFit) {
             return "Interpolation is not fitted yet.";
         }
         Matrix r = this.result.getResult();
         int cnt = r.getNRow();
-        double p = Math.pow(10, decPoint);
         String res = "f(x) = ";
-        res += r.getElmt(0, 0);
+        res += Util.format(r.getElmt(0, 0), type);
         for (int i = 1; i < cnt; i++) {
             double el = r.getElmt(i, 0);
             if (el > 0) {
@@ -127,11 +129,7 @@ public class Interpolation {
                 res += " - ";
                 el *= -1;
             }
-            res += String.format(
-                Locale.ROOT,
-                "%." + decPoint + "f",
-                ((double) Math.round(p * el)) / p
-            );
+            res += Util.format(el, type);
             res += "x";
             if (i > 1) {
                 res += "^" + i;
@@ -142,6 +140,6 @@ public class Interpolation {
 
     @Override
     public String toString() {
-        return this.toString(3);
+        return this.toString(Util.Formatting.DEFAULT);
     }
 }

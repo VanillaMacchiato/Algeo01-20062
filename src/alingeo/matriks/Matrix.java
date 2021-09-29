@@ -1,7 +1,5 @@
 package alingeo.matriks;
 
-import java.util.Locale;
-
 /**
  * @author Amar Fadil
  * @author Vito Ghifari
@@ -77,11 +75,10 @@ public class Matrix {
     public double[][] getData(int roundTo) {
         int nr = this.getNRow();
         int nc = this.getNCol();
-        double decPoint = Math.pow(10, roundTo);
         double[][] rndData = new double[nr][nc];
         for (int i = 0; i < nr; i++) {
             for (int j = 0; j < nc; j++) {
-                rndData[i][j] = Math.round(decPoint * this.data[i][j]) / decPoint;
+                rndData[i][j] = Util.roundDec(this.data[i][j], roundTo);
             }
         }
         return rndData;
@@ -102,8 +99,8 @@ public class Matrix {
     }
 
     // PREDIKAT
-    public boolean isEqElmt(int i, int j, int b) {
-        return Math.abs(this.getElmt(i, j) - b) < 0.000001;
+    public boolean isAlmostEqElmt(int i, int j, double b) {
+        return Util.isAlmostEq(this.getElmt(i, j), b);
     }
 
     public boolean isSquare() {
@@ -114,9 +111,9 @@ public class Matrix {
         int i, j;
         for (i = 0; i < this.nRow; i++) {
             for (j = 0; j < this.nCol; j++) {
-                if (i == j && !this.isEqElmt(i, j, 1)) {
+                if (i == j && !this.isAlmostEqElmt(i, j, 1)) {
                     return false;
-                } else if (i != j && !this.isEqElmt(i, j, 0)) {
+                } else if (i != j && !this.isAlmostEqElmt(i, j, 0)) {
                     return false;
                 }
             }
@@ -130,16 +127,16 @@ public class Matrix {
         int maxcol = -1;
         for (i = 0; i < this.nRow; i++) {
             for (j = 0; j < this.nCol; j++) {
-                if (this.getElmt(i, j) == 1) {
+                if (this.isAlmostEqElmt(i, j, 1)) {
                     if (j > maxcol) {
                         maxcol = j;
                         break;
                     } else {
                         return false;
                     }
-                } else if ((this.getElmt(i, j) != 0) && (this.getElmt(i, j) != 1)) {
+                } else if (!this.isAlmostEqElmt(i, j, 0) && !this.isAlmostEqElmt(i, j, 1)) {
                     return false;
-                } else if ((this.getElmt(i, j) == 0) && (j == this.getNCol() - 1)) {
+                } else if (this.isAlmostEqElmt(i, j, 0) && (j == this.getNCol() - 1)) {
                     maxcol = this.getNCol() - 1;
                 }
             }
@@ -154,10 +151,10 @@ public class Matrix {
         }
         for (i = 0; i < this.nRow; i++) {
             for (j = 0; j < this.nCol; j++) {
-                if (this.getElmt(i, j) != 0) {
-                    if (this.getElmt(i, j) == 1) {
+                if (!this.isAlmostEqElmt(i, j, 0)) {
+                    if (this.isAlmostEqElmt(i, j, 1)) {
                         for (k = 0; k < i; k++) {
-                            if (this.getElmt(k, j) != 0) {
+                            if (!this.isAlmostEqElmt(k, j, 0)) {
                                 return false;
                             }
                         }
@@ -183,7 +180,7 @@ public class Matrix {
                 while (i < this.nRow && lower) {
                     j = 0;
                     while (j < i && lower) {
-                        if (this.getElmt(i, j) != 0) {
+                        if (!this.isAlmostEqElmt(i, j, 0)) {
                             lower = false;
                         }
                         j++;
@@ -197,7 +194,7 @@ public class Matrix {
                 while (i < this.nRow && upper) {
                     j = i + 1;
                     while (j < this.nCol && upper) {
-                        if (this.getElmt(i, j) != 0) {
+                        if (!this.isAlmostEqElmt(i, j, 0)) {
                             upper = false;
                         }
                         j++;
@@ -324,17 +321,17 @@ public class Matrix {
                 }
             }
 
-            // Menghindari zero diviteion
-            if ((elmtMin == 0.0) && (elmtMax == 0.0)) {
+            // Menghindari zero division
+            if (Util.isAlmostEq(elmtMin, 0) && Util.isAlmostEq(elmtMax, 0)) {
                 totalRatio = 0;
                 continue;
             }
 
             // row swap jika elemen kolom ke-i bernilai nol
-            if ((this.getElmt(rowCurrent, i) == 0.0) && (elmtMax > 0.0)) {
+            if (this.isAlmostEqElmt(rowCurrent, i, 0) && (elmtMax > 0.0)) {
                 this.RowSwap(rowCurrent, rowMax);
                 totalRatio *= -1;
-            } else if ((this.getElmt(rowCurrent, i) == 0.0) && (elmtMin < 0.0)) {
+            } else if (this.isAlmostEqElmt(rowCurrent, i, 0) && (elmtMin < 0.0)) {
                 this.RowSwap(rowCurrent, rowMin);
                 totalRatio *= -1;
             }
@@ -345,7 +342,7 @@ public class Matrix {
 
             // Membuat Row Echelon Form
             for (int j = rowCurrent + 1; j < nR; j++) {
-                if (this.getElmt(j, i) != 0.0) {
+                if (!this.isAlmostEqElmt(j, i, 0)) {
                     ratio = this.getElmt(j, i) / this.getElmt(rowCurrent, i);
                     this.RowSum(j, rowCurrent, -ratio);
                 }
@@ -354,7 +351,7 @@ public class Matrix {
             // Membuat Reduced Row Echelon Form
             if (reducedForm) {
                 for (int j = 0; j < (rowCurrent); j++) {
-                    if (this.getElmt(j, i) != 0.0) {
+                    if (!this.isAlmostEqElmt(j, i, 0)) {
                         ratio = this.getElmt(j, i) / this.getElmt(rowCurrent, i);
                         this.RowSum(j, rowCurrent, -ratio);
                     }
@@ -418,16 +415,11 @@ public class Matrix {
         return this.copy(this.nRow, this.nCol);
     }
 
-    public String toString(int decPoint) {
+    public String toString(Util.Formatting type) {
         String output = "";
-        double p = Math.pow(10, decPoint);
         for (int i = 0; i < this.getNRow(); i++) {
             for (int j = 0; j < this.getNCol(); j++) {
-                output += String.format(
-                    Locale.ROOT,
-                    "%." + decPoint + "f",
-                    ((double) Math.round(p * this.getElmt(i, j))) / p
-                );
+                output += Util.format(this.getElmt(i, j), type);
                 if (j < this.getNCol() - 1) {
                     output += " ";
                 }
@@ -441,7 +433,7 @@ public class Matrix {
 
     @Override
     public String toString() {
-        return this.toString(2);
+        return this.toString(Util.Formatting.SHORT);
     }
 
     // Static

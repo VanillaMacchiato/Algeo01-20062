@@ -6,6 +6,7 @@
 package alingeo.matriks.solver;
 
 import alingeo.matriks.Matrix;
+import alingeo.matriks.Util;
 
 /**
  * Inverse Solver
@@ -14,6 +15,7 @@ import alingeo.matriks.Matrix;
  */
 public class InversSolver {
 
+    // Helper
     public static Matrix CofactorMatrix(Matrix m) {
         // Prekondisi: m merupakan matriks persegi
         int i, j;
@@ -35,8 +37,12 @@ public class InversSolver {
     }
 
     public static Matrix GaussJordanMethod(Matrix m) {
+        return GaussJordanMethod(m, null);
+    }
+
+    public static Matrix GaussJordanMethod(Matrix m, Matrix echelonOut) {
         // Prekondisi: m merupakan matriks persegi
-        int i, j;
+        int i;
         int n = m.getNCol();
         Matrix temp = m.copy();
         // Resize and fill up the diagonals with 1
@@ -46,6 +52,9 @@ public class InversSolver {
         }
         // Get the reduced echelon form
         temp.toEchelonForm(true);
+        if (echelonOut != null) {
+            echelonOut.setData(temp.getData());
+        }
         // Make sure that the 1nd col matrix ([0..n][0..n]) is identity
         if (!temp.copy(n, n).isIdentity()) {
             return null;
@@ -56,13 +65,20 @@ public class InversSolver {
     }
 
     public static Matrix AdjointMethod(Matrix m) {
+        return AdjointMethod(m, null);
+    }
+
+    public static Matrix AdjointMethod(Matrix m, Matrix cofactorOut) {
         // Prekondisi: m adalah matriks persegi
         int i, j;
         double det = DeterminantSolver.ERO(m);
-        if (det == 0) {
+        if (Util.isAlmostEq(det, 0)) {
             return null; // Invers tidak terdefinisi.
         }
         Matrix res = CofactorMatrix(m);
+        if (cofactorOut != null) {
+            cofactorOut.setData(res.getData());
+        }
         int len = m.getNRow();
         res.transpose(); // adj = cfc^T
         for (i = 0; i < len; i++) {

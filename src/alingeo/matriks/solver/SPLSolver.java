@@ -22,6 +22,7 @@
 package alingeo.matriks.solver;
 
 import alingeo.matriks.Matrix;
+import alingeo.matriks.Util;
 
 /**
  *
@@ -65,33 +66,47 @@ public class SPLSolver {
         private final int[] states;
         private final SolutionType type;
         private final String reason;
+        private final Matrix intermediate;
 
         public SolutionResult(String reason) {
             this.result = null;
             this.states = null;
+            this.intermediate = null;
             this.reason = reason;
             this.type = SolutionType.NOT_SUPPORTED;
         }
 
-        public SolutionResult(Matrix result) {
+        public SolutionResult() {
             this.reason = null;
-            if (result == null) {
-                this.result = null;
-                this.states = null;
-                this.type = SolutionType.INCONSISTENT;
-            } else {
-                this.result = result;
-                this.states = new int[result.getNRow()];
-                for (int i = 0; i < this.states.length; i++) {
-                    this.states[i] = -1;
-                }
-                this.type = SolutionType.UNIQUE;
+            this.result = null;
+            this.states = null;
+            this.intermediate = null;
+            this.type = SolutionType.INCONSISTENT;
+        }
+
+        public SolutionResult(Matrix result) {
+            this(result, null);
+        }
+
+        public SolutionResult(Matrix result, Matrix intermediate) {
+            this.reason = null;
+            this.result = result;
+            this.states = new int[result.getNRow()];
+            for (int i = 0; i < this.states.length; i++) {
+                this.states[i] = -1;
             }
+            this.type = SolutionType.UNIQUE;
+            this.intermediate = intermediate;
         }
 
         public SolutionResult(int[] states, Matrix result) {
+            this(states, result, null);
+        }
+
+        public SolutionResult(int[] states, Matrix result, Matrix intermediate) {
             this.reason = null;
             this.states = states;
+            this.intermediate = intermediate;
             boolean isUnique = true;
             for (int i = 0; i < states.length; i++) {
                 if (states[i] > -1) {
@@ -121,8 +136,7 @@ public class SPLSolver {
             return res;
         }
 
-        @Override
-        public String toString() {
+        public String toString(Util.Formatting type) {
             if (this.getType() == SolutionType.INCONSISTENT) {
                 return "Solusi tidak ada. SPL tidak konsisten.";
             } else if (this.getType() == SolutionType.NOT_SUPPORTED) {
@@ -131,16 +145,17 @@ public class SPLSolver {
             int cnt, i, j;
             double el;
             String res = "";
+            Matrix r = this.getResult();
             for (i = 0; i < this.getStates().length; i++) {
                 res += "x" + (i + 1) + " = ";
                 if (this.getStates()[i] == -1) {
                     if (this.getType() == SolutionType.UNIQUE) {
-                        res += this.getResult().getElmt(i, 0);
+                        res += Util.format(this.getResult().getElmt(i, 0), type);
                     } else {
                         cnt = 0;
                         for (j = i + 1; j <= this.getStates().length; j++) {
-                            el = this.getResult().getElmt(i, j);
-                            if (el != 0) {
+                            el = r.getElmt(i, j);
+                            if (!Util.isAlmostEq(el, 0)) {
                                 if (cnt != 0) {
                                     if (el > 0) {
                                         res += " + ";
@@ -148,12 +163,12 @@ public class SPLSolver {
                                         res += " - ";
                                         el *= -1;
                                     }
-                                } else if (el == -1.0) {
+                                } else if (Util.isAlmostEq(el, -1)) {
                                     res += "-";
                                     el *= -1;
                                 }
-                                if (el != 1.0 || j == this.getStates().length) {
-                                    res += el;
+                                if (!Util.isAlmostEq(el, 1) || j == this.getStates().length) {
+                                    res += Util.format(el, type);
                                 }
                                 if (j < this.getStates().length) {
                                     res += generateVarString(this.getStates()[j]);
@@ -168,6 +183,11 @@ public class SPLSolver {
                 res += "\n";
             }
             return res;
+        }
+
+        @Override
+        public String toString() {
+            return toString(Util.Formatting.SHORT);
         }
 
         /**
@@ -189,6 +209,13 @@ public class SPLSolver {
          */
         public SolutionType getType() {
             return type;
+        }
+
+        /**
+         * @return the intermediate
+         */
+        public Matrix getIntermediate() {
+            return intermediate;
         }
     }
 
@@ -212,8 +239,10 @@ public class SPLSolver {
         if (inv == null) {
             return new SolutionResult("Invers/balikan tidak ditemukan.");
         }
-        inv.mul(m.copy(0, mRow, m.getNCol() - 1, 1));
-        return new SolutionResult(inv);
+        return new SolutionResult(
+            Matrix.mul(inv, m.copy(0, mRow, m.getNCol() - 1, 1)),
+            inv
+        );
     }
 
     public static SolutionResult crammerMethod(Matrix m) {
@@ -223,7 +252,7 @@ public class SPLSolver {
         int mRow = m.getNRow();
         Matrix A = m.copy(mRow, mRow);
         double detA = DeterminantSolver.ERO(A);
-        if (detA == 0.0) {
+        if (Util.isAlmostEq(detA, 0)) {
             return new SolutionResult("Determinan matriks koefisien = 0.");
         }
         Matrix res = new Matrix(mRow, 1);
@@ -251,8 +280,8 @@ public class SPLSolver {
         // if there's a row with j=m.getNCol()-1 that does not 0, the system
         // is inconsistent
         for (i = m.getNCol() - 1; i < m.getNRow(); i++) {
-            if (m.getElmt(i, m.getNCol() - 1) != 0) {
-                return new SolutionResult((Matrix) null);
+            if (!m.isAlmostEqElmt(i, m.getNCol() - 1, 0)) {
+                return new SolutionResult();
             }
         }
 
@@ -266,7 +295,7 @@ public class SPLSolver {
         for (i = (nRow - 1); i >= 0; i--) {
             for (j = i - 1; j >= 0; j--) {
                 col = 0;
-                while ((depMat.getElmt(j, col) != 1.0) && (col < (nCol - 1))) {
+                while (!depMat.isAlmostEqElmt(j, col, 1) && (col < (nCol - 1))) {
                     col++;
                 }
 
@@ -279,10 +308,10 @@ public class SPLSolver {
 
         double el;
         for (i = (nRow - 1); i >= 0; i--) {
-            if (depMat.getElmt(i, i) == 0.0) {
+            if (depMat.isAlmostEqElmt(i, i, 0)) {
                 // if constant does not 0, it shouldn't have a solution
-                if (depMat.getElmt(i, nRow) != 0.0) {
-                    return new SolutionResult((Matrix) null);
+                if (!depMat.isAlmostEqElmt(i, nRow, 0)) {
+                    return new SolutionResult();
                 }
             } else {
                 // turn on the state
@@ -291,7 +320,7 @@ public class SPLSolver {
                 // parametric or constant may not be 0, otherwise should be 0
                 for (j = (nRow - 1); j > i; j--) {
                     el = depMat.getElmt(i, j);
-                    if (el != 0) {
+                    if (!depMat.isAlmostEqElmt(i, j, 0)) {
                         if (states[j] == 0) { // parametric, turn it negative
                             depMat.setElmt(i, j, el * -1);
                         } else { // value, rowsum negative them all
@@ -313,6 +342,6 @@ public class SPLSolver {
                 states[i] = (cnt++);
             }
         }
-        return new SolutionResult(states, result);
+        return new SolutionResult(states, result, m);
     }
 }

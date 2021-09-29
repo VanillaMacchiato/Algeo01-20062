@@ -21,7 +21,7 @@ public class DeterminantSolver {
             return ((M.getElmt(0, 0) * M.getElmt(1, 1)) - (M.getElmt(0, 1) * M.getElmt(1, 0)));
         } else {
             for (int i = 0; i < M.getNCol(); i++) {
-                if (M.getElmt(0, i) != 0) {
+                if (!M.isAlmostEqElmt(0, i, 0)) {
                     if (i % 2 == 0) {
                         tempsum += M.getElmt(0, i) * CofactorExpansion(M.getMinorMatrix(0, i));
                     } else {
