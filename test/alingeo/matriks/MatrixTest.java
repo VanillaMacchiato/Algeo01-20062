@@ -730,10 +730,10 @@ public class MatrixTest {
         });
         instance.toEchelonFormRatio(reducedForm);
         assertArrayEquals(new double[][]{
-            {1, 0.5},
-            {0, 5},
-            {0, 4.5},
-            {0, 2}
+            {1, 0},
+            {0, 1},
+            {0, 0},
+            {0, 0}
         }, instance.getData());
 
     }
@@ -761,10 +761,10 @@ public class MatrixTest {
         });
         instance.toEchelonForm(reducedForm);
         assertArrayEquals(new double[][]{
-            {1, 0.5},
-            {0, 5},
-            {0, 4.5},
-            {0, 2}
+            {1, 0},
+            {0, 1},
+            {0, 0},
+            {0, 0}
         }, instance.getData());
     }
 
@@ -969,10 +969,10 @@ public class MatrixTest {
         });
         out = Matrix.toEchelonForm(instance, reducedForm);
         assertArrayEquals(new double[][]{
-            {1, 0.5},
-            {0, 5},
-            {0, 4.5},
-            {0, 2}
+            {1, 0},
+            {0, 1},
+            {0, 0},
+            {0, 0}
         }, out.getData());
     }
 
@@ -1001,10 +1001,10 @@ public class MatrixTest {
         out = instance.copy();
         Matrix.toEchelonFormRatio(instance, out, reducedForm);
         assertArrayEquals(new double[][]{
-            {1, 0.5},
-            {0, 5},
-            {0, 4.5},
-            {0, 2}
+            {1, 0},
+            {0, 1},
+            {0, 0},
+            {0, 0}
         }, out.getData());
     }
 }

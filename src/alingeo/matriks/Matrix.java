@@ -302,7 +302,7 @@ public class Matrix {
         rowCurrent = 0;
 
         // Traversal terhadap kolom untuk mengubah matriks menjadi echelon form
-        for (int i = 0; i < (nC - 1); i++) {
+        for (int i = 0; i < (nC); i++) {
             // Cek nilai maksimum pada kolom ke-i.
             // Jika ada nilai yang lebih tinggi, baris akan di swap.
             rowMax = i;
