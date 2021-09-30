@@ -1469,7 +1469,10 @@ public class Main extends javax.swing.JFrame {
     private void RegresiCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresiCalculateActionPerformed
         String[] inplines = RegresiInput.getText().split("\n");
         try {
-            int N = Integer.valueOf(inplines[0].replace("\n\r", ""));
+            int N = Integer.valueOf(inplines[0]
+                    .replace("\n", "")
+                    .replace("\r", "")
+            );
             double[] Xk = Parser.stringToDoubleArray(inplines[inplines.length - 1]);
             Matrix M = Parser.stringToMatrix(
                     String.join(
@@ -1481,8 +1484,7 @@ public class Main extends javax.swing.JFrame {
                             )
                     )
             );
-
-            if (N - 1 != Xk.length || N < M.getNCol()) {
+            if (N != Xk.length || N != M.getNCol() - 1) {
                 throw new Exception("Input tidak valid");
             }
             Regression model = new Regression();
@@ -1546,7 +1548,10 @@ public class Main extends javax.swing.JFrame {
     private void InterpolasiCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InterpolasiCalculateActionPerformed
         String[] inplines = InterpolasiInput.getText().split("\n");
         try {
-            int N = Integer.parseInt(inplines[0].replace("\r\n", ""));
+            int N = Integer.parseInt(inplines[0]
+                    .replace("\n", "")
+                    .replace("\r", "")
+            );
             Matrix M = Parser.stringToMatrix(
                     String.join(
                             "\n",
