@@ -1,6 +1,7 @@
 package alingeo.matriks.io;
 
 import alingeo.matriks.Matrix;
+import alingeo.matriks.Util;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -55,6 +56,25 @@ public class Parser {
         } catch (FileNotFoundException e) {
             Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
 
+    public static String coefRegressionToString(double[] coef, double intercept, Util.Formatting format) {
+        String total = "y =\n";
+        total += Util.format(intercept, format) + "\n";
+        for (int i = 0; i < coef.length; i++) {
+            total += (coef[i] < 0 ? "" : "+");
+            total += Util.format(coef[i], format);
+            total += " x" + (i + 1) + "\n";
+        }
+        return total;
+    }
+
+    public static double[] stringToDoubleArray(String inp) {
+        String[] tempArray = inp.split(" ");
+        double[] res = new double[tempArray.length];
+        for (int i = 0; i < tempArray.length; i++) {
+            res[i] = Double.parseDouble(tempArray[i]);
+        }
+        return res;
     }
 }
