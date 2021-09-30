@@ -6,7 +6,6 @@
 package alingeo.matriks.problem;
 
 import alingeo.matriks.Matrix;
-import alingeo.matriks.solver.SPLSolver;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,10 +14,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author vitos
  */
 public class RegressionTest {
-    
+
     public RegressionTest() {
     }
-    
+
     // Data source: https://www.statology.org/multiple-linear-regression-by-hand/
     Matrix tc1 = new Matrix(new double[][]{
         {60, 22, 140},
@@ -30,7 +29,7 @@ public class RegressionTest {
         {75, 14, 212},
         {78, 11, 215}
     });
-    
+
     // Subsample pada "studi kasus regresi linier berganda"
     Matrix tc2 = new Matrix(new double[][]{
         {72.4, 76.3, 29.18, 0.90},
@@ -51,7 +50,7 @@ public class RegressionTest {
         {73.3, 76.3, 29.40, 0.91},
         {75.4, 77.9, 29.28, 0.87},
         {96.6, 78.7, 29.29, 0.78},
-        {107.4,86.8, 29.03, 0.82},
+        {107.4, 86.8, 29.03, 0.82},
         {54.9, 70.9, 29.37, 0.95}
     });
 
@@ -65,7 +64,7 @@ public class RegressionTest {
 
         double result = instance.getIntercept();
         assertEquals(0.0, result);
-        
+
         instance.fit(tc1);
         assertEquals(-6.867487247726643, instance.getIntercept());
     }
@@ -80,7 +79,7 @@ public class RegressionTest {
         double[] expResult = null;
         double[] result = instance.getCoef();
         assertArrayEquals(expResult, result);
-        
+
         instance.fit(tc1);
         expResult = new double[]{3.1478931026835206, -1.6561432690175215};
         assertArrayEquals(expResult, instance.getCoef());
@@ -92,7 +91,7 @@ public class RegressionTest {
     @Test
     public void testFit() {
         System.out.println("fit");
-        
+
         Regression ins = new Regression();
         ins.fit(tc1);
         ins.fit(tc2);
@@ -106,12 +105,12 @@ public class RegressionTest {
         System.out.println("predict");
         Regression ins = new Regression();
         double[] x = new double[]{68, 18};
-        
+
         assertEquals(true, Double.isNaN(ins.predict(x)));
-        
+
         ins.fit(tc1);
         assertEquals(177.37866489243737, ins.predict(x));
-        
+
         ins.fit(tc2);
         x = new double[]{50, 76, 29.30};
         assertEquals(0.938434226221665, ins.predict(x));
@@ -125,11 +124,11 @@ public class RegressionTest {
         System.out.println("hasSolution");
         Regression instance = new Regression();
         boolean result = instance.hasSolution();
-        
+
         assertEquals(false, result);
-        
+
         instance.fit(tc1);
         assertEquals(true, instance.hasSolution());
     }
-    
+
 }

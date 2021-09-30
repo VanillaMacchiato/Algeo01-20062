@@ -77,11 +77,7 @@ public class SPLSolver {
         }
 
         public SolutionResult() {
-            this.reason = null;
-            this.result = null;
-            this.states = null;
-            this.intermediate = null;
-            this.type = SolutionType.INCONSISTENT;
+            this((Matrix) null, null);
         }
 
         public SolutionResult(Matrix result) {
@@ -90,13 +86,18 @@ public class SPLSolver {
 
         public SolutionResult(Matrix result, Matrix intermediate) {
             this.reason = null;
-            this.result = result;
-            this.states = new int[result.getNRow()];
-            for (int i = 0; i < this.states.length; i++) {
-                this.states[i] = -1;
-            }
-            this.type = SolutionType.UNIQUE;
             this.intermediate = intermediate;
+            this.result = result;
+            if (result == null) {
+                this.states = null;
+                this.type = SolutionType.INCONSISTENT;
+            } else {
+                this.states = new int[result.getNRow()];
+                for (int i = 0; i < this.states.length; i++) {
+                    this.states[i] = -1;
+                }
+                this.type = SolutionType.UNIQUE;
+            }
         }
 
         public SolutionResult(int[] states, Matrix result) {
@@ -281,7 +282,7 @@ public class SPLSolver {
         // is inconsistent
         for (i = m.getNCol() - 1; i < m.getNRow(); i++) {
             if (!m.isAlmostEqElmt(i, m.getNCol() - 1, 0)) {
-                return new SolutionResult();
+                return new SolutionResult((Matrix) null, m);
             }
         }
 
@@ -311,7 +312,7 @@ public class SPLSolver {
             if (depMat.isAlmostEqElmt(i, i, 0)) {
                 // if constant does not 0, it shouldn't have a solution
                 if (!depMat.isAlmostEqElmt(i, nRow, 0)) {
-                    return new SolutionResult();
+                    return new SolutionResult((Matrix) null, m);
                 }
             } else {
                 // turn on the state
@@ -331,8 +332,7 @@ public class SPLSolver {
             }
         }
         // dependency cleared up, set as result
-        Matrix result = new Matrix(0, 0);
-        result.setData(depMat.getData());
+        Matrix result = new Matrix(depMat.getData());
 
         // turn states into corresponding parametric `val` if applicable
         // where x.toString() = chr(ord('a')+(x%27)) + str(x/27)

@@ -1,5 +1,3 @@
 /bin/
-#!/bin/matriks-*
-#!/bin/classes
-#!/bin/test-classes
 /nbproject/
+/.settings/

@@ -159,8 +159,6 @@ public class Matrix {
                             }
                         }
                         break;
-                    } else {
-                        return false;
                     }
                 }
             }
@@ -437,20 +435,6 @@ public class Matrix {
     }
 
     // Static
-    public static Matrix plus(Matrix m1, Matrix m2) {
-        //Prekondisi: ukuran m1 dan m2 sama
-        Matrix m = m1.copy();
-        m.add(m2);
-        return m;
-    }
-
-    public static Matrix min(Matrix m1, Matrix m2) {
-        //Prekondisi: ukuran m1 dan m2 sama
-        Matrix m = m1.copy();
-        m.mul(m2);
-        return m;
-    }
-
     public static Matrix mul(Matrix m1, Matrix m2) {
         //Prekondisi: ukuran kolom m1 dan baris m2 sama
         Matrix m = m1.copy();

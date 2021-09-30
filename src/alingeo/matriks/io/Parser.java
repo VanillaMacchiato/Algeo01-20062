@@ -38,6 +38,7 @@ public class Parser {
             while (scanner.hasNextLine()) {
                 txt += scanner.nextLine() + "\n";
             }
+            scanner.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, ex);
         }

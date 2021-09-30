@@ -6,7 +6,7 @@
 package alingeo.matriks.solver;
 
 import alingeo.matriks.Matrix;
-import alingeo.matriks.Util;
+//import alingeo.matriks.Util;
 import alingeo.matriks.solver.SPLSolver.SolutionResult;
 import alingeo.matriks.solver.SPLSolver.SolutionResult.SolutionType;
 import org.junit.jupiter.api.Test;
@@ -126,52 +126,52 @@ public class SPLSolverTest {
 
     // 1.d Hilbert matrix, n = 6
     double[][] tc8 = {
-        {1.0000000, 0.5000000, 0.3333333, 0.2500000, 0.2000000, 0.16666667, 1},
-        {0.5000000, 0.3333333, 0.2500000, 0.2000000, 0.1666667, 0.14285714, 0},
-        {0.3333333, 0.2500000, 0.2000000, 0.1666667, 0.1428571, 0.12500000, 0},
-        {0.2500000, 0.2000000, 0.1666667, 0.1428571, 0.1250000, 0.11111111, 0},
-        {0.2000000, 0.1666667, 0.1428571, 0.1250000, 0.1111111, 0.10000000, 0},
-        {0.1666667, 0.1428571, 0.1250000, 0.1111111, 0.1000000, 0.09090909, 0}
+        {1.0, 0.5, 0.3333333333333333, 0.25, 0.2, 0.16666666666666666, 1},
+        {0.5, 0.3333333333333333, 0.25, 0.2, 0.16666666666666666, 0.14285714285714285, 0},
+        {0.3333333333333333, 0.25, 0.2, 0.16666666666666666, 0.14285714285714285, 0.125, 0},
+        {0.25, 0.2, 0.16666666666666666, 0.14285714285714285, 0.125, 0.1111111111111111, 0},
+        {0.2, 0.16666666666666666, 0.14285714285714285, 0.125, 0.1111111111111111, 0.1, 0},
+        {0.16666666666666666, 0.14285714285714285, 0.125, 0.1111111111111111, 0.1, 0.09090909090909091, 0}
     };
     SolutionResult expectTC8 = new SolutionResult(
         new Matrix(
             new double[][]{
-                {50.44975429458950027},
-                {-1031.4828124761261717},
-                {6029.6058521313914782},
-                {-14419.615714708150375},
-                {15062.88361776414059},
-                {-5707.4972417855693208}
+                {36},
+                {-630},
+                {3360},
+                {-7560},
+                {7560},
+                {-2772}
             }
         )
     );
 
     // 1.d Hilbert matrix, n = 10
     double[][] tc9 = {
-        {1, 0.5, 0.33333333, 0.25, 0.2, 0.16666667, 0.14285714, 0.125, 0.11111111, 0.1, 1},
-        {0.5, 0.33333333, 0.25, 0.2, 0.16666667, 0.14285714, 0.125, 0.11111111, 0.1, 0.09090909, 0},
-        {0.3333333, 0.25, 0.2, 0.16666667, 0.14285714, 0.125, 0.11111111, 0.1, 0.09090909, 0.08333333, 0},
-        {0.25, 0.2, 0.16666667, 0.14285714, 0.125, 0.11111111, 0.1, 0.09090909, 0.08333333, 0.07692308, 0},
-        {0.2, 0.16666667, 0.14285714, 0.125, 0.11111111, 0.1, 0.09090909, 0.08333333, 0.07692308, 0.07142857, 0},
-        {0.1666667, 0.14285714, 0.125, 0.11111111, 0.1, 0.09090909, 0.08333333, 0.07692308, 0.07142857, 0.06666667, 0},
-        {0.1428571, 0.125, 0.11111111, 0.1, 0.09090909, 0.08333333, 0.07692308, 0.07142857, 0.06666667, 0.0625, 0},
-        {0.125, 0.11111111, 0.1, 0.09090909, 0.08333333, 0.07692308, 0.07142857, 0.06666667, 0.0625, 0.05882353, 0},
-        {0.1111111, 0.1, 0.09090909, 0.08333333, 0.07692308, 0.07142857, 0.06666667, 0.0625, 0.05882353, 0.05555556, 0},
-        {0.1, 0.09090909, 0.08333333, 0.07692308, 0.07142857, 0.06666667, 0.0625, 0.05882353, 0.05555556, 0.05263158, 0}
+        {1.0, 0.5, 0.3333333333333333, 0.25, 0.2, 0.16666666666666666, 0.14285714285714285, 0.125, 0.1111111111111111, 0.1, 1},
+        {0.5, 0.3333333333333333, 0.25, 0.2, 0.16666666666666666, 0.14285714285714285, 0.125, 0.1111111111111111, 0.1, 0.09090909090909091, 0},
+        {0.3333333333333333, 0.25, 0.2, 0.16666666666666666, 0.14285714285714285, 0.125, 0.1111111111111111, 0.1, 0.09090909090909091, 0.08333333333333333, 0},
+        {0.25, 0.2, 0.16666666666666666, 0.14285714285714285, 0.125, 0.1111111111111111, 0.1, 0.09090909090909091, 0.08333333333333333, 0.07692307692307693, 0},
+        {0.2, 0.16666666666666666, 0.14285714285714285, 0.125, 0.1111111111111111, 0.1, 0.09090909090909091, 0.08333333333333333, 0.07692307692307693, 0.07142857142857142, 0},
+        {0.16666666666666666, 0.14285714285714285, 0.125, 0.1111111111111111, 0.1, 0.09090909090909091, 0.08333333333333333, 0.07692307692307693, 0.07142857142857142, 0.06666666666666667, 0},
+        {0.14285714285714285, 0.125, 0.1111111111111111, 0.1, 0.09090909090909091, 0.08333333333333333, 0.07692307692307693, 0.07142857142857142, 0.06666666666666667, 0.0625, 0},
+        {0.125, 0.1111111111111111, 0.1, 0.09090909090909091, 0.08333333333333333, 0.07692307692307693, 0.07142857142857142, 0.06666666666666667, 0.0625, 0.058823529411764705, 0},
+        {0.1111111111111111, 0.1, 0.09090909090909091, 0.08333333333333333, 0.07692307692307693, 0.07142857142857142, 0.06666666666666667, 0.0625, 0.058823529411764705, 0.05555555555555555, 0},
+        {0.1, 0.09090909090909091, 0.08333333333333333, 0.07692307692307693, 0.07142857142857142, 0.06666666666666667, 0.0625, 0.058823529411764705, 0.05555555555555555, 0.05263157894736842, 0}
     };
     SolutionResult expectTC9 = new SolutionResult(
         new Matrix(
             new double[][]{
-                {46.376271081726511963},
-                {-1072.0584797895074519},
-                {7642.112743835465733},
-                {-22514.176771202627349},
-                {24691.71265559007691},
-                {7194.7490517018877552},
-                {-27374.122435202595533},
-                {-4907.1932068199372872},
-                {29641.915933048084704},
-                {-13351.993142859037694}
+                {100},
+                {-4950},
+                {79200},
+                {-600600},
+                {2522520},
+                {-6306300},
+                {9609600},
+                {-8751600},
+                {4375800},
+                {-923780}
             }
         )
     );
@@ -272,7 +272,8 @@ public class SPLSolverTest {
     );
 
     public void printTestSPLCase(int caseNo, Matrix m, SolutionResult res) {
-        System.out.println("==== CASE " + caseNo + " ====\nORIGIN");
+        System.out.println("==== CASE " + caseNo + " ====");
+        /*System.out.println("ORIGIN");
         System.out.println(m);
         Matrix r = res.getIntermediate();
         if (r != null) {
@@ -280,7 +281,7 @@ public class SPLSolverTest {
             System.out.println(r.toString(Util.Formatting.LONG));
         }
         System.out.println("SOLUTION");
-        System.out.println(res);
+        System.out.println(res);*/
     }
 
     /**
@@ -347,7 +348,11 @@ public class SPLSolverTest {
         result = SPLSolver.backwardSubstitution(m);
         printTestSPLCase(9, m, result);
         assertArrayEquals(expectTC9.getStates(), result.getStates());
-        assertArrayEquals(expectTC9.getResult().getData(3), result.getResult().getData(3));
+        assertArrayEquals(
+            Matrix.transpose(expectTC9.getResult()).getRow(0),
+            Matrix.transpose(result.getResult()).getRow(0),
+            1000
+        );
 
         m.setData(tc10);
         m.toEchelonForm(false);
@@ -440,7 +445,11 @@ public class SPLSolverTest {
         result = SPLSolver.gaussMethod(m);
         printTestSPLCase(9, m, result);
         assertArrayEquals(expectTC9.getStates(), result.getStates());
-        assertArrayEquals(expectTC9.getResult().getData(3), result.getResult().getData(3));
+        assertArrayEquals(
+            Matrix.transpose(expectTC9.getResult()).getRow(0),
+            Matrix.transpose(result.getResult()).getRow(0),
+            1000
+        );
 
         m.setData(tc10);
         result = SPLSolver.gaussMethod(m);
@@ -528,7 +537,11 @@ public class SPLSolverTest {
         result = SPLSolver.gaussJordanMethod(m);
         printTestSPLCase(9, m, result);
         assertArrayEquals(expectTC9.getStates(), result.getStates());
-        assertArrayEquals(expectTC9.getResult().getData(3), result.getResult().getData(3));
+        assertArrayEquals(
+            Matrix.transpose(expectTC9.getResult()).getRow(0),
+            Matrix.transpose(result.getResult()).getRow(0),
+            1000
+        );
 
         m.setData(tc10);
         result = SPLSolver.gaussJordanMethod(m);
@@ -734,7 +747,11 @@ public class SPLSolverTest {
         m.setData(tc9);
         result = SPLSolver.inverseMethod(m);
         assertArrayEquals(expectTC9.getStates(), result.getStates());
-        assertArrayEquals(expectTC9.getResult().getData(3), result.getResult().getData(3));
+        assertArrayEquals(
+            Matrix.transpose(expectTC9.getResult()).getRow(0),
+            Matrix.transpose(result.getResult()).getRow(0),
+            1000
+        );
 
         m.setData(tc10);
         result = SPLSolver.inverseMethod(m);
@@ -860,7 +877,11 @@ public class SPLSolverTest {
         m.setData(tc9);
         result = SPLSolver.crammerMethod(m);
         assertArrayEquals(expectTC9.getStates(), result.getStates());
-        assertArrayEquals(expectTC9.getResult().getData(3), result.getResult().getData(3));
+        assertArrayEquals(
+            Matrix.transpose(expectTC9.getResult()).getRow(0),
+            Matrix.transpose(result.getResult()).getRow(0),
+            1000
+        );
 
         m.setData(tc10);
         result = SPLSolver.crammerMethod(m);

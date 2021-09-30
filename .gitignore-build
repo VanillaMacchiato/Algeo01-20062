@@ -1,0 +1,7 @@
+/nbproject/
+/.settings/
+/bin/
+!/bin/matriks-*-full.jar
+!/bin/classes
+!/bin/test-classes
+!/bin/libs

@@ -16,7 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class InterpolationTest {
 
-    public static final double[][] DATA_COVID = new double[][]{
+    public static final double[][] DATA_TABLE_TC1 = new double[][]{
+        {0.1, 0.003},
+        {0.3, 0.067},
+        {0.5, 0.148},
+        {0.7, 0.248},
+        {0.9, 0.370},
+        {1.1, 0.518},
+        {1.3, 0.697}
+    };
+
+    public static final double[][] DATA_COVID_TC2 = new double[][]{
         {6.567, 12624},
         {7, 21807},
         {7.258, 38391},
@@ -65,15 +75,7 @@ public class InterpolationTest {
     public void testEvaluate() {
         System.out.println("evaluate");
         // Table
-        Matrix points = new Matrix(new double[][]{
-            {0.1, 0.003},
-            {0.3, 0.067},
-            {0.5, 0.148},
-            {0.7, 0.248},
-            {0.9, 0.370},
-            {1.1, 0.518},
-            {1.3, 0.697}
-        });
+        Matrix points = new Matrix(DATA_TABLE_TC1);
         Interpolation ins = new Interpolation(points);
         ins.fit();
         assertEquals(0.003, ins.evaluate(0.1), Util.EPSILON_LARGE);
@@ -84,7 +86,7 @@ public class InterpolationTest {
         assertEquals(0.697, ins.evaluate(1.3), Util.EPSILON_LARGE);
 
         // Covid
-        points.setData(DATA_COVID);
+        points.setData(DATA_COVID_TC2);
         ins = new Interpolation(points);
         ins.fit();
         assertEquals(12624, ins.evaluate(6.567), 0.1);
@@ -101,5 +103,116 @@ public class InterpolationTest {
         assertEquals(0.386531595659, ins.evaluate(0.3), 0.1);
         assertEquals(0.457294851048, ins.evaluate(0.55), 0.1);
         assertEquals(0.584593146846, ins.evaluate(1.7), 0.1);
+    }
+
+    /**
+     * Test of isFit method, of class Interpolation.
+     */
+    @Test
+    public void testIsFit() {
+        System.out.println("isFit");
+        Matrix points = new Matrix(DATA_TABLE_TC1);
+        Interpolation ins = new Interpolation(points);
+        assertFalse(ins.isFit());
+        ins.fit();
+        assertTrue(ins.isFit());
+    }
+
+    /**
+     * Test of getCount method, of class Interpolation.
+     */
+    @Test
+    public void testGetCount() {
+        System.out.println("getCount");
+        Matrix points = new Matrix(DATA_TABLE_TC1);
+        Interpolation ins = new Interpolation(points);
+        assertEquals(7, ins.getCount());
+        ins = new Interpolation(generateFunTC(1));
+        assertEquals(2, ins.getCount());
+        ins = new Interpolation();
+        assertEquals(0, ins.getCount());
+    }
+
+    /**
+     * Test of addPoints method, of class Interpolation.
+     */
+    @Test
+    public void testAddPoints() {
+        System.out.println("addPoints");
+        Matrix points = generateFunTC(5);
+        Interpolation ins = new Interpolation(); // add first row
+        assertEquals(0, ins.getCount());
+        ins.addPoints(points.copy(1, 2));
+        assertEquals(1, ins.getCount());
+        ins.addPoints(points.copy(1, 2, 0, 2)); // add 2 more
+        assertEquals(3, ins.getCount());
+        ins.addPoints(points.copy(3, 3, 0, 2)); // add 3 more
+        assertEquals(6, ins.getCount());
+        // Make sure they are the same (from original Evaluate)
+        ins.fit();
+        assertEquals(0, ins.evaluate(0), Util.EPSILON_LARGE);
+        assertEquals(0.386531595659, ins.evaluate(0.3), 0.1);
+        assertEquals(0.457294851048, ins.evaluate(0.55), 0.1);
+        assertEquals(0.584593146846, ins.evaluate(1.7), 0.1);
+    }
+
+    /**
+     * Test of fit method, of class Interpolation.
+     */
+    @Test
+    public void testFit() {
+        System.out.println("fit");
+        Matrix points = generateFunTC(5);
+        Interpolation ins = new Interpolation(points.copy(1, 2)); // add first row
+        ins.fit();
+        assertFalse(ins.isFit()); // data with 1 point can't be fitted
+        ins.addPoints(points.copy(1, 5, 0, 2)); // add 2 more
+        ins.fit();
+        assertTrue(ins.isFit()); // should fitted now.
+    }
+
+    /**
+     * Test of toString method, of class Interpolation.
+     */
+    @Test
+    public void testToString_UtilFormatting() {
+        System.out.println("toString");
+        Matrix points = generateFunTC(2);
+        Interpolation ins = new Interpolation(points);
+        ins.fit();
+        assertEquals("f(x) = \n"
+            + "0.0\n"
+            + "+ 0.7874399206041194x\n"
+            + "- 0.24955707786412917x^2", ins.toString(Util.Formatting.DEFAULT));
+        assertEquals("f(x) = \n"
+            + "0\n"
+            + "+ 0.787x\n"
+            + "- 0.25x^2", ins.toString(Util.Formatting.SHORT));
+        assertEquals("f(x) = \n"
+            + "0.000\n"
+            + "+ 0.787x\n"
+            + "- 0.250x^2", ins.toString(Util.Formatting.PADDED_SHORT));
+        assertEquals("f(x) = \n"
+            + "0\n"
+            + "+ 0.7874399206041x\n"
+            + "- 0.2495570778641x^2", ins.toString(Util.Formatting.LONG));
+    }
+
+    /**
+     * Test of toString method, of class Interpolation.
+     */
+    @Test
+    public void testToString_0args() {
+        System.out.println("toString");
+        Matrix points = generateFunTC(2);
+        Interpolation ins = new Interpolation(points.copy(1, 2));
+        assertEquals("Data tidak cukup untuk diinterpolasi.", ins.toString());
+        ins.addPoints(points.copy(1, 2, 0, 2));
+        assertEquals("Interpolasi belum di-fit. Jalankan fit() terlebih dahulu.", ins.toString());
+        ins.fit();
+        assertEquals("f(x) = \n"
+            + "0.0\n"
+            + "+ 0.7874399206041194x\n"
+            + "- 0.24955707786412917x^2", ins.toString());
     }
 }

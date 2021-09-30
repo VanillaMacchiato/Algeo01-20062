@@ -145,7 +145,7 @@ public class MatrixTest {
      * Test of getData method, of class Matrix.
      */
     @Test
-    public void testGetData() {
+    public void testGetData_0args() {
         System.out.println("getData");
         Matrix ins = new Matrix(3, 3);
         assertEquals(3, ins.getNRow());
@@ -165,6 +165,32 @@ public class MatrixTest {
             {0, 0, 0},
             {-12, 22, 1.2}
         }, ins.getData());
+    }
+
+    /**
+     * Test of getData method, of class Matrix.
+     */
+    @Test
+    public void testGetData_int() {
+        System.out.println("getData");
+        Matrix ins = new Matrix(3, 3);
+        assertEquals(3, ins.getNRow());
+        assertEquals(3, ins.getNCol());
+        assertArrayEquals(new double[3][3], ins.getData(3));
+        ins = new Matrix(new double[][]{
+            {1, 2, 3},
+            {99.91, -12, 23.2},
+            {0, 0, 0},
+            {-12, 22, 1.2}
+        });
+        assertEquals(4, ins.getNRow());
+        assertEquals(3, ins.getNCol());
+        assertArrayEquals(new double[][]{
+            {1, 2, 3},
+            {100, -12, 23},
+            {0, 0, 0},
+            {-12, 22, 1}
+        }, ins.getData(0));
     }
 
     /**
@@ -934,12 +960,12 @@ public class MatrixTest {
             {1.2, 0, -1},
             {9, 10, 2}
         });
-        assertEquals("1.20 0.00 -1.00\n9.00 10.00 2.00", ins.toString());
+        assertEquals("1.2 0 -1\n9 10 2", ins.toString());
         ins.setData(new double[][]{
             {0, 0},
             {9.99, 10}
         });
-        assertEquals("0.00 0.00\n9.99 10.00", ins.toString());
+        assertEquals("0 0\n9.99 10", ins.toString());
         ins.setData(new double[][]{
             {1.23}
         });
@@ -1006,5 +1032,23 @@ public class MatrixTest {
             {0, 0},
             {0, 0}
         }, out.getData());
+    }
+
+    /**
+     * Test of isAlmostEqElmt method, of class Matrix.
+     */
+    @Test
+    public void testIsAlmostEqElmt() {
+        System.out.println("isAlmostEqElmt");
+        Matrix ins = new Matrix(new double[][]{
+            {1E-30, 0.1, 0.000001},
+            {-0.00, 1.69, -1E-30}
+        });
+        assertFalse(ins.isAlmostEqElmt(0, 0, 0));
+        assertTrue(ins.isAlmostEqElmt(0, 1, 0.1));
+        assertFalse(ins.isAlmostEqElmt(0, 2, 0));
+        assertTrue(ins.isAlmostEqElmt(1, 0, 0));
+        assertTrue(ins.isAlmostEqElmt(1, 1, 1.69));
+        assertFalse(ins.isAlmostEqElmt(1, 2, 0));
     }
 }

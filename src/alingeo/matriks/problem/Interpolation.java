@@ -7,6 +7,26 @@ import alingeo.matriks.solver.SPLSolver.SolutionResult;
 import java.util.Locale;
 
 /**
+ * Interpolation Class
+ *
+ * Usage:
+ *
+ * 1. Construct an instance of Interpolation with new Interpolation(). - Accept
+ * points in Matrix N x 2 or without points
+ *
+ * 2. (Optional) Add more points in Matrix N x 2 with addPoints().
+ *
+ * 3. Fit the instance with fit().
+ *
+ * 4. Check if instance is actually fitted with isFit(). - Instance is not
+ * fitted even after fit() if the solution is not exist OR the data points are
+ * not enough to be fitted. There should be a minimum of 2 points so instance
+ * can be fitted. You can check the point count by getCount()
+ *
+ * 5. You can evaluate any x with evaluate() OR print the polynomial equation
+ * with toString().
+ *
+ * 6. If there are more data, you can repeat step 2.
  *
  * @author Amar Fadil
  */
@@ -34,7 +54,7 @@ public class Interpolation {
 
     public Interpolation() {
         this.isFit = false;
-        this.points = new Matrix(0, 0);
+        this.points = new Matrix(0, 2);
         this.buffer = new Matrix(0, 0);
         this.count = 0;
     }
@@ -62,14 +82,14 @@ public class Interpolation {
         // Adjust point
         this.points.setNRow(total);
         for (int i = current; i < total; i++) {
-            this.points.setRow(i, points.getRow(i - current + 1));
+            this.points.setRow(i, points.getRow(i - current));
         }
         // Resize buffer
         this.buffer.resize(total, total + 1);
-        // Expand for i = 0..N-2 from j = current..total
+        // Expand for i = 0..current-1 from j = current..total
         double cnt;
         double[] crt;
-        for (int i = 0; i < total - 1; i++) {
+        for (int i = 0; i < current; i++) {
             cnt = this.buffer.getElmt(i, current - 1);
             crt = this.points.getRow(i);
             for (int j = current; j < total; j++) {
@@ -78,14 +98,16 @@ public class Interpolation {
             }
             this.buffer.setElmt(i, total, crt[1]);
         }
-        // Fill for i = N-1
-        cnt = 1;
-        crt = this.points.getRow(total - 1);
-        for (int j = 0; j < total; j++) {
-            this.buffer.setElmt(total - 1, j, cnt);
-            cnt *= crt[0];
+        // Fill for i = current..total-1 from j = 0..total
+        for (int i = current; i < total; i++) {
+            cnt = 1;
+            crt = this.points.getRow(i);
+            for (int j = 0; j < total; j++) {
+                this.buffer.setElmt(i, j, cnt);
+                cnt *= crt[0];
+            }
+            this.buffer.setElmt(i, total, crt[1]);
         }
-        this.buffer.setElmt(total - 1, total, crt[1]);
 
         this.count = total;
     }
@@ -102,6 +124,9 @@ public class Interpolation {
     public double evaluate(double x) {
         if (!this.isFit()) {
             fit();
+            if (!this.isFit()) {
+                return Double.MIN_VALUE;
+            }
         }
         double res = 0;
         double cnt = 1;
@@ -115,18 +140,22 @@ public class Interpolation {
 
     public String toString(Util.Formatting type) {
         if (!this.isFit) {
-            return "Interpolation is not fitted yet.";
+            if (this.count > 1) {
+                return "Interpolasi belum di-fit. Jalankan fit() terlebih dahulu.";
+            } else {
+                return "Data tidak cukup untuk diinterpolasi.";
+            }
         }
         Matrix r = this.result.getResult();
         int cnt = r.getNRow();
-        String res = "f(x) = ";
+        String res = "f(x) = \n";
         res += Util.format(r.getElmt(0, 0), type);
         for (int i = 1; i < cnt; i++) {
             double el = r.getElmt(i, 0);
             if (el > 0) {
-                res += " + ";
+                res += "\n+ ";
             } else {
-                res += " - ";
+                res += "\n- ";
                 el *= -1;
             }
             res += Util.format(el, type);

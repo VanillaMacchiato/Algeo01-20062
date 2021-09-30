@@ -54,9 +54,4 @@ public class Util {
         return (a == b)
             || Math.abs(a - b) < EPSILON_LARGE * Math.max(Math.abs(a), Math.abs(b));
     }
-
-    public static boolean isAlmostEqLess(double a, double b) {
-        return (a == b)
-            || Math.abs(a - b) < EPSILON_SMALL * Math.max(Math.abs(a), Math.abs(b));
-    }
 }
