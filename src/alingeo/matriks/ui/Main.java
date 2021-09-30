@@ -257,11 +257,11 @@ public class Main extends javax.swing.JFrame {
         InterpolasiOutput = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximizedBounds(new java.awt.Rectangle(0, 0, 600, 500));
-        setMaximumSize(new java.awt.Dimension(650, 550));
-        setPreferredSize(new java.awt.Dimension(600, 513));
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 600, 580));
+        setMaximumSize(new java.awt.Dimension(650, 580));
+        setPreferredSize(new java.awt.Dimension(600, 580));
         setResizable(false);
-        setSize(new java.awt.Dimension(650, 550));
+        setSize(new java.awt.Dimension(650, 580));
 
         SidePanel.setBackground(new java.awt.Color(204, 204, 204));
         SidePanel.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(153, 153, 153), null));
@@ -303,7 +303,7 @@ public class Main extends javax.swing.JFrame {
 
         Menu.add(SPLGauss);
         SPLGauss.setSelected(true);
-        SPLGauss.setText("Metode Gauss");
+        SPLGauss.setText("Metode Gauss   ");
         SPLGauss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SPLGaussActionPerformed(evt);
@@ -312,7 +312,7 @@ public class Main extends javax.swing.JFrame {
         SideMenu.add(SPLGauss);
 
         Menu.add(SPLGaussJordan);
-        SPLGaussJordan.setText("Metode Gauss Jordan");
+        SPLGaussJordan.setText("Metode Gauss Jordan   ");
         SPLGaussJordan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SPLGaussJordanActionPerformed(evt);
@@ -321,7 +321,7 @@ public class Main extends javax.swing.JFrame {
         SideMenu.add(SPLGaussJordan);
 
         Menu.add(SPLMatriksBalikan);
-        SPLMatriksBalikan.setText("Metode Matriks Balikan");
+        SPLMatriksBalikan.setText("Metode Matriks Balikan   ");
         SPLMatriksBalikan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SPLMatriksBalikanActionPerformed(evt);
@@ -330,7 +330,7 @@ public class Main extends javax.swing.JFrame {
         SideMenu.add(SPLMatriksBalikan);
 
         Menu.add(SPLCrammer);
-        SPLCrammer.setText("Metode Crammer");
+        SPLCrammer.setText("Metode Crammer   ");
         SPLCrammer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SPLCrammerActionPerformed(evt);
@@ -339,11 +339,11 @@ public class Main extends javax.swing.JFrame {
         SideMenu.add(SPLCrammer);
 
         DeterminanLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        DeterminanLabel.setText("Determinan");
+        DeterminanLabel.setText("   Determinan    ");
         SideMenu.add(DeterminanLabel);
 
         Menu.add(DeterminanKofaktor);
-        DeterminanKofaktor.setText("Ekspansi Kofaktor");
+        DeterminanKofaktor.setText("Ekspansi Kofaktor   ");
         DeterminanKofaktor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeterminanKofaktorActionPerformed(evt);
@@ -352,7 +352,7 @@ public class Main extends javax.swing.JFrame {
         SideMenu.add(DeterminanKofaktor);
 
         Menu.add(DeterminanOBE);
-        DeterminanOBE.setText("Metode OBE");
+        DeterminanOBE.setText("Metode OBE   ");
         DeterminanOBE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeterminanOBEActionPerformed(evt);
@@ -361,11 +361,11 @@ public class Main extends javax.swing.JFrame {
         SideMenu.add(DeterminanOBE);
 
         InversLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        InversLabel.setText("Invers");
+        InversLabel.setText("   Invers   ");
         SideMenu.add(InversLabel);
 
         Menu.add(InversGauss);
-        InversGauss.setText("Metode Gauss-Jordan");
+        InversGauss.setText("Metode Gauss-Jordan   ");
         InversGauss.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InversGaussActionPerformed(evt);
@@ -374,7 +374,7 @@ public class Main extends javax.swing.JFrame {
         SideMenu.add(InversGauss);
 
         Menu.add(InversAdjoin);
-        InversAdjoin.setText("Metode Adjoint");
+        InversAdjoin.setText("Metode Adjoint   ");
         InversAdjoin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InversAdjoinActionPerformed(evt);
@@ -387,7 +387,7 @@ public class Main extends javax.swing.JFrame {
         SideMenu.add(ProblemSolverLabel);
 
         Menu.add(Interpolasi);
-        Interpolasi.setText("Interpolasi");
+        Interpolasi.setText("Interpolasi   ");
         Interpolasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InterpolasiActionPerformed(evt);
@@ -404,7 +404,7 @@ public class Main extends javax.swing.JFrame {
         });
         SideMenu.add(Regresi);
 
-        ExitButton.setText("EXIT");
+        ExitButton.setText("   EXIT   ");
         ExitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ExitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -428,7 +428,8 @@ public class Main extends javax.swing.JFrame {
             .addGroup(SidePanelLayout.createSequentialGroup()
                 .addComponent(SideHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(SideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
         LayeredPanel.setPreferredSize(new java.awt.Dimension(480, 500));
@@ -440,20 +441,20 @@ public class Main extends javax.swing.JFrame {
         SPLGaussTitle.setText("SPL Metode Gauss");
         SPLGaussPanel.add(SPLGaussTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        SPLGaussInst1.setText("Input Matriks Ax=B");
-        SPLGaussPanel.add(SPLGaussInst1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, -1, -1));
+        SPLGaussInst1.setText("Input Matriks Augmented");
+        SPLGaussPanel.add(SPLGaussInst1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, 390, -1));
 
         SPLGaussInst2.setText("Pisahkan elemen dengan spasi");
         SPLGaussPanel.add(SPLGaussInst2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 75, 364, -1));
 
         SPLGaussInst3.setText("Pisahkan baris dengan newline (enter)");
-        SPLGaussPanel.add(SPLGaussInst3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, -1, -1));
+        SPLGaussPanel.add(SPLGaussInst3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, 380, -1));
 
-        SPLGaussInst4.setText("Matriks eselon yang terbentuk");
-        SPLGaussPanel.add(SPLGaussInst4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 242, -1, -1));
+        SPLGaussInst4.setText("Matriks eselon:");
+        SPLGaussPanel.add(SPLGaussInst4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 242, 160, -1));
 
         SPLGaussInst5.setText("Hasil:");
-        SPLGaussPanel.add(SPLGaussInst5, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, -1, -1));
+        SPLGaussPanel.add(SPLGaussInst5, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, 160, -1));
 
         SPLGaussCalculate.setText("Calculate");
         SPLGaussCalculate.addActionListener(new java.awt.event.ActionListener() {
@@ -484,7 +485,7 @@ public class Main extends javax.swing.JFrame {
         SPLGaussPanel.add(SPLGaussSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 183, 84, -1));
 
         SPLGaussPrompt.setText("Prompt");
-        SPLGaussPanel.add(SPLGaussPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, -1, -1));
+        SPLGaussPanel.add(SPLGaussPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, 190, -1));
 
         jScrollPane1.setViewportView(SPLGaussInput);
 
@@ -501,7 +502,7 @@ public class Main extends javax.swing.JFrame {
         SPLGaussPanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 280, 164, 113));
 
         SPLGaussInst49.setText("Tiap X dipisah newline");
-        SPLGaussPanel.add(SPLGaussInst49, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 260, -1, -1));
+        SPLGaussPanel.add(SPLGaussInst49, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 260, 180, -1));
 
         LayeredPanel.add(SPLGaussPanel, "card2");
 
@@ -511,23 +512,23 @@ public class Main extends javax.swing.JFrame {
         SPLGaussTitle4.setText("SPL Metode Gauss Jordan");
         SPLGaussJordanPanel.add(SPLGaussTitle4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        SPLGaussInst25.setText("Input Matriks Ax=b :");
-        SPLGaussJordanPanel.add(SPLGaussInst25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, -1, -1));
+        SPLGaussInst25.setText("Input Matriks Augmented:");
+        SPLGaussJordanPanel.add(SPLGaussInst25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, 280, -1));
 
         SPLGaussInst26.setText("Pisahkan elemen dengan spasi");
         SPLGaussJordanPanel.add(SPLGaussInst26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 75, 364, -1));
 
         SPLGaussInst27.setText("Pisahkan baris dengan newline (enter)");
-        SPLGaussJordanPanel.add(SPLGaussInst27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, -1, -1));
+        SPLGaussJordanPanel.add(SPLGaussInst27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, 330, -1));
 
-        SPLGaussInst28.setText("Matriks eselon yang terbentuk");
-        SPLGaussJordanPanel.add(SPLGaussInst28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 242, -1, -1));
+        SPLGaussInst28.setText("Matriks eselon:");
+        SPLGaussJordanPanel.add(SPLGaussInst28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 242, 160, -1));
 
         SPLGaussInst29.setText("Hasil:");
-        SPLGaussJordanPanel.add(SPLGaussInst29, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, -1, -1));
+        SPLGaussJordanPanel.add(SPLGaussInst29, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, 140, -1));
 
         SPLGaussInst30.setText("Tiap X dipisah newline");
-        SPLGaussJordanPanel.add(SPLGaussInst30, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 262, -1, -1));
+        SPLGaussJordanPanel.add(SPLGaussInst30, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 262, 160, -1));
 
         SPLGaussJordanCalculate.setText("Calculate");
         SPLGaussJordanCalculate.addActionListener(new java.awt.event.ActionListener() {
@@ -558,7 +559,7 @@ public class Main extends javax.swing.JFrame {
         SPLGaussJordanPanel.add(SPLGaussJordanSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 183, 84, -1));
 
         SPLGaussJordanPrompt.setText("Prompt");
-        SPLGaussJordanPanel.add(SPLGaussJordanPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, -1, -1));
+        SPLGaussJordanPanel.add(SPLGaussJordanPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, 150, -1));
 
         jScrollPane14.setViewportView(SPLGaussJordanInput);
 
@@ -582,23 +583,23 @@ public class Main extends javax.swing.JFrame {
         SPLGaussTitle5.setText("SPL Metode Matriks Balikan");
         SPLMatriksBalikanPanel.add(SPLGaussTitle5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        SPLGaussInst31.setText("Input Matriks Ax=b :");
-        SPLMatriksBalikanPanel.add(SPLGaussInst31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, -1, -1));
+        SPLGaussInst31.setText("Input Matriks Augmented :");
+        SPLMatriksBalikanPanel.add(SPLGaussInst31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, 350, -1));
 
         SPLGaussInst32.setText("Pisahkan elemen dengan spasi");
         SPLMatriksBalikanPanel.add(SPLGaussInst32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 75, 364, -1));
 
         SPLGaussInst33.setText("Pisahkan baris dengan newline (enter)");
-        SPLMatriksBalikanPanel.add(SPLGaussInst33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, -1, -1));
+        SPLMatriksBalikanPanel.add(SPLGaussInst33, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, 310, -1));
 
-        SPLGaussInst34.setText("Matriks Invers yang Terbentuk");
-        SPLMatriksBalikanPanel.add(SPLGaussInst34, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 242, -1, -1));
+        SPLGaussInst34.setText("Matriks Invers:");
+        SPLMatriksBalikanPanel.add(SPLGaussInst34, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 242, 160, -1));
 
         SPLGaussInst35.setText("Hasil:");
-        SPLMatriksBalikanPanel.add(SPLGaussInst35, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, -1, -1));
+        SPLMatriksBalikanPanel.add(SPLGaussInst35, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, 160, -1));
 
         SPLGaussInst36.setText("Tiap X dipisah newline");
-        SPLMatriksBalikanPanel.add(SPLGaussInst36, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 262, -1, -1));
+        SPLMatriksBalikanPanel.add(SPLGaussInst36, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 262, 160, -1));
 
         SPLMatriksBalikanCalculate.setText("Calculate");
         SPLMatriksBalikanCalculate.addActionListener(new java.awt.event.ActionListener() {
@@ -629,7 +630,7 @@ public class Main extends javax.swing.JFrame {
         SPLMatriksBalikanPanel.add(SPLMatriksBalikanSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 183, 84, -1));
 
         SPLMatriksBalikanPrompt.setText("Prompt");
-        SPLMatriksBalikanPanel.add(SPLMatriksBalikanPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, -1, -1));
+        SPLMatriksBalikanPanel.add(SPLMatriksBalikanPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, 150, -1));
 
         jScrollPane17.setViewportView(SPLMatriksBalikanInput);
 
@@ -653,20 +654,20 @@ public class Main extends javax.swing.JFrame {
         SPLGaussTitle6.setText("SPL Metode Cramer");
         SPLCrammerPanel.add(SPLGaussTitle6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        SPLGaussInst37.setText("Input Matriks Ax=b :");
-        SPLCrammerPanel.add(SPLGaussInst37, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, -1, -1));
+        SPLGaussInst37.setText("Input Matriks Augmented :");
+        SPLCrammerPanel.add(SPLGaussInst37, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, 340, -1));
 
         SPLGaussInst38.setText("Pisahkan elemen dengan spasi");
         SPLCrammerPanel.add(SPLGaussInst38, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 75, 364, -1));
 
         SPLGaussInst39.setText("Pisahkan baris dengan newline (enter)");
-        SPLCrammerPanel.add(SPLGaussInst39, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, -1, -1));
+        SPLCrammerPanel.add(SPLGaussInst39, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, 340, -1));
 
         SPLGaussInst41.setText("Hasil:");
-        SPLCrammerPanel.add(SPLGaussInst41, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, -1, -1));
+        SPLCrammerPanel.add(SPLGaussInst41, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, 160, -1));
 
         SPLGaussInst42.setText("Tiap X dipisah newline");
-        SPLCrammerPanel.add(SPLGaussInst42, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 262, -1, -1));
+        SPLCrammerPanel.add(SPLGaussInst42, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 262, 160, -1));
 
         SPLCrammerCalculate.setText("Calculate");
         SPLCrammerCalculate.addActionListener(new java.awt.event.ActionListener() {
@@ -697,7 +698,7 @@ public class Main extends javax.swing.JFrame {
         SPLCrammerPanel.add(SPLCrammerSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 183, 84, -1));
 
         SPLCrammerPrompt.setText("Prompt");
-        SPLCrammerPanel.add(SPLCrammerPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, -1, -1));
+        SPLCrammerPanel.add(SPLCrammerPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, 160, -1));
 
         jScrollPane20.setViewportView(SPLCrammerInput);
 
@@ -716,17 +717,17 @@ public class Main extends javax.swing.JFrame {
         DeterminanKofaktorTitle.setText("Determinan Metode Ekspansi Kofaktor");
         DeterminanKofaktorPanel.add(DeterminanKofaktorTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        SPLGaussInst7.setText("Input Matriks Ax=b :");
-        DeterminanKofaktorPanel.add(SPLGaussInst7, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 55, -1, -1));
+        SPLGaussInst7.setText("Input Matriks :");
+        DeterminanKofaktorPanel.add(SPLGaussInst7, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 55, 310, -1));
 
         SPLGaussInst8.setText("Pisahkan elemen dengan spasi");
-        DeterminanKofaktorPanel.add(SPLGaussInst8, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 75, 158, -1));
+        DeterminanKofaktorPanel.add(SPLGaussInst8, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 75, 320, -1));
 
         SPLGaussInst9.setText("Pisahkan baris dengan newline (enter)");
-        DeterminanKofaktorPanel.add(SPLGaussInst9, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 93, -1, -1));
+        DeterminanKofaktorPanel.add(SPLGaussInst9, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 93, 330, -1));
 
         SPLGaussInst11.setText("Hasil:");
-        DeterminanKofaktorPanel.add(SPLGaussInst11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 242, -1, -1));
+        DeterminanKofaktorPanel.add(SPLGaussInst11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 242, 140, -1));
 
         DeterminanKofaktorCalculate.setText("Calculate");
         DeterminanKofaktorCalculate.addActionListener(new java.awt.event.ActionListener() {
@@ -757,7 +758,7 @@ public class Main extends javax.swing.JFrame {
         DeterminanKofaktorPanel.add(DeterminanKofaktorSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 183, 84, -1));
 
         DeterminanKofaktorPrompt.setText("Prompt");
-        DeterminanKofaktorPanel.add(DeterminanKofaktorPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 217, -1, -1));
+        DeterminanKofaktorPanel.add(DeterminanKofaktorPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 217, 140, -1));
 
         jScrollPane4.setViewportView(DeterminanKofaktorInput);
 
@@ -776,20 +777,20 @@ public class Main extends javax.swing.JFrame {
         SPLGaussTitle1.setText("Determinan Metode OBE");
         DeterminanOBEPanel.add(SPLGaussTitle1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        SPLGaussInst10.setText("Input Matriks Ax=b :");
-        DeterminanOBEPanel.add(SPLGaussInst10, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 55, -1, -1));
+        SPLGaussInst10.setText("Input Matriks :");
+        DeterminanOBEPanel.add(SPLGaussInst10, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 55, 300, -1));
 
         SPLGaussInst12.setText("Pisahkan elemen dengan spasi");
-        DeterminanOBEPanel.add(SPLGaussInst12, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 75, 170, -1));
+        DeterminanOBEPanel.add(SPLGaussInst12, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 75, 330, -1));
 
         SPLGaussInst13.setText("Pisahkan baris dengan newline (enter)");
-        DeterminanOBEPanel.add(SPLGaussInst13, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 93, -1, -1));
+        DeterminanOBEPanel.add(SPLGaussInst13, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 93, 330, -1));
 
-        SPLGaussInst14.setText("Matriks eselon yang terbentuk");
-        DeterminanOBEPanel.add(SPLGaussInst14, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 242, -1, -1));
+        SPLGaussInst14.setText("Matriks eselon :");
+        DeterminanOBEPanel.add(SPLGaussInst14, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 242, 160, -1));
 
         SPLGaussInst15.setText("Hasil:");
-        DeterminanOBEPanel.add(SPLGaussInst15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 242, -1, -1));
+        DeterminanOBEPanel.add(SPLGaussInst15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 242, 160, -1));
 
         DeterminanOBECalculate.setText("Calculate");
         DeterminanOBECalculate.addActionListener(new java.awt.event.ActionListener() {
@@ -820,7 +821,7 @@ public class Main extends javax.swing.JFrame {
         DeterminanOBEPanel.add(DeterminanOBESave, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 183, 84, -1));
 
         DeterminanOBEPrompt.setText("Prompt");
-        DeterminanOBEPanel.add(DeterminanOBEPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 217, -1, -1));
+        DeterminanOBEPanel.add(DeterminanOBEPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 217, 160, -1));
 
         jScrollPane5.setViewportView(DeterminanOBEInput);
 
@@ -844,17 +845,17 @@ public class Main extends javax.swing.JFrame {
         SPLGaussTitle2.setText("Invers Metode Gauss Jordan");
         InversGaussPanel.add(SPLGaussTitle2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        SPLGaussInst16.setText("Input Matriks Ax=b :");
-        InversGaussPanel.add(SPLGaussInst16, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 55, -1, -1));
+        SPLGaussInst16.setText("Input Matriks :");
+        InversGaussPanel.add(SPLGaussInst16, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 55, 320, -1));
 
         SPLGaussInst17.setText("Pisahkan elemen dengan spasi");
-        InversGaussPanel.add(SPLGaussInst17, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 75, 155, -1));
+        InversGaussPanel.add(SPLGaussInst17, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 75, 320, -1));
 
         SPLGaussInst18.setText("Pisahkan baris dengan newline (enter)");
-        InversGaussPanel.add(SPLGaussInst18, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 93, -1, -1));
+        InversGaussPanel.add(SPLGaussInst18, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 93, 340, -1));
 
         SPLGaussInst20.setText("Hasil:");
-        InversGaussPanel.add(SPLGaussInst20, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 242, -1, -1));
+        InversGaussPanel.add(SPLGaussInst20, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 242, 140, -1));
 
         InversGaussCalculate.setText("Calculate");
         InversGaussCalculate.addActionListener(new java.awt.event.ActionListener() {
@@ -880,7 +881,7 @@ public class Main extends javax.swing.JFrame {
         InversGaussPanel.add(InversGaussSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 183, 84, -1));
 
         InversGaussPrompt.setText("Prompt");
-        InversGaussPanel.add(InversGaussPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 217, -1, -1));
+        InversGaussPanel.add(InversGaussPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 217, 140, -1));
 
         jScrollPane9.setViewportView(InversGaussInput);
 
@@ -899,16 +900,16 @@ public class Main extends javax.swing.JFrame {
         SPLGaussTitle3.setText("Invers Metode Adjoin");
         InversAdjoinPanel.add(SPLGaussTitle3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        SPLGaussInst19.setText("Input Matriks Ax=b :");
-        InversAdjoinPanel.add(SPLGaussInst19, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 55, 236, -1));
+        SPLGaussInst19.setText("Input Matriks :");
+        InversAdjoinPanel.add(SPLGaussInst19, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 55, 310, -1));
 
         SPLGaussInst21.setText("Pisahkan elemen dengan spasi");
-        InversAdjoinPanel.add(SPLGaussInst21, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 75, 236, -1));
+        InversAdjoinPanel.add(SPLGaussInst21, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 75, 300, -1));
 
         SPLGaussInst22.setText("Pisahkan baris dengan newline (enter)");
-        InversAdjoinPanel.add(SPLGaussInst22, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 93, 236, -1));
+        InversAdjoinPanel.add(SPLGaussInst22, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 93, 320, -1));
 
-        SPLGaussInst23.setText("Matriks Kofaktor yang terbentuk");
+        SPLGaussInst23.setText("Matriks Kofaktor:");
         InversAdjoinPanel.add(SPLGaussInst23, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 242, 177, -1));
 
         SPLGaussInst24.setText("Hasil:");
@@ -968,19 +969,19 @@ public class Main extends javax.swing.JFrame {
         RegresiPanel.add(SPLGaussTitle7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         SPLGaussInst43.setText("Input N, Matriks, dan Xk dengan dipisahkan dengan newline");
-        RegresiPanel.add(SPLGaussInst43, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, -1, -1));
+        RegresiPanel.add(SPLGaussInst43, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, 350, -1));
 
         SPLGaussInst44.setText("Pisahkan antar elemen dengan spasi");
         RegresiPanel.add(SPLGaussInst44, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 75, 364, -1));
 
         SPLGaussInst45.setText("Pastikan N sesuai dengan ukuran Matriks dan Xk");
-        RegresiPanel.add(SPLGaussInst45, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, -1, -1));
+        RegresiPanel.add(SPLGaussInst45, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, 340, -1));
 
         SPLGaussInst46.setText("Persamaan Regresi");
         RegresiPanel.add(SPLGaussInst46, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 242, 151, -1));
 
         SPLGaussInst47.setText("Hasil:");
-        RegresiPanel.add(SPLGaussInst47, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, -1, -1));
+        RegresiPanel.add(SPLGaussInst47, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, 160, -1));
 
         RegresiCalculate.setText("Calculate");
         RegresiCalculate.addActionListener(new java.awt.event.ActionListener() {
@@ -1011,7 +1012,7 @@ public class Main extends javax.swing.JFrame {
         RegresiPanel.add(RegresiSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 183, 84, -1));
 
         RegresiPrompt.setText("Prompt");
-        RegresiPanel.add(RegresiPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, -1, -1));
+        RegresiPanel.add(RegresiPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, 160, -1));
 
         jScrollPane23.setMaximumSize(new java.awt.Dimension(23, 23));
         jScrollPane23.setViewportView(RegresiInput);
@@ -1037,19 +1038,19 @@ public class Main extends javax.swing.JFrame {
         InterpolasiPanel.add(SPLGaussTitle8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         SPLGaussInst48.setText("Input N, Points, dan X dengan dipisahkan dengan newline");
-        InterpolasiPanel.add(SPLGaussInst48, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, -1, -1));
+        InterpolasiPanel.add(SPLGaussInst48, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, 350, -1));
 
         SPLGaussInst50.setText("Pisahkan antar elemen dengan spasi");
         InterpolasiPanel.add(SPLGaussInst50, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 75, 364, -1));
 
         SPLGaussInst51.setText("Pastikan N sesuai dengan jumlah point");
-        InterpolasiPanel.add(SPLGaussInst51, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, -1, -1));
+        InterpolasiPanel.add(SPLGaussInst51, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 93, 350, -1));
 
         SPLGaussInst52.setText("Persamaan Polinom");
         InterpolasiPanel.add(SPLGaussInst52, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 242, 151, -1));
 
         SPLGaussInst53.setText("Hasil:");
-        InterpolasiPanel.add(SPLGaussInst53, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, -1, -1));
+        InterpolasiPanel.add(SPLGaussInst53, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 242, 160, -1));
 
         InterpolasiCalculate.setText("Calculate");
         InterpolasiCalculate.addActionListener(new java.awt.event.ActionListener() {
@@ -1080,7 +1081,7 @@ public class Main extends javax.swing.JFrame {
         InterpolasiPanel.add(InterpolasiSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 183, 84, -1));
 
         InterpolasiPrompt.setText("Prompt");
-        InterpolasiPanel.add(InterpolasiPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, -1, -1));
+        InterpolasiPanel.add(InterpolasiPrompt, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 217, 160, -1));
 
         jScrollPane26.setMaximumSize(new java.awt.Dimension(23, 23));
         jScrollPane26.setViewportView(InterpolasiInput);
@@ -1114,7 +1115,7 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SidePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LayeredPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
@@ -1296,7 +1297,7 @@ public class Main extends javax.swing.JFrame {
 
     private void SPLGaussSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLGaussSaveActionPerformed
         if (SPLGaussOutput.getText().equals("")) {
-            SPLGaussPrompt.setText("Output kosong, silahkan lakukan kalkukasi");
+            SPLGaussPrompt.setText("Output kosong");
         } else {
             int result = FileSaver.showSaveDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
@@ -1329,7 +1330,7 @@ public class Main extends javax.swing.JFrame {
 
     private void SPLGaussJordanSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLGaussJordanSaveActionPerformed
         if (SPLGaussJordanOutput.getText().equals("")) {
-            SPLGaussJordanPrompt.setText("Output kosong, silahkan lakukan kalkukasi");
+            SPLGaussJordanPrompt.setText("Output kosong");
         } else {
             int result = FileSaver.showSaveDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
@@ -1341,7 +1342,7 @@ public class Main extends javax.swing.JFrame {
 
     private void DeterminanKofaktorSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanKofaktorSaveActionPerformed
         if (DeterminanKofaktorOutput.getText().equals("")) {
-            DeterminanKofaktorPrompt.setText("Output kosong, silahkan lakukan kalkukasi");
+            DeterminanKofaktorPrompt.setText("Output kosong");
         } else {
             int result = FileSaver.showSaveDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
@@ -1353,7 +1354,7 @@ public class Main extends javax.swing.JFrame {
 
     private void DeterminanOBESaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeterminanOBESaveActionPerformed
         if (DeterminanOBEOutput.getText().equals("")) {
-            DeterminanOBEPrompt.setText("Output kosong, silahkan lakukan kalkukasi");
+            DeterminanOBEPrompt.setText("Output kosong");
         } else {
             int result = FileSaver.showSaveDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
@@ -1374,7 +1375,7 @@ public class Main extends javax.swing.JFrame {
 
     private void InversAdjoinSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InversAdjoinSaveActionPerformed
         if (InversAdjoinOutput.getText().equals("")) {
-            InversAdjoinPrompt.setText("Output kosong, silahkan lakukan kalkukasi");
+            InversAdjoinPrompt.setText("Output kosong");
         } else {
             int result = FileSaver.showSaveDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
@@ -1385,14 +1386,20 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_InversAdjoinSaveActionPerformed
 
     private void SPLMatriksBalikanCalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLMatriksBalikanCalculateActionPerformed
-        // TODO REEVALUASI ULANG BUAT INTERMEDIATENYA TUNGGU AMAR
         try {
             Matrix M = Parser.stringToMatrix(SPLMatriksBalikanInput.getText());
             SolutionResult res = SPLSolver.inverseMethod(M);
-            SPLMatriksBalikanIntermediate.setText(res.getIntermediate().toString(formatOutput));
-            SPLMatriksBalikanOutput.setText(res.toString(formatOutput));
+            Matrix intermediate = res.getIntermediate();
+            if (intermediate == null) {
+                SPLMatriksBalikanOutput.setText("Invers matriks tidak ada");
+            } else {
+                SPLMatriksBalikanIntermediate.setText(intermediate.toString(formatOutput));
+                SPLMatriksBalikanOutput.setText(res.toString(formatOutput));
+            }
+
         } catch (Exception e) {
             SPLMatriksBalikanPrompt.setText("Input tidak valid");
+            System.out.println(e);
         }
     }//GEN-LAST:event_SPLMatriksBalikanCalculateActionPerformed
 
@@ -1407,7 +1414,7 @@ public class Main extends javax.swing.JFrame {
 
     private void SPLMatriksBalikanSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLMatriksBalikanSaveActionPerformed
         if (SPLMatriksBalikanOutput.getText().equals("")) {
-            SPLMatriksBalikanPrompt.setText("Output kosong, silahkan lakukan kalkukasi");
+            SPLMatriksBalikanPrompt.setText("Output kosong");
         } else {
             int result = FileSaver.showSaveDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
@@ -1456,7 +1463,7 @@ public class Main extends javax.swing.JFrame {
 
     private void SPLCrammerSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SPLCrammerSaveActionPerformed
         if (SPLCrammerOutput.getText().equals("")) {
-            SPLCrammerPrompt.setText("Output kosong, silahkan lakukan kalkukasi");
+            SPLCrammerPrompt.setText("Output kosong");
         } else {
             int result = FileSaver.showSaveDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
@@ -1514,7 +1521,7 @@ public class Main extends javax.swing.JFrame {
 
     private void RegresiSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresiSaveActionPerformed
         if (RegresiOutput.getText().equals("")) {
-            RegresiPrompt.setText("Output kosong, silahkan lakukan kalkukasi");
+            RegresiPrompt.setText("Output kosong");
         } else {
             int result = FileSaver.showSaveDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
@@ -1587,7 +1594,7 @@ public class Main extends javax.swing.JFrame {
 
     private void InterpolasiSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InterpolasiSaveActionPerformed
         if (InterpolasiOutput.getText().equals("")) {
-            InterpolasiPrompt.setText("Output kosong, silahkan lakukan kalkukasi");
+            InterpolasiPrompt.setText("Output kosong");
         } else {
             int result = FileSaver.showSaveDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
