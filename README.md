@@ -1,6 +1,6 @@
 # Tugas Besar Algeo 1
 
-> **Kelompok 42**  
+> **Kelompok 36**  
 > _(The Answer of Life)_  
 > Rifqi Naufal Abdjul (13520062)  
 > Amar Fadil (13520103)  
@@ -10,6 +10,7 @@
 [![codecov](https://codecov.io/gh/VanillaMacchiato/Algeo01-20062/branch/main/graph/badge.svg?token=0RLTWCO56O)](https://codecov.io/gh/VanillaMacchiato/Algeo01-20062)
 
 ## Coverage Status
+
 [![codecov](https://codecov.io/gh/VanillaMacchiato/Algeo01-20062/branch/main/graph/tree.svg?token=0RLTWCO56O)](https://codecov.io/gh/VanillaMacchiato/Algeo01-20062)
 
 ## Table of Contents
@@ -81,7 +82,7 @@ Screenshot lebih lengkap dapat dilihat pada [folder test](./test/).
 
 ## Setup
 
-# PERHATIAN: Pada repo ini, telah dijalankan CI untuk build project secara otomatis. Hasil build dapat dilihat pada branch `build`. Branch `main` tidak memiliki folder `bin` hasil build ini. Pastikan anda memakai branch yang benar.**
+# PERHATIAN: Pada repo ini, telah dijalankan CI untuk build project secara otomatis. Hasil build dapat dilihat pada branch `build`. Branch `main` tidak memiliki folder `bin` hasil build ini. Pastikan anda memakai branch yang benar.\*\*
 
 Untuk melakukan build project, jalankan langkah berikut:
 
@@ -91,11 +92,10 @@ Untuk melakukan build project, jalankan langkah berikut:
    > `mvn clean install`
 3. Untuk menjalankan program, bisa dengan menjalankan file JAR dengan suffix `-full.jar` yang berada di bin
    atau gunakan command berikut untuk menjalankan dengan file class:
+
    > `java -cp libs/AbsoluteLayout.jar;classes alingeo.matriks.ui.Main`
 
    Pastikan anda telah change directory ke dalam folder `bin` pada project ini untuk menjalankan file class.
-
-
 
 ## Usage
 
