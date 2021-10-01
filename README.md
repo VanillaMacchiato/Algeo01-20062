@@ -75,7 +75,7 @@ Fitur yang kami implementasi dalam program ini seperti
 
 ## Screenshots
 
-![Example1](https://raw.githubusercontent.com/VanillaMacchiato/Algeo01-20062/main/testcase/1a.png?token=AIKLQ3OXFTYC5NNZGZP4T4LBL66B2)
+![Example1](https://raw.githubusercontent.com/VanillaMacchiato/Algeo01-20062/main/test/1a.png?token=AIKLQ3OXFTYC5NNZGZP4T4LBL66B2)
 
 Screenshot lebih lengkap dapat dilihat pada [folder test](./test/).
 
