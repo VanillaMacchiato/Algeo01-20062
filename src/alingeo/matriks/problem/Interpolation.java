@@ -148,21 +148,41 @@ public class Interpolation {
         }
         Matrix r = this.result.getResult();
         int cnt = r.getNRow();
+        int fr = 0;
         String res = "f(x) = \n";
-        res += Util.format(r.getElmt(0, 0), type);
-        for (int i = 1; i < cnt; i++) {
+        for (int i = 0; i < cnt; i++) {
             double el = r.getElmt(i, 0);
-            if (el > 0) {
-                res += "\n+ ";
-            } else {
-                res += "\n- ";
-                el *= -1;
+            if (Util.isAlmostEq(el, 0)) {
+                continue;
             }
-            res += Util.format(el, type);
-            res += "x";
-            if (i > 1) {
-                res += "^" + i;
+            if (fr > 0) { // sign
+                if (el > 0) {
+                    res += "\n+ ";
+                } else {
+                    res += "\n- ";
+                    el *= -1;
+                }
             }
+            if (i > 0) { // write coeff (if any)
+                if (fr == 0) { // Special case where -1 is in the first fr
+                    if (Util.isAlmostEq(el, -1)) {
+                        res += "-";
+                    }
+                }
+                if (!Util.isAlmostEq(Math.abs(el), 1)) {
+                    res += Util.format(el, type);
+                }
+                res += "x";
+                if (i > 1) {
+                    res += "^" + i;
+                }
+            } else { // just write everything
+                res += Util.format(el, type);
+            }
+            fr++;
+        }
+        if (fr == 0) {
+            res += Util.format(0, type);
         }
         return res;
     }

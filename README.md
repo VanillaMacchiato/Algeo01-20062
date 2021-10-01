@@ -93,7 +93,7 @@ Screenshot lebih lengkap dapat dilihat pada [folder test](./test/).
 
 ## Setup
 
-# PERHATIAN: Pada repo ini, telah dijalankan CI untuk build project secara otomatis. Hasil build dapat dilihat pada branch `build`. Branch `main` tidak memiliki folder `bin` hasil build ini. Pastikan anda memakai branch yang benar.
+# PERHATIAN: Pada repo ini, telah dijalankan CI/CD untuk build project secara otomatis. Hasil build dapat dilihat pada branch `build`. Branch `main` tidak memiliki folder `bin` hasil build ini. Pastikan anda memakai branch yang benar.
 
 Untuk melakukan build project, jalankan langkah berikut:
 

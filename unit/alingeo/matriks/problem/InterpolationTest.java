@@ -181,20 +181,16 @@ public class InterpolationTest {
         Interpolation ins = new Interpolation(points);
         ins.fit();
         assertEquals("f(x) = \n"
-            + "0.0\n"
-            + "+ 0.7874399206041194x\n"
+            + "0.7874399206041194x\n"
             + "- 0.24955707786412917x^2", ins.toString(Util.Formatting.DEFAULT));
         assertEquals("f(x) = \n"
-            + "0\n"
-            + "+ 0.787x\n"
+            + "0.787x\n"
             + "- 0.25x^2", ins.toString(Util.Formatting.SHORT));
         assertEquals("f(x) = \n"
-            + "0.000\n"
-            + "+ 0.787x\n"
+            + "0.787x\n"
             + "- 0.250x^2", ins.toString(Util.Formatting.PADDED_SHORT));
         assertEquals("f(x) = \n"
-            + "0\n"
-            + "+ 0.7874399206041x\n"
+            + "0.7874399206041x\n"
             + "- 0.2495570778641x^2", ins.toString(Util.Formatting.LONG));
     }
 
@@ -211,8 +207,44 @@ public class InterpolationTest {
         assertEquals("Interpolasi belum di-fit. Jalankan fit() terlebih dahulu.", ins.toString());
         ins.fit();
         assertEquals("f(x) = \n"
-            + "0.0\n"
-            + "+ 0.7874399206041194x\n"
+            + "0.7874399206041194x\n"
             + "- 0.24955707786412917x^2", ins.toString());
+        ins = new Interpolation(new Matrix(new double[][]{
+            {2, 3},
+            {4, 5}
+        }));
+        ins.fit();
+        assertEquals("f(x) = \n"
+            + "1.0\n"
+            + "+ x", ins.toString());
+        ins = new Interpolation(new Matrix(new double[][]{
+            {-1, 1},
+            {0, 0},
+            {1, 1}
+        }));
+        ins.fit();
+        assertEquals("f(x) = \n"
+            + "x^2", ins.toString());
+        ins = new Interpolation(new Matrix(new double[][]{
+            {2, -3},
+            {-4, 6}
+        }));
+        ins.fit();
+        assertEquals("f(x) = \n"
+            + "-1.5x", ins.toString());
+        ins = new Interpolation(new Matrix(new double[][]{
+            {0, 0},
+            {1, 0}
+        }));
+        ins.fit();
+        assertEquals("f(x) = \n"
+            + "0.0", ins.toString());
+        ins = new Interpolation(new Matrix(new double[][]{
+            {0, 0},
+            {1, -1}
+        }));
+        ins.fit();
+        assertEquals("f(x) = \n"
+            + "-x", ins.toString());
     }
 }
