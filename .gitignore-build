@@ -1,7 +1,12 @@
 /nbproject/
 /.settings/
-/bin/
-!/bin/matriks-*-full.jar
-!/bin/classes
-!/bin/test-classes
-!/bin/libs
+/bin/matriks-1.0.0.jar
+/bin/archive-tmp/
+/bin/generated-sources/
+/bin/generated-test-sources/
+/bin/maven-status/
+/bin/site/
+/bin/surefire-reports/
+/bin/jacoco.exec
+nb-configuration.xml
+pom.xml

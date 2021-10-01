@@ -75,11 +75,13 @@ Fitur yang kami implementasi dalam program ini seperti
 
 ## Screenshots
 
-![Example1](https://raw.githubusercontent.com/VanillaMacchiato/Algeo01-20062/main/test/1a.png?token=AIKLQ3OXFTYC5NNZGZP4T4LBL66B2)
+![Example1](https://github.com/VanillaMacchiato/Algeo01-20062/raw/main/test/1a.png)
 
 Screenshot lebih lengkap dapat dilihat pada [folder test](./test/).
 
 ## Setup
+
+# PERHATIAN: Pada repo ini, telah dijalankan CI untuk build project secara otomatis. Hasil build dapat dilihat pada branch `build`. Branch `main` tidak memiliki folder `bin` hasil build ini. Pastikan anda memakai branch yang benar.**
 
 Untuk melakukan build project, jalankan langkah berikut:
 
@@ -93,8 +95,7 @@ Untuk melakukan build project, jalankan langkah berikut:
 
    Pastikan anda telah change directory ke dalam folder `bin` pada project ini untuk menjalankan file class.
 
-Pada repo ini, telah dijalankan CI untuk build project secara otomatis.
-Hasil build dapat dilihat pada branch `build`.
+
 
 ## Usage
 
