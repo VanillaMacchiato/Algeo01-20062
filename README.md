@@ -16,7 +16,7 @@
 ## Table of Contents
 
 - [General Information](#general-information)
-- [Directory Structure](#directory-structture)
+- [Directory Structure](#directory-structure)
 - [Technologies Used](#technologies-used)
 - [Features](#features)
 - [Screenshots](#screenshots)
@@ -35,19 +35,30 @@
 Project ini memiliki group id `alingeo` dengan artifact id `matriks`. Secara umum, package layout ditunjukkan oleh tree berikut:
 
 ```
-│───alingeo                // group id.
-│   └───matriks            // artifact id.
-        ├───io             // package IO untuk Parsing.
-│       ├───problem        // package Problem untuk Interpolation dan Regression.
-│       ├───solver         // package Solver untuk SPL, Determinan, dan Invers.
-│       └───ui             // package UI untuk GUI integrasi main program.
+└───alingeo                           // group id.
+    └───matriks                       // artifact id.
+        ├───io                        // package IO untuk Parsing.
+        |   └───Parser*               // Parser Helper
+        ├───problem                   // package Problem untuk Interpolation dan Regression.
+        |   ├───Interpolation*
+        |   └───Regression*
+        ├───solver                    // package Solver untuk SPL, Determinan, dan Invers.
+        |   ├───SPLSolver*
+        |   ├───InversSolver*
+        |   └───DeterminantSolver*
+        ├───ui                        // package UI untuk GUI integrasi main program.
+        |   └───Main*
+        ├───Matrix*                   // ADT Matrix
+        └───Util*                     // Utility Helper
+
+NB: * = .java atau .class.
+        Binary class dapat terpisah menjadi beberapa bagian.
+        Juga dapat memiliki suffix -Test sebelum ekstensi untuk unit testing.
 ```
 
 Secara lengkap, project ini memiliki direktori sebagai berikut:
 
 ```
-├───.github
-│   └───workflows           // Workflow CI
 ├───bin                     // Build folder
 │   ├───classes             // .class dari source
 │   ├───libs                // Library tambahan
@@ -82,19 +93,23 @@ Screenshot lebih lengkap dapat dilihat pada [folder test](./test/).
 
 ## Setup
 
-# PERHATIAN: Pada repo ini, telah dijalankan CI untuk build project secara otomatis. Hasil build dapat dilihat pada branch `build`. Branch `main` tidak memiliki folder `bin` hasil build ini. Pastikan anda memakai branch yang benar.\*\*
+# PERHATIAN: Pada repo ini, telah dijalankan CI untuk build project secara otomatis. Hasil build dapat dilihat pada branch `build`. Branch `main` tidak memiliki folder `bin` hasil build ini. Pastikan anda memakai branch yang benar.
 
 Untuk melakukan build project, jalankan langkah berikut:
 
 1. Clone repo menggunakan command berikut
-   > `git clone https://github.com/VanillaMacchiato/Algeo01-20062.git`
+   ```
+   git clone https://github.com/VanillaMacchiato/Algeo01-20062.git
+   ```
 2. Build Repo menggunakan maven untuk menghasilkan folder bin
-   > `mvn clean install`
-3. Untuk menjalankan program, bisa dengan menjalankan file JAR dengan suffix `-full.jar` yang berada di bin
+   ```
+   mvn clean install
+   ```
+3. Untuk menjalankan program, bisa dengan menjalankan file JAR dengan suffix `-full.jar` yang berada di `bin`
    atau gunakan command berikut untuk menjalankan dengan file class:
-
-   > `java -cp libs/AbsoluteLayout.jar;classes alingeo.matriks.ui.Main`
-
+   ```
+   java -cp libs/AbsoluteLayout.jar;classes alingeo.matriks.ui.Main
+   ```
    Pastikan anda telah change directory ke dalam folder `bin` pada project ini untuk menjalankan file class.
 
 ## Usage

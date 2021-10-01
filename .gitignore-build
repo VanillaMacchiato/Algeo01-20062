@@ -10,3 +10,4 @@
 /bin/jacoco.exec
 nb-configuration.xml
 pom.xml
+/.github/

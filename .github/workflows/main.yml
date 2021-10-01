@@ -31,15 +31,21 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         directory: bin/site/jacoco
-      
-    - name: Commit and Push
+    
+    - name: Recycle build branch
+      uses: dawidd6/action-delete-branch@v3
+      with:
+        github_token: ${{ github.token }}
+        branches: build
+    
+    - name: Commit and push
       run: |
         cp -r . /tmp/build-artifact
         cd /tmp/build-artifact
         rm .gitignore
         mv .gitignore-build .gitignore
         git checkout -b build
-        git add .gitignore
+        git rm . -r --cached
         git add .
         git config user.name "GitHub"
         git config user.email "noreply@github.com"
