@@ -6,9 +6,16 @@
 > Amar Fadil (13520103)  
 > Vito Ghifari (13520153)
 
+![Build and Coverage](https://github.com/VanillaMacchiato/Algeo01-20062/actions/workflows/main.yml/badge.svg)
+[![codecov](https://codecov.io/gh/VanillaMacchiato/Algeo01-20062/branch/main/graph/badge.svg?token=0RLTWCO56O)](https://codecov.io/gh/VanillaMacchiato/Algeo01-20062)
+
+## Coverage Status
+[![codecov](https://codecov.io/gh/VanillaMacchiato/Algeo01-20062/branch/main/graph/tree.svg?token=0RLTWCO56O)](https://codecov.io/gh/VanillaMacchiato/Algeo01-20062)
+
 ## Table of Contents
 
 - [General Information](#general-information)
+- [Directory Structure](#directory-structture)
 - [Technologies Used](#technologies-used)
 - [Features](#features)
 - [Screenshots](#screenshots)
@@ -17,12 +24,39 @@
 - [Project Status](#project-status)
 - [Room for Improvement](#room-for-improvement)
 - [Acknowledgements](#acknowledgements)
-- [Contact](#contact)
-<!-- * [License](#license) -->
 
 ## General Information
 
 **Tugas Besar Algeo 1** merupakan project yang menggunakan bahasa pemrograman Java untuk menyelesaikan problem pada aljabar linier & geometris. Salah satu problem yang dapat diselesaikan dengan project ini adalah mencari solusi sistem persamaan linear. Proyek ini berbasis GUI dan mendukung file (.txt) sebagai input atau output. Pada utamanya, project ini ditujukan untuk memenuhi tujuan akademik.
+
+## Directory Structure
+
+Project ini memiliki group id `alingeo` dengan artifact id `matriks`. Secara umum, package layout ditunjukkan oleh tree berikut:
+
+```
+│───alingeo                // group id.
+│   └───matriks            // artifact id.
+        ├───io             // package IO untuk Parsing.
+│       ├───problem        // package Problem untuk Interpolation dan Regression.
+│       ├───solver         // package Solver untuk SPL, Determinan, dan Invers.
+│       └───ui             // package UI untuk GUI integrasi main program.
+```
+
+Secara lengkap, project ini memiliki direktori sebagai berikut:
+
+```
+├───.github
+│   └───workflows           // Workflow CI
+├───bin                     // Build folder
+│   ├───classes             // .class dari source
+│   ├───libs                // Library tambahan
+│   └───test-classes        // .class dari test
+├───src                     // Source file utama
+├───test                    // Screenshot program
+└───unit                    // Source file untuk Unit Test
+```
+
+Setiap folder source file atau classes baik utama ataupun unit test akan mengikuti package layout yang sudah tertera sebelumnya.
 
 ## Technologies Used
 
@@ -41,24 +75,30 @@ Fitur yang kami implementasi dalam program ini seperti
 
 ## Screenshots
 
-![Example1](./testcase/1a.png)
+![Example1](https://raw.githubusercontent.com/VanillaMacchiato/Algeo01-20062/main/testcase/1a.png?token=AIKLQ3OXFTYC5NNZGZP4T4LBL66B2)
 
-<!-- If you have screenshots you'd like to share, include them here. -->
+Screenshot lebih lengkap dapat dilihat pada [folder test](./test/).
 
 ## Setup
 
-Berikut cara penggunaan project kami dijelaskan per langkah
+Untuk melakukan build project, jalankan langkah berikut:
 
 1. Clone repo menggunakan command berikut
-   > `git clone`
-2. Build Repo menggunakan maven untuk menghasilkan f older bin
-   > `amar code plz`
-3. Untuk menjalankan program, bisa jalankan .jar yang berada di bin atau gunakan command berikut untuk menjalankan dengan .class file
+   > `git clone https://github.com/VanillaMacchiato/Algeo01-20062.git`
+2. Build Repo menggunakan maven untuk menghasilkan folder bin
+   > `mvn clean install`
+3. Untuk menjalankan program, bisa dengan menjalankan file JAR dengan suffix `-full.jar` yang berada di bin
+   atau gunakan command berikut untuk menjalankan dengan file class:
    > `java -cp libs/AbsoluteLayout.jar;classes alingeo.matriks.ui.Main`
+
+   Pastikan anda telah change directory ke dalam folder `bin` pada project ini untuk menjalankan file class.
+
+Pada repo ini, telah dijalankan CI untuk build project secara otomatis.
+Hasil build dapat dilihat pada branch `build`.
 
 ## Usage
 
-Dengan menjalankan program, akan memunculkan GUI yang komprehensif untuk digunakan, berikut ada beberapa contoh input untuk setiap modul
+Dengan menjalankan program, akan memunculkan GUI yang komprehensif untuk digunakan, berikut ada beberapa contoh input untuk setiap modul:
 
 ### SPL
 
@@ -128,9 +168,3 @@ Selama project, kami sangat terbantu dengan yang disebutkan di bawah ini.
 - Amar Fadil, mengarahkan untuk melakukan best practice untuk menyusun kode.
 - Stackoverflow, yang membantu men-debug code ketika kita membuat kesalahan.
 - Pak Rinaldi Munir, sebagai dosen kami dalam matkul aljabar linier dan geometri yang mengajarkan kami konsep matematis program ini.
-
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->

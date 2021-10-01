@@ -13,7 +13,7 @@
     <build>
         <directory>bin</directory>
         <sourceDirectory>src</sourceDirectory>
-        <testSourceDirectory>test</testSourceDirectory>
+        <testSourceDirectory>unit</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
